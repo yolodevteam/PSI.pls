@@ -79,7 +79,7 @@
     
     NSLog(@"%@", [_results objectForKey:[NSString stringWithFormat:@"%d", hour]]);
     
-    if ([_results objectForKey:[NSString stringWithFormat:@"%d", hour]] == 0) {
+    if ([[_results objectForKey:[NSString stringWithFormat:@"%d", hour]] isEqual: @"0"]) {
         // The NEA are being slow and haven't updated their figures yet, show latest figure.
         NSLog(@"PING:");
         _hour = hour--;
@@ -90,13 +90,16 @@
         _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
 
     }
-    
-    if ([[_results objectForKey:[NSString stringWithFormat:@"%d", hour]] isEqualToString:@"0"]) {
+    NSLog(@"swag 1234");
+    NSLog(@"swag swag pls %@", [_results objectForKey:[NSString stringWithFormat:@"%d", hour]]);
+    if ([[_results objectForKey:[NSString stringWithFormat:@"%d", hour]] isEqual: @"0"]) {
+        NSLog(@"whatttttt");
         _psiLabel.text = @"Current data unavaliable";
     } else {
-        _psiLabel.text = [_results objectForKey:_hourString];
+        NSLog(@"swag swag swag swag #####");
+        _psiLabel.text = [_results objectForKey:[_results objectForKey:[NSString stringWithFormat:@"%d", _hour]]];
     }
-    
+    NSLog(@"swag 4321");
     if (_hour > 20 || _hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
     }
