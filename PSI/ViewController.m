@@ -19,6 +19,9 @@
 @synthesize psiLabel = _psiLabel;
 @synthesize hourString = _hourString;
 @synthesize responseData = _responseData;
+@synthesize time = _time;
+@synthesize scrollView = _scrollView;
+@synthesize health = _health;
 
 - (void)viewDidLoad
 {
@@ -27,20 +30,10 @@
     
     NSLog(@"Init viewDidLoad");
     
-
-    
-   /* NSURL *url = [NSURL URLWithString:@"http://dawo.me/psi/psi.json"];
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    request.URL = url;
-    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
-    request.timeoutInterval = 30;*/
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    _psiLabel.text = @"Loading";
-    
+    _psiLabel.text = @"0";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -65,7 +58,7 @@
     NSError *err;
     
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableContainers error:&err];
-    NSLog(@"results %@", results);
+
     if (err) {
         NSLog(@"There was an error reading JSON data: %@", err);
         return;
@@ -76,35 +69,37 @@
     NSString *date = [self getSingaporeTime];
     
     int hour = [date intValue];
-    
-    NSLog(@"%@", [_results objectForKey:[NSString stringWithFormat:@"%d", hour]]);
-    
+        
     if ([[_results objectForKey:[NSString stringWithFormat:@"%d", hour]] isEqual: @"0"]) {
         // The NEA are being slow and haven't updated their figures yet, show latest figure.
-        NSLog(@"PING:");
         _hour = hour--;
         _hourString = [NSString stringWithFormat:@"%d", _hour];
     } else {
         _hour = hour;
         _hourString = [NSString stringWithFormat:@"%d", _hour];
+        
         _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
+        _time.text = [NSString stringWithFormat:@"%d:00", _hour];
+    }
 
-    }
-    NSLog(@"swag 1234");
-    NSLog(@"swag swag pls %@", [_results objectForKey:[NSString stringWithFormat:@"%d", hour]]);
-    if ([[_results objectForKey:[NSString stringWithFormat:@"%d", hour]] isEqual: @"0"]) {
-        NSLog(@"whatttttt");
+    if ([_psiLabel.text isEqualToString:@"0"]) {
+        _psiLabel.font = [UIFont fontWithName:@"Helvetica Neue UltraLight" size:30];
         _psiLabel.text = @"Current data unavaliable";
+        _time.text = [NSString stringWithFormat:@"%d:00", _hour];
     } else {
-        NSLog(@"swag swag swag swag ##### %@", [_results objectForKey:_hourString]);
-        _psiLabel.text = @"hello";
         _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
+        _time.text = [NSString stringWithFormat:@"%d:00", _hour];
     }
-    NSLog(@"swag 4321");
+
     if (_hour > 20 || _hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
     }
-    
+}
+
+- (void)updateLabels
+{
+    _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
+    _time.text = [NSString stringWithFormat:@"%d:00", _hour];
     
     
 }

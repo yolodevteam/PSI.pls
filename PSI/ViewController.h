@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <NSURLConnectionDataDelegate>
+@interface ViewController : UIViewController <NSURLConnectionDataDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) NSDictionary *results;
 @property int hour;
+@property (nonatomic, strong) NSDictionary *results;
 @property (nonatomic, strong) IBOutlet UILabel *psiLabel;
+@property (nonatomic, strong) IBOutlet UILabel *health;
 @property (nonatomic, strong) NSString *hourString;
 @property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) IBOutlet UILabel *time;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @end
