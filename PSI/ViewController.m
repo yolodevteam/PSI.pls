@@ -96,8 +96,9 @@
         NSLog(@"whatttttt");
         _psiLabel.text = @"Current data unavaliable";
     } else {
-        NSLog(@"swag swag swag swag ##### %@", _hourString);
-        _psiLabel.text = [_results objectForKey:_hourString];
+        NSLog(@"swag swag swag swag ##### %@", [_results objectForKey:_hourString]);
+        _psiLabel.text = @"hello";
+        _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
     }
     NSLog(@"swag 4321");
     if (_hour > 20 || _hour < 7) {
