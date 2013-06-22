@@ -31,6 +31,8 @@
     // Do any additional setup after loading the view from its nib.
     
     [_done addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.view.backgroundColor = [UIColor blackColor];
 }
 
 - (void)dismissSelf
