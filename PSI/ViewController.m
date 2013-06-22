@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "InformationViewController.h"
 
 @interface ViewController ()
 
@@ -22,6 +23,7 @@
 @synthesize time = _time;
 @synthesize scrollView = _scrollView;
 @synthesize health = _health;
+@synthesize info = _info;
 
 - (void)viewDidLoad
 {
@@ -34,6 +36,16 @@
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     _psiLabel.text = @"0";
+    
+    [_info addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)showInfo
+{
+    InformationViewController *info = [[InformationViewController alloc] initWithNibName:@"InformationViewController" bundle:nil];
+    info.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [self presentModalViewController:info animated:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
@@ -78,20 +90,16 @@
         _hour = hour;
         _hourString = [NSString stringWithFormat:@"%d", _hour];
         
-        _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
-        _time.text = [NSString stringWithFormat:@"%d:00", _hour];
+        //_psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
+        //_time.text = [NSString stringWithFormat:@"%d:00", _hour];
     }
 
-    if ([_psiLabel.text isEqualToString:@"0"]) {
+    if ([[_results objectForKey:[NSString stringWithFormat:@"%d", (hour - 1)]] isEqual: @"0"]) {
         _psiLabel.font = [UIFont fontWithName:@"Helvetica Neue UltraLight" size:30];
         _psiLabel.text = @"Current data unavaliable";
-        _time.text = [NSString stringWithFormat:@"%d:00", _hour];
-    } else {
-        _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
-        _time.text = [NSString stringWithFormat:@"%d:00", _hour];
     }
-
-    _time.textColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.0];
+    
+    [self updateLabels];
     
     if (_hour > 20 || _hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
@@ -102,6 +110,31 @@
 {
     _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
     _time.text = [NSString stringWithFormat:@"%d:00", _hour];
+    
+    int psi = [_psiLabel.text intValue];
+    
+    
+    if (psi < 51) {
+        // 'Good'
+        _health.text = @"Good";
+        _health.textColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.0];
+    }
+    else if (psi < 101) {
+        _health.text = @"Moderate";
+        _health.textColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:1.0];
+    }
+    else if (psi < 201) {
+        _health.text = @"Unhealthy";
+        _health.textColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:1.0];
+    }
+    else if (psi < 300) {
+        _health.text = @"Very unhealthy";
+        _health.textColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0];
+    }
+    else if (psi >= 300){
+        _health.text = @"Hazardous";
+        _health.textColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:1.0];
+    }
     
     
 }

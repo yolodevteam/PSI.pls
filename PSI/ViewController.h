@@ -18,5 +18,5 @@
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) IBOutlet UILabel *time;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-
+@property (nonatomic, strong) IBOutlet UIButton *info;
 @end

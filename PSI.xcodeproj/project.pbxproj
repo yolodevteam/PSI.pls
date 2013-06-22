@@ -19,7 +19,8 @@
 		E90770F11775A4D200139FFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90770F01775A4D200139FFC /* ViewController.m */; };
 		E90770F41775A4D200139FFC /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90770F21775A4D200139FFC /* ViewController_iPhone.xib */; };
 		E90770F71775A4D200139FFC /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90770F51775A4D200139FFC /* ViewController_iPad.xib */; };
-		E92E49901775E8C5002E9C46 /* PSI.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E498F1775E8C5002E9C46 /* PSI.m */; };
+		E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E49971775F25F002E9C46 /* InformationViewController.m */; };
+		E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92E49981775F25F002E9C46 /* InformationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,8 +41,9 @@
 		E90770F01775A4D200139FFC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E90770F31775A4D200139FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		E90770F61775A4D200139FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
-		E92E498E1775E8C5002E9C46 /* PSI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSI.h; sourceTree = "<group>"; };
-		E92E498F1775E8C5002E9C46 /* PSI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSI.m; sourceTree = "<group>"; };
+		E92E49961775F25F002E9C46 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		E92E49971775F25F002E9C46 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
+		E92E49981775F25F002E9C46 /* InformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +96,9 @@
 				E90770F01775A4D200139FFC /* ViewController.m */,
 				E90770F21775A4D200139FFC /* ViewController_iPhone.xib */,
 				E90770F51775A4D200139FFC /* ViewController_iPad.xib */,
-				E92E498E1775E8C5002E9C46 /* PSI.h */,
-				E92E498F1775E8C5002E9C46 /* PSI.m */,
+				E92E49961775F25F002E9C46 /* InformationViewController.h */,
+				E92E49971775F25F002E9C46 /* InformationViewController.m */,
+				E92E49981775F25F002E9C46 /* InformationViewController.xib */,
 				E90770DE1775A4D200139FFC /* Supporting Files */,
 			);
 			path = PSI;
@@ -172,6 +175,7 @@
 				E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */,
 				E90770F41775A4D200139FFC /* ViewController_iPhone.xib in Resources */,
 				E90770F71775A4D200139FFC /* ViewController_iPad.xib in Resources */,
+				E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +189,7 @@
 				E90770E41775A4D200139FFC /* main.m in Sources */,
 				E90770E81775A4D200139FFC /* AppDelegate.m in Sources */,
 				E90770F11775A4D200139FFC /* ViewController.m in Sources */,
-				E92E49901775E8C5002E9C46 /* PSI.m in Sources */,
+				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
