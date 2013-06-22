@@ -11,5 +11,6 @@
 @interface InformationViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet UIButton *done;
+@property (nonatomic, strong) IBOutlet UITextView *textView;
 
 @end

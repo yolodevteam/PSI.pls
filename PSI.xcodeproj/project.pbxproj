@@ -21,6 +21,8 @@
 		E90770F71775A4D200139FFC /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90770F51775A4D200139FFC /* ViewController_iPad.xib */; };
 		E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E49971775F25F002E9C46 /* InformationViewController.m */; };
 		E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92E49981775F25F002E9C46 /* InformationViewController.xib */; };
+		E92E499C17760B23002E9C46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92E499B17760B23002E9C46 /* QuartzCore.framework */; };
+		E92E499F17760BA2002E9C46 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E499E17760BA2002E9C46 /* Graph.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,9 @@
 		E92E49961775F25F002E9C46 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
 		E92E49971775F25F002E9C46 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		E92E49981775F25F002E9C46 /* InformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationViewController.xib; sourceTree = "<group>"; };
+		E92E499B17760B23002E9C46 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E92E499D17760BA2002E9C46 /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
+		E92E499E17760BA2002E9C46 /* Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graph.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92E499C17760B23002E9C46 /* QuartzCore.framework in Frameworks */,
 				E90770D81775A4D200139FFC /* UIKit.framework in Frameworks */,
 				E90770DA1775A4D200139FFC /* Foundation.framework in Frameworks */,
 				E90770DC1775A4D200139FFC /* CoreGraphics.framework in Frameworks */,
@@ -80,6 +86,7 @@
 		E90770D61775A4D200139FFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E92E499B17760B23002E9C46 /* QuartzCore.framework */,
 				E90770D71775A4D200139FFC /* UIKit.framework */,
 				E90770D91775A4D200139FFC /* Foundation.framework */,
 				E90770DB1775A4D200139FFC /* CoreGraphics.framework */,
@@ -100,6 +107,8 @@
 				E92E49971775F25F002E9C46 /* InformationViewController.m */,
 				E92E49981775F25F002E9C46 /* InformationViewController.xib */,
 				E90770DE1775A4D200139FFC /* Supporting Files */,
+				E92E499D17760BA2002E9C46 /* Graph.h */,
+				E92E499E17760BA2002E9C46 /* Graph.m */,
 			);
 			path = PSI;
 			sourceTree = "<group>";
@@ -190,6 +199,7 @@
 				E90770E81775A4D200139FFC /* AppDelegate.m in Sources */,
 				E90770F11775A4D200139FFC /* ViewController.m in Sources */,
 				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,
+				E92E499F17760BA2002E9C46 /* Graph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

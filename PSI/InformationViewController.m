@@ -15,6 +15,7 @@
 @implementation InformationViewController
 
 @synthesize done = _done;
+@synthesize textView = _textView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +34,8 @@
     [_done addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
     
     self.view.backgroundColor = [UIColor blackColor];
+    
+    _textView.text = @"Coded by ttwj & NinjaLikesCheez.\n\nUsing data found at http://dawo.me/\n\nA YoloDev Team Production.";
 }
 
 - (void)dismissSelf

@@ -21,5 +21,6 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIButton *info;
 @property (nonatomic, strong) UIView *loadingView;
+@property (nonatomic, strong) IBOutlet UIScrollView *graphView;
 
 @end

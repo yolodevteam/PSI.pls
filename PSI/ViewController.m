@@ -25,6 +25,7 @@
 @synthesize health = _health;
 @synthesize info = _info;
 @synthesize loadingView = _loadingView;
+@synthesize graphView = _graphView;
 
 - (void)viewDidLoad
 {
@@ -50,6 +51,11 @@
     [act startAnimating];
     
     [self.view addSubview:_loadingView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    _graphView.contentSize = CGSizeMake(320, 700);
 }
 
 - (void)showInfo
@@ -176,6 +182,7 @@
     
     return time;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
