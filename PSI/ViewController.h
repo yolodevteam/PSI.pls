@@ -10,6 +10,7 @@
 
 @interface ViewController : UIViewController <NSURLConnectionDataDelegate, UIScrollViewDelegate>
 
+
 @property int hour;
 @property (nonatomic, strong) NSDictionary *results;
 @property (nonatomic, strong) IBOutlet UILabel *psiLabel;
@@ -19,4 +20,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *time;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIButton *info;
+@property (nonatomic, strong) UIView *loadingView;
+
 @end

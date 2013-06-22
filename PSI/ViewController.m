@@ -24,6 +24,7 @@
 @synthesize scrollView = _scrollView;
 @synthesize health = _health;
 @synthesize info = _info;
+@synthesize loadingView = _loadingView;
 
 - (void)viewDidLoad
 {
@@ -38,6 +39,17 @@
     _psiLabel.text = @"0";
     
     [_info addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
+    
+    _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    _loadingView.backgroundColor = [UIColor blackColor];
+    
+    UIActivityIndicatorView *act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    act.center = _loadingView.center;
+    
+    [_loadingView addSubview:act];
+    [act startAnimating];
+    
+    [self.view addSubview:_loadingView];
 }
 
 - (void)showInfo
@@ -136,7 +148,17 @@
         _health.textColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:1.0];
     }
     
-    
+    [self removeLoadingView];
+
+}
+
+- (void)removeLoadingView
+{
+    [UIView animateWithDuration:2.0 animations:^{
+        _loadingView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [_loadingView removeFromSuperview];
+    }];
 }
 
 - (NSString *)getSingaporeTime
