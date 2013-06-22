@@ -13,10 +13,12 @@
     int psi;
     NSInteger *time;
     NSString *health;
+    UIColor *healthColor;
 }
 
 @property int psi;
 @property NSInteger *time;
 @property NSString *health;
+@property UIColor *healthColor;
 
 @end

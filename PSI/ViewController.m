@@ -91,6 +91,8 @@
         _time.text = [NSString stringWithFormat:@"%d:00", _hour];
     }
 
+    _time.textColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.0];
+    
     if (_hour > 20 || _hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
     }
