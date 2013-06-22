@@ -101,6 +101,9 @@
     } else {
         _hour = hour;
         _hourString = [NSString stringWithFormat:@"%d", _hour];
+        if ([_hourString length] == 1) {
+            _hourString = [NSString stringWithFormat:@"0%d", _hour];
+        }
         
         //_psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
         //_time.text = [NSString stringWithFormat:@"%d:00", _hour];
