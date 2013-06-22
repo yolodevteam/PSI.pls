@@ -65,7 +65,7 @@
     NSError *err;
     
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableContainers error:&err];
-    
+    NSLog(@"results %@", results);
     if (err) {
         NSLog(@"There was an error reading JSON data: %@", err);
         return;
@@ -96,8 +96,8 @@
         NSLog(@"whatttttt");
         _psiLabel.text = @"Current data unavaliable";
     } else {
-        NSLog(@"swag swag swag swag #####");
-        _psiLabel.text = [_results objectForKey:[_results objectForKey:[NSString stringWithFormat:@"%d", _hour]]];
+        NSLog(@"swag swag swag swag ##### %@", _hourString);
+        _psiLabel.text = [_results objectForKey:_hourString];
     }
     NSLog(@"swag 4321");
     if (_hour > 20 || _hour < 7) {
