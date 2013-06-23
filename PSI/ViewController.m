@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "InformationViewController.h"
+#import "UIImage+Tools.m"
 
 @interface ViewController ()
 
@@ -33,6 +34,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     NSLog(@"Init viewDidLoad");
+    //background swag
+    UIImage *img = [[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+    [self.view addSubview:imageView];
+    [self.view sendSubviewToBack:imageView];
+
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -126,7 +133,8 @@
         // Set a night time background picture (this is only if we can't get webcam images before release)
     }
     NSLog(@"SWAG SWAG DATA %@", _results);
-    Graph* graph = [[Graph alloc] initWithData:_results withFrame:CGRectMake(0, 0, 620, 200)];
+    Graph* graph = [[Graph alloc] initWithData:_results withFrame:CGRectMake(0, 0, 620, 200) withController:self];
+    _graphView.backgroundColor = [UIColor clearColor];
     [_graphView addSubview:graph];
     _graphView.contentSize = CGSizeMake(620, 313);
 }

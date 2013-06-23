@@ -11,6 +11,7 @@
 @implementation Graph
 float data[24];
 float scale;
+float highest = 0;
 //float data[] = {0.7, 0.4, 0.9, 1.0, 0.2, 0.85, 0.11, 0.75, 0.53, 0.44, 0.88, 0.77};
 //float data[] = {1.1, 1.2, 0.9};
 CGRect touchesAreas[kNumberOfBars];
@@ -25,21 +26,33 @@ CGRect touchesAreas[kNumberOfBars];
     
     return self;
 }
--(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame {
+-(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame withController:(ViewController*) controller {
     NSLog(@"dict data %@", dictData);
-    float highest = 0;
     NSMutableArray* keys = [NSMutableArray arrayWithCapacity:24];
-    for (NSString* key in dictData) {
-        float value = [[dictData objectForKey:key] floatValue];
-         NSLog(@"float value %f", value);
-        if (value > highest ) {
-            highest = value;
+    for (int i = 0; i < 24; i++) {
+        NSString* _hourString = [NSString stringWithFormat:@"%d", i];
+        if ([_hourString length] == 1) {
+            _hourString = [NSString stringWithFormat:@"0%d", i];
         }
-        NSLog(@"key float %d", [key integerValue]);
+        float value = [[dictData objectForKey:_hourString] floatValue];
+        NSLog(@"############## %d:%@ #######", i, [dictData objectForKey:_hourString]);
+         //NSLog(@"float value %f", value);
+        if (value > highest ) {
+            highest = value + 50;
+        }
+       // NSLog(@"key float %d", [key integerValue]);
         //[keys addObject:value];
-        data[[key integerValue]] = value;
-       
+        //data[[key integerValue]] = value;
+        [keys addObject:[dictData objectForKey:_hourString]];
         // do stuff
+    }
+    int i = 0;
+    for (id value in keys) {
+        float scaled = [value floatValue]/highest;
+        NSLog(@"value %@ %f", value, scaled);
+        
+        data[i] = scaled;
+        i++;
     }
     NSLog(@"yolo %f %f", frame.size.height, frame.size.width);
     NSLog(@"swag %f", data[1]);
@@ -52,9 +65,11 @@ CGRect touchesAreas[kNumberOfBars];
     NSLog(@"yolo pls %f %f", rect.size.height, rect.size.width);
     // Setup code
     
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.6);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
     
     // Verticle lines (time stamp)
     //int numVertLines = (kGraphWidth - kOffsetX / kStepX);
@@ -136,7 +151,7 @@ CGRect touchesAreas[kNumberOfBars];
     for (int i = 0; i < kNumberOfBars; i++) {
         NSString *text = [NSString stringWithFormat:@"%d", i];
         CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphBottom - 5, [text cStringUsingEncoding:NSUTF8StringEncoding], [text length]);
-        NSLog(@"currently at bar %d", i);   
+        //NSLog(@"currently at bar %d", i);
     }
     
     
@@ -149,7 +164,7 @@ CGRect touchesAreas[kNumberOfBars];
     
     for (int i = 0; i < kNumberOfBars; i++) {
         if (CGRectContainsPoint(touchesAreas[i], point)) {
-            NSLog(@"Tapped point with index %d, value %f", i, data[i]);
+            NSLog(@"Tapped point with index %d, value %f", i, (data[i] * highest));
             break;
         }
     }

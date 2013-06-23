@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD9DA1901776E4BA005B2C62 /* bg_iphone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18D1776E4BA005B2C62 /* bg_iphone.jpg */; };
+		AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */; };
+		AD9DA1921776E4BA005B2C62 /* bg_iphone-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h@2x.jpg */; };
+		AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */; };
 		E90770D81775A4D200139FFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D71775A4D200139FFC /* UIKit.framework */; };
 		E90770DA1775A4D200139FFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D91775A4D200139FFC /* Foundation.framework */; };
 		E90770DC1775A4D200139FFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770DB1775A4D200139FFC /* CoreGraphics.framework */; };
@@ -26,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD9DA18D1776E4BA005B2C62 /* bg_iphone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_iphone.jpg; sourceTree = "<group>"; };
+		AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone@2x.jpg"; sourceTree = "<group>"; };
+		AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone-568h@2x.jpg"; sourceTree = "<group>"; };
+		AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tools.m"; sourceTree = "<group>"; };
 		E90770D41775A4D200139FFC /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90770D71775A4D200139FFC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E90770D91775A4D200139FFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,6 +108,7 @@
 				E90770E61775A4D200139FFC /* AppDelegate.h */,
 				E90770E71775A4D200139FFC /* AppDelegate.m */,
 				E90770EF1775A4D200139FFC /* ViewController.h */,
+				AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */,
 				E90770F01775A4D200139FFC /* ViewController.m */,
 				E90770F21775A4D200139FFC /* ViewController_iPhone.xib */,
 				E90770F51775A4D200139FFC /* ViewController_iPad.xib */,
@@ -120,6 +129,9 @@
 				E90770E01775A4D200139FFC /* InfoPlist.strings */,
 				E90770E31775A4D200139FFC /* main.m */,
 				E90770E51775A4D200139FFC /* PSI-Prefix.pch */,
+				AD9DA18D1776E4BA005B2C62 /* bg_iphone.jpg */,
+				AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */,
+				AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h@2x.jpg */,
 				E90770E91775A4D200139FFC /* Default.png */,
 				E90770EB1775A4D200139FFC /* Default@2x.png */,
 				E90770ED1775A4D200139FFC /* Default-568h@2x.png */,
@@ -185,6 +197,9 @@
 				E90770F41775A4D200139FFC /* ViewController_iPhone.xib in Resources */,
 				E90770F71775A4D200139FFC /* ViewController_iPad.xib in Resources */,
 				E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */,
+				AD9DA1901776E4BA005B2C62 /* bg_iphone.jpg in Resources */,
+				AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */,
+				AD9DA1921776E4BA005B2C62 /* bg_iphone-568h@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +215,7 @@
 				E90770F11775A4D200139FFC /* ViewController.m in Sources */,
 				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,
 				E92E499F17760BA2002E9C46 /* Graph.m in Sources */,
+				AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

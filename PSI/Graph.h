@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 #define kGraphHeight 177
 #define kGraphWidth 900
@@ -27,6 +28,6 @@
 
 @interface Graph : UIScrollView
 
--(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame;
+-(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame withController:(UIViewController*) controller;
 
 @end
