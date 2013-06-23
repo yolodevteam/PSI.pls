@@ -12,44 +12,37 @@
 float data[24];
 float scale;
 float highest = 0;
-//float data[] = {0.7, 0.4, 0.9, 1.0, 0.2, 0.85, 0.11, 0.75, 0.53, 0.44, 0.88, 0.77};
-//float data[] = {1.1, 1.2, 0.9};
+
 CGRect touchesAreas[kNumberOfBars];
 
-- (id)initWithFrame:(CGRect)frame
-{
-    NSLog(@"yolo %f %f", frame.size.height, frame.size.width);
+-(id)initWithData:(NSDictionary*)dictData frame:(CGRect) frame controller:(ViewController*) controller {
+    
     self = [super initWithFrame:frame];
-        if (self) {
-            // Initialization code
+    if (self) {
+        [self setBackgroundColor:[UIColor clearColor]];
+
+        NSMutableArray* keys = [NSMutableArray arrayWithCapacity:24];
+    
+        for (int i = 0; i < 24; i++) {
+            NSString* _hourString = [NSString stringWithFormat:@"%d", i];
+            if ([_hourString length] == 1) {
+                _hourString = [NSString stringWithFormat:@"0%d", i];
+            }
+            float value = [[dictData objectForKey:_hourString] floatValue];
+            if (value > highest ) {
+                highest = value + 20;
+            }
+            [keys addObject:[dictData objectForKey:_hourString]];
+            
+        }
+        int i = 0;
+        for (id value in keys) {
+            float scaled = [value floatValue]/highest;
+            data[i] = scaled;
+            i++;
+        }
     }
     
-    return self;
-}
--(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame withController:(ViewController*) controller {
-    NSLog(@"dict data %@", dictData);
-    NSMutableArray* keys = [NSMutableArray arrayWithCapacity:24];
-    for (int i = 0; i < 24; i++) {
-        NSString* _hourString = [NSString stringWithFormat:@"%d", i];
-        if ([_hourString length] == 1) {
-            _hourString = [NSString stringWithFormat:@"0%d", i];
-        }
-        float value = [[dictData objectForKey:_hourString] floatValue];
-        if (value > highest ) {
-            highest = value + 20;
-        }
-        [keys addObject:[dictData objectForKey:_hourString]];
-        // do stuff
-    }
-    int i = 0;
-    for (id value in keys) {
-        float scaled = [value floatValue]/highest;
-        data[i] = scaled;
-        i++;
-    }
-    NSLog(@"yolo %f %f", frame.size.height, frame.size.width);
-    NSLog(@"swag %f", data[1]);
-    self = [super initWithFrame:frame];
     return self;
 }
 
@@ -57,9 +50,15 @@ CGRect touchesAreas[kNumberOfBars];
 {
     // Setup code
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextClearRect(context, rect);
+
+    
+    // Clear background
+    
     CGContextSetLineWidth(context, 0.6);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
+
     
     // Verticle lines (time stamp)
     //int numVertLines = (kGraphWidth - kOffsetX / kStepX);
@@ -103,15 +102,21 @@ CGRect touchesAreas[kNumberOfBars];
         
         touchesAreas[i] = touchPoint;
         
-        /*CGContextSetTextMatrix(context, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
+        // Text near points
+        
+        CGContextSetTextMatrix(context, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
         CGContextSelectFont(context, kFont, kFontSize, kCGEncodingMacRoman);
         CGContextSetTextDrawingMode(context, kCGTextFill);
         CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
         
         for (int i = 0; i < kNumberOfBars; i++) {
-            NSString *text = [NSString stringWithFormat:@"%d", i];
-            CGContextShowTextAtPoint(context, kOffsetX + i * kStepX, kGraphBottom - 7, [text cStringUsingEncoding:NSUTF8StringEncoding], [text length]);
-        }*/
+            NSString *text = [NSString stringWithFormat:@"%f", data[i]];
+            CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphHeight - maxGraphHeight * data[i], [text cStringUsingEncoding:NSUTF8StringEncoding], [text length]);
+            
+            NSLog(@"%f", data[i]);
+        }
+        
+        
     }
     
     CGContextDrawPath(context, kCGPathFillStroke);

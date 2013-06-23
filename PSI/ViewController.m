@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "InformationViewController.h"
 #import "UIImage+Tools.m"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ViewController ()
 
@@ -27,6 +28,9 @@
 @synthesize info = _info;
 @synthesize loadingView = _loadingView;
 @synthesize graphView = _graphView;
+@synthesize refresh = _refresh;
+@synthesize act = _act;
+@synthesize loading = _loading;
 
 - (void)viewDidLoad
 {
@@ -39,7 +43,8 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
     [self.view addSubview:imageView];
     [self.view sendSubviewToBack:imageView];
-
+    
+    self.view.backgroundColor = [UIColor clearColor];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -56,13 +61,75 @@
     
     [_loadingView addSubview:act];
     [act startAnimating];
-    
+        
     [self.view addSubview:_loadingView];
+    
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkTime) userInfo:nil repeats:YES];
+    [timer fire];
+    
+    UIColor *color = _refresh.currentTitleColor;
+    _refresh.titleLabel.layer.shadowColor = [color CGColor];
+    _refresh.titleLabel.layer.shadowRadius = 4.0f;
+    _refresh.titleLabel.layer.shadowOpacity = 0.9;
+    _refresh.titleLabel.layer.shadowOffset = CGSizeZero;
+    _refresh.titleLabel.layer.masksToBounds = YES;
+    _refresh.showsTouchWhenHighlighted = YES;
+    
+    [_refresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
+    
+    fromRefresh = NO;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)refreshData
 {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    // Animation block, fade all but time out lessen the blur while loading.
+    _act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _act.center = self.view.center;
+    _act.alpha = 0.0;
+    [self.view addSubview:_act];
+    [_act startAnimating];
+    
+    _refresh.enabled = NO;
 
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        _psiLabel.alpha = 0.0;
+        _health.alpha = 0.0;
+        _graphView.alpha = 0.0;
+        _act.alpha = 1.0;
+        _refresh.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        canRedraw = YES;
+        fromRefresh = YES;
+    }];
+}
+
+- (void)redrawInterface
+{
+    while (true) {
+        if (canRedraw == YES) {
+            break;
+        }
+    }
+    _refresh.enabled = YES;
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        _psiLabel.alpha = 1.0;
+        _health.alpha = 1.0;
+        _graphView.alpha = 1.0;
+        _act.alpha = 0.0;
+        _refresh.alpha = 1.0;
+    } completion:^(BOOL finished){
+        [_act removeFromSuperview];
+    }];
+}
+
+- (void)checkTime
+{
+    _time.text = [self getSingaporeTimeWithMinutes:YES];
 }
 
 - (void)showInfo
@@ -103,7 +170,7 @@
     
     _results = results;
         
-    NSString *date = [self getSingaporeTime];
+    NSString *date = [self getSingaporeTimeWithMinutes:NO];
     
     int hour = [date intValue];
     
@@ -133,16 +200,20 @@
         // Set a night time background picture (this is only if we can't get webcam images before release)
     }
     NSLog(@"SWAG SWAG DATA %@", _results);
-    Graph* graph = [[Graph alloc] initWithData:_results withFrame:CGRectMake(0, 0, 620, 200) withController:self];
-    _graphView.backgroundColor = [UIColor clearColor];
+    Graph* graph = [[Graph alloc] initWithData:_results frame:CGRectMake(0, 0, 1280, 200) controller:self];
+    // _graphView.backgroundColor = [UIColor clearColor];
     [_graphView addSubview:graph];
-    _graphView.contentSize = CGSizeMake(620, 313);
+    _graphView.contentSize = CGSizeMake(1280, 312);
+    
+    if (fromRefresh) {
+        [self redrawInterface];
+    }
 }
 
 - (void)updateLabels
 {
     _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
-    _time.text = [NSString stringWithFormat:@"%d:00", _hour];
+    _time.text = [self getSingaporeTimeWithMinutes:YES];
     
     int psi = [_psiLabel.text intValue];
     
@@ -182,10 +253,15 @@
     }];
 }
 
-- (NSString *)getSingaporeTime
+- (NSString *)getSingaporeTimeWithMinutes:(BOOL)minutes
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"HH";
+    
+    if (minutes) {
+        dateFormatter.dateFormat = @"HH:mm";
+    } else {
+        dateFormatter.dateFormat = @"HH";
+    }
     
     NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
     [dateFormatter setTimeZone:sgt];
@@ -193,6 +269,15 @@
     NSString *time = [dateFormatter stringFromDate:[NSDate date]];
     
     return time;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y > 0) {
+        CGPoint offset = scrollView.contentOffset;
+        offset.y = 0;
+        scrollView.contentOffset = offset;
+    }
 }
 
 

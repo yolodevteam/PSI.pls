@@ -10,7 +10,7 @@
 #import "ViewController.h"
 
 #define kGraphHeight 177
-#define kGraphWidth 900
+#define kGraphWidth 620
 #define kOffsetX 1 // this needs to change to offset the graph to the right. Is 1 because line is 0.7 else clipping would occur
 #define kStepX 53 // grid lines
 #define kStepY 10
@@ -28,6 +28,6 @@
 
 @interface Graph : UIScrollView
 
--(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame withController:(UIViewController*) controller;
+-(id)initWithData:(NSDictionary*) dictData frame:(CGRect) frame controller:(UIViewController*) controller;
 
 @end

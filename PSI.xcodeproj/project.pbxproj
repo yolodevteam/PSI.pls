@@ -27,6 +27,8 @@
 		E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92E49981775F25F002E9C46 /* InformationViewController.xib */; };
 		E92E499C17760B23002E9C46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92E499B17760B23002E9C46 /* QuartzCore.framework */; };
 		E92E499F17760BA2002E9C46 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E499E17760BA2002E9C46 /* Graph.m */; };
+		E9614C2E1776F9F000FA08A2 /* UIButtonBarRefresh.png in Resources */ = {isa = PBXBuildFile; fileRef = E9614C2C1776F9F000FA08A2 /* UIButtonBarRefresh.png */; };
+		E9614C2F1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9614C2D1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		E92E499B17760B23002E9C46 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E92E499D17760BA2002E9C46 /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
 		E92E499E17760BA2002E9C46 /* Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graph.m; sourceTree = "<group>"; };
+		E9614C2C1776F9F000FA08A2 /* UIButtonBarRefresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIButtonBarRefresh.png; sourceTree = "<group>"; };
+		E9614C2D1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UIButtonBarRefresh@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +109,12 @@
 		E90770DD1775A4D200139FFC /* PSI */ = {
 			isa = PBXGroup;
 			children = (
+				E9614C2C1776F9F000FA08A2 /* UIButtonBarRefresh.png */,
+				E9614C2D1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png */,
 				E90770E61775A4D200139FFC /* AppDelegate.h */,
 				E90770E71775A4D200139FFC /* AppDelegate.m */,
-				E90770EF1775A4D200139FFC /* ViewController.h */,
 				AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */,
+				E90770EF1775A4D200139FFC /* ViewController.h */,
 				E90770F01775A4D200139FFC /* ViewController.m */,
 				E90770F21775A4D200139FFC /* ViewController_iPhone.xib */,
 				E90770F51775A4D200139FFC /* ViewController_iPad.xib */,
@@ -200,6 +206,8 @@
 				AD9DA1901776E4BA005B2C62 /* bg_iphone.jpg in Resources */,
 				AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */,
 				AD9DA1921776E4BA005B2C62 /* bg_iphone-568h@2x.jpg in Resources */,
+				E9614C2E1776F9F000FA08A2 /* UIButtonBarRefresh.png in Resources */,
+				E9614C2F1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

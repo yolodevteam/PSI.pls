@@ -10,6 +10,10 @@
 #import "Graph.h"
 
 @interface ViewController : UIViewController <NSURLConnectionDataDelegate, UIScrollViewDelegate>
+{
+    BOOL canRedraw;
+    BOOL fromRefresh;
+}
 
 
 @property int hour;
@@ -23,5 +27,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *info;
 @property (nonatomic, strong) UIView *loadingView;
 @property (nonatomic, strong) IBOutlet UIScrollView *graphView;
+@property (nonatomic, strong) IBOutlet UIButton *refresh;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *act;
+@property BOOL loading;
 
 @end
