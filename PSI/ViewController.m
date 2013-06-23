@@ -55,7 +55,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    _graphView.contentSize = CGSizeMake(320, 700);
+
 }
 
 - (void)showInfo
@@ -125,6 +125,10 @@
     if (_hour > 20 || _hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
     }
+    NSLog(@"SWAG SWAG DATA %@", _results);
+    Graph* graph = [[Graph alloc] initWithData:_results withFrame:CGRectMake(0, 0, 620, 200)];
+    [_graphView addSubview:graph];
+    _graphView.contentSize = CGSizeMake(620, 313);
 }
 
 - (void)updateLabels

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Graph.h"
 
 @interface ViewController : UIViewController <NSURLConnectionDataDelegate, UIScrollViewDelegate>
 

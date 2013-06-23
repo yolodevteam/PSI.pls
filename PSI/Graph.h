@@ -27,5 +27,6 @@
 
 @interface Graph : UIScrollView
 
+-(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame;
 
 @end

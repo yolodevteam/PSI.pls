@@ -9,13 +9,15 @@
 #import "Graph.h"
 
 @implementation Graph
-
-float data[] = {0.7, 0.4, 0.9, 1.0, 0.2, 0.85, 0.11, 0.75, 0.53, 0.44, 0.88, 0.77};
-
+float data[24];
+float scale;
+//float data[] = {0.7, 0.4, 0.9, 1.0, 0.2, 0.85, 0.11, 0.75, 0.53, 0.44, 0.88, 0.77};
+//float data[] = {1.1, 1.2, 0.9};
 CGRect touchesAreas[kNumberOfBars];
 
 - (id)initWithFrame:(CGRect)frame
 {
+    NSLog(@"yolo %f %f", frame.size.height, frame.size.width);
     self = [super initWithFrame:frame];
         if (self) {
             // Initialization code
@@ -23,17 +25,40 @@ CGRect touchesAreas[kNumberOfBars];
     
     return self;
 }
+-(id)initWithData:(NSDictionary*) dictData withFrame:(CGRect) frame {
+    NSLog(@"dict data %@", dictData);
+    float highest = 0;
+    NSMutableArray* keys = [NSMutableArray arrayWithCapacity:24];
+    for (NSString* key in dictData) {
+        float value = [[dictData objectForKey:key] floatValue];
+         NSLog(@"float value %f", value);
+        if (value > highest ) {
+            highest = value;
+        }
+        NSLog(@"key float %d", [key integerValue]);
+        //[keys addObject:value];
+        data[[key integerValue]] = value;
+       
+        // do stuff
+    }
+    NSLog(@"yolo %f %f", frame.size.height, frame.size.width);
+    NSLog(@"swag %f", data[1]);
+    self = [super initWithFrame:frame];
+    return self;
+}
 
 - (void)drawRect:(CGRect)rect
 {
+    NSLog(@"yolo pls %f %f", rect.size.height, rect.size.width);
     // Setup code
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.6);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
     
     // Verticle lines (time stamp)
-    int numVertLines = (kGraphWidth - kOffsetX / kStepX);
-    
+    //int numVertLines = (kGraphWidth - kOffsetX / kStepX);
+    int numVertLines = 24;
     for (int i = 0; i < numVertLines; i++) {
         CGContextMoveToPoint(context, kOffsetX + i * kStepX, kGraphTop);
         CGContextAddLineToPoint(context, kOffsetX + i * kStepX, kGraphBottom);
@@ -111,6 +136,7 @@ CGRect touchesAreas[kNumberOfBars];
     for (int i = 0; i < kNumberOfBars; i++) {
         NSString *text = [NSString stringWithFormat:@"%d", i];
         CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphBottom - 5, [text cStringUsingEncoding:NSUTF8StringEncoding], [text length]);
+        NSLog(@"currently at bar %d", i);   
     }
     
     
