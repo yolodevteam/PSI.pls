@@ -88,7 +88,7 @@
     NSError *err;
     
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableContainers error:&err];
-
+    //NSLog(@"%@", results);
     if (err) {
         NSLog(@"There was an error reading JSON data: %@", err);
         return;
@@ -99,22 +99,22 @@
     NSString *date = [self getSingaporeTime];
     
     int hour = [date intValue];
+    
+    _hour = hour;
+     _hourString = [NSString stringWithFormat:@"%d", _hour];
+    if ([_hourString length] == 1) {
+        _hourString = [NSString stringWithFormat:@"0%d", _hour];
+    }
         
-    if ([[_results objectForKey:[NSString stringWithFormat:@"%d", hour]] isEqual: @"0"]) {
+    if ([[NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]] isEqual: @"0"]) {
         // The NEA are being slow and haven't updated their figures yet, show latest figure.
-        _hour = hour--;
-        _hourString = [NSString stringWithFormat:@"%d", _hour];
-    } else {
-        _hour = hour;
+        _hour--;
         _hourString = [NSString stringWithFormat:@"%d", _hour];
         if ([_hourString length] == 1) {
-            _hourString = [NSString stringWithFormat:@"0%d", _hour];
+            _hourString = [NSString stringWithFormat:@"0%@", _hourString];
         }
-        
-        //_psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
-        //_time.text = [NSString stringWithFormat:@"%d:00", _hour];
     }
-
+    
     if ([[_results objectForKey:[NSString stringWithFormat:@"%d", (hour - 1)]] isEqual: @"0"]) {
         _psiLabel.font = [UIFont fontWithName:@"Helvetica Neue UltraLight" size:30];
         _psiLabel.text = @"Current data unavaliable";
