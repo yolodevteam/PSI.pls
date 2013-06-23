@@ -35,22 +35,15 @@ CGRect touchesAreas[kNumberOfBars];
             _hourString = [NSString stringWithFormat:@"0%d", i];
         }
         float value = [[dictData objectForKey:_hourString] floatValue];
-        NSLog(@"############## %d:%@ #######", i, [dictData objectForKey:_hourString]);
-         //NSLog(@"float value %f", value);
         if (value > highest ) {
-            highest = value + 50;
+            highest = value + 20;
         }
-       // NSLog(@"key float %d", [key integerValue]);
-        //[keys addObject:value];
-        //data[[key integerValue]] = value;
         [keys addObject:[dictData objectForKey:_hourString]];
         // do stuff
     }
     int i = 0;
     for (id value in keys) {
         float scaled = [value floatValue]/highest;
-        NSLog(@"value %@ %f", value, scaled);
-        
         data[i] = scaled;
         i++;
     }
@@ -62,10 +55,7 @@ CGRect touchesAreas[kNumberOfBars];
 
 - (void)drawRect:(CGRect)rect
 {
-    NSLog(@"yolo pls %f %f", rect.size.height, rect.size.width);
     // Setup code
-    
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.6);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
