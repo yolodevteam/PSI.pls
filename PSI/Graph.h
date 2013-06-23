@@ -19,13 +19,13 @@
 #define kGraphTop 0
 #define kBarTop 10  
 #define kBarWidth 20
-#define kCircleRadius 2
+#define kCircleRadius 4
 #define kTouchRadius 40
 #define kNumberOfBars 24 // one per hour
-#define kFontSize 28
+#define kFontSize 17
 #define kFont "Helvetica Neue UltraLight"
 #define kNumberOffset 2
-#define kDetailFontSize 25
+#define kDetailFontSize 28
 #define kDetailFont "Helvetica Neue UltraLight"
 
 @interface Graph : UIScrollView

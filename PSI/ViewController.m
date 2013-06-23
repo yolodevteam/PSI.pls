@@ -201,14 +201,29 @@
         //self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
     }
     
-    
-    Graph* graph = [[Graph alloc] initWithData:_results frame:CGRectMake(0, 0, 1280, 200) controller:self];
+    [[_graphView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    _graphView.pagingEnabled = TRUE;
+    Graph* graph = [[Graph alloc] initWithData:_results frame:CGRectMake(0, 0, 1280, 312) controller:self];
     // _graphView.backgroundColor = [UIColor clearColor];
     [_graphView addSubview:graph];
-    _graphView.contentSize = CGSizeMake(1280, 312);
-    
+ 
+    _graphView.contentSize = CGSizeMake(1280, 900);
+    _graphView.delegate = self;
+    _graphView.showsHorizontalScrollIndicator = NO;
+    _graphView.showsVerticalScrollIndicator = NO;
+    _graphView.scrollsToTop = NO;
     canRedraw = YES;
     
+}
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    if (sender.contentOffset.y > 0 || sender.contentOffset.y < 0) {
+        CGPoint offset = sender.contentOffset;
+        offset.y = 0;
+        sender.contentOffset = offset;
+    }
+    CGFloat pageWidth = _graphView.frame.size.width;
+    int page = floor((_graphView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
 }
 
 - (void)updateLabels
@@ -226,7 +241,7 @@
     }
     else if (psi < 101) {
         _health.text = @"Moderate";
-        _health.textColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:1.0];
+        _health.textColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:1.0];
     }
     else if (psi < 201) {
         _health.text = @"Unhealthy";
@@ -272,14 +287,6 @@
     return time;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView.contentOffset.y > 0) {
-        CGPoint offset = scrollView.contentOffset;
-        offset.y = 0;
-        scrollView.contentOffset = offset;
-    }
-}
 
 
 - (void)didReceiveMemoryWarning

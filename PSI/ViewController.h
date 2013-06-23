@@ -30,6 +30,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *graphView;
 @property (nonatomic, strong) IBOutlet UIButton *refresh;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *act;
+@property (nonatomic, strong) IBOutlet UIPageControl* pageControl;
 @property BOOL loading;
 
 @end

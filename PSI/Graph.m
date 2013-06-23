@@ -55,6 +55,7 @@ CGRect touchesAreas[kNumberOfBars];
 
 - (void)drawRect:(CGRect)rect
 {
+    NSLog(@"rect %f %f", rect.size.width, rect.size.height);
     // Setup code
     context = UIGraphicsGetCurrentContext();
     
@@ -64,8 +65,9 @@ CGRect touchesAreas[kNumberOfBars];
     // Clear background
     
     CGContextSetLineWidth(context, 0.6);
-    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-
+    CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] CGColor]);
+    CGFloat dash[] = {6, 4};
+    CGContextSetLineDash(context, 0.0, dash, 2);
     
     // Verticle lines (time stamp)
     int numVertLines = 24;
@@ -73,7 +75,10 @@ CGRect touchesAreas[kNumberOfBars];
         CGContextMoveToPoint(context, kOffsetX + i * kStepX, kGraphTop);
         CGContextAddLineToPoint(context, kOffsetX + i * kStepX, kGraphBottom);
     }
+    float normal[1]={1};
+    CGContextSetLineDash(context,0,normal,0);
     
+
     CGContextStrokePath(context);
     
     // Line graph line
@@ -81,10 +86,11 @@ CGRect touchesAreas[kNumberOfBars];
     CGContextSetLineWidth(context, 2.0);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
     
+    
     int maxGraphHeight = kGraphHeight - kOffsetY;
     
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, kOffsetX, kGraphHeight - maxGraphHeight * data[0]);
+    CGContextMoveToPoint(context, kOffsetX, kGraphHeight - (maxGraphHeight * data[0]));
     
     for (int i = 0; i < sizeof(data)/sizeof(float); i++) {
         if (data[i] == 0) {
@@ -97,10 +103,29 @@ CGRect touchesAreas[kNumberOfBars];
     CGContextDrawPath(context, kCGPathStroke);
     
     // Points on the line graph
+    float value;
     
-    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    
+    UIColor* pointColor;
     for (int i = 0; i < kNumberOfBars; i++) {
+        value = (data[i] * highest) * 3;
+        if (value < 51) {
+            // 'Good'
+            pointColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.0];
+        }
+        else if (value < 101) {
+            pointColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:1.0];
+        }
+        else if (value < 201) {
+            pointColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:1.0];
+        }
+        else if (value < 300) {
+            pointColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0];
+        }
+        else if (value >= 300){
+            pointColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:1.0];
+        }
+        CGContextSetFillColorWithColor(context, [pointColor CGColor]);
+
         float x = kOffsetX + i * kStepX;
         float y = kGraphHeight - maxGraphHeight * data[i];
         
@@ -123,11 +148,31 @@ CGRect touchesAreas[kNumberOfBars];
     CGContextSetTextDrawingMode(context, kCGTextFill);
     CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
     
+    NSString* suffix;
     for (int i = 0; i < kNumberOfBars; i++) {
         CGContextSelectFont(context, kFont, kFontSize, kCGEncodingMacRoman);
-
+        
         // Text at bottom
-        NSString *value = [NSString stringWithFormat:@"%d", i];
+    
+        NSString *value;
+        if (i == 0) {
+            suffix = @"am";
+            value = [NSString stringWithFormat:@"%d", 12];
+        }
+        else if (i > 12) {
+            value = [NSString stringWithFormat:@"%d", i-12];
+            suffix = @"pm";
+        }
+        else {
+            suffix = @"am";
+            if (i == 12) {
+                suffix = @"pm";
+            }
+            value = [NSString stringWithFormat:@"%d", i];
+        }
+        
+        value = [NSString stringWithFormat:@"%@%@", value, suffix];
+        
         CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphBottom - 5, [value cStringUsingEncoding:NSUTF8StringEncoding], [value length]);
         
         if (data[i] == 0){
