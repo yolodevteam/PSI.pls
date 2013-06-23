@@ -7,6 +7,8 @@
 //
 
 #import "InformationViewController.h"
+#import "UIImage+Tools.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface InformationViewController ()
 
@@ -32,8 +34,6 @@
     // Do any additional setup after loading the view from its nib.
     
     [_done addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.view.backgroundColor = [UIColor blackColor];
     
     _textView.text = @"Coded by ttwj & NinjaLikesCheez.\n\nUsing data found at http://dawo.me/\n\nA YoloDev Team Production.";
 }

@@ -44,7 +44,6 @@
     [self.view addSubview:imageView];
     [self.view sendSubviewToBack:imageView];
     
-    self.view.backgroundColor = [UIColor clearColor];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -82,6 +81,8 @@
 
 - (void)refreshData
 {
+    _refresh.enabled = NO;
+
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
@@ -92,9 +93,6 @@
     [self.view addSubview:_act];
     [_act startAnimating];
     
-    _refresh.enabled = NO;
-
-    
     [UIView animateWithDuration:1.0 animations:^{
         _psiLabel.alpha = 0.0;
         _health.alpha = 0.0;
@@ -102,29 +100,29 @@
         _act.alpha = 1.0;
         _refresh.alpha = 0.0;
     } completion:^(BOOL finished) {
-        canRedraw = YES;
-        fromRefresh = YES;
+        redrawTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(redrawInterface) userInfo:nil repeats:YES];
+        [redrawTimer fire];
     }];
 }
 
 - (void)redrawInterface
 {
-    while (true) {
-        if (canRedraw == YES) {
-            break;
-        }
-    }
-    _refresh.enabled = YES;
+    if (canRedraw) {
+        
+        [redrawTimer invalidate];
+        
+        _refresh.enabled = YES;
     
-    [UIView animateWithDuration:1.0 animations:^{
-        _psiLabel.alpha = 1.0;
-        _health.alpha = 1.0;
-        _graphView.alpha = 1.0;
-        _act.alpha = 0.0;
-        _refresh.alpha = 1.0;
-    } completion:^(BOOL finished){
-        [_act removeFromSuperview];
-    }];
+        [UIView animateWithDuration:1.0 animations:^{
+            _psiLabel.alpha = 1.0;
+            _health.alpha = 1.0;
+            _graphView.alpha = 1.0;
+            _act.alpha = 0.0;
+            _refresh.alpha = 1.0;
+        } completion:^(BOOL finished){
+            [_act removeFromSuperview];
+        }];
+    }
 }
 
 - (void)checkTime
@@ -198,16 +196,19 @@
     
     if (_hour > 20 || _hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
+        //self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone_darker.jpg"] imageWithGaussianBlur]];
+    } else {
+        //self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
     }
-    NSLog(@"SWAG SWAG DATA %@", _results);
+    
+    
     Graph* graph = [[Graph alloc] initWithData:_results frame:CGRectMake(0, 0, 1280, 200) controller:self];
     // _graphView.backgroundColor = [UIColor clearColor];
     [_graphView addSubview:graph];
     _graphView.contentSize = CGSizeMake(1280, 312);
     
-    if (fromRefresh) {
-        [self redrawInterface];
-    }
+    canRedraw = YES;
+    
 }
 
 - (void)updateLabels

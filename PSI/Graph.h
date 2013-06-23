@@ -25,8 +25,13 @@
 #define kFontSize 28
 #define kFont "Helvetica Neue UltraLight"
 #define kNumberOffset 2
+#define kDetailFontSize 25
+#define kDetailFont "Helvetica Neue UltraLight"
 
 @interface Graph : UIScrollView
+{
+    CGContextRef context;
+}
 
 -(id)initWithData:(NSDictionary*) dictData frame:(CGRect) frame controller:(UIViewController*) controller;
 

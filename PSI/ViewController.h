@@ -13,6 +13,7 @@
 {
     BOOL canRedraw;
     BOOL fromRefresh;
+    NSTimer *redrawTimer;
 }
 
 
