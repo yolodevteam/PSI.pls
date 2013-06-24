@@ -204,10 +204,8 @@ CGRect touchesAreas[kNumberOfBars];
     for (int i = 0; i < kNumberOfBars; i++) {
         if (CGRectContainsPoint(touchesAreas[i], point)) {
             NSLog(@"Tapped point with index %d, value %f", i, (data[i] * highest) * 3);
-            
-            
-            
-            
+
+#warning TODO: call delegate in ViewController to update readings
             
             break;
         }
