@@ -36,13 +36,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    NSString *date = [self getSingaporeTimeWithMinutes:NO];
+    
+    int hour = [date intValue];
     
     NSLog(@"Init viewDidLoad");
     //background swag
-    UIImage *img = [[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
-    [self.view addSubview:imageView];
-    [self.view sendSubviewToBack:imageView];
+    
+    if (hour > 19 || hour < 7) {
+        // Set a night time background picture (this is only if we can't get webcam images before release)
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
+    }
     
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/all.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
@@ -78,6 +84,11 @@
     
     fromRefresh = NO;
     _psiLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
+    _psiLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _psiLabel.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+    _psiLabel.layer.shadowRadius = 3.5;
+    _psiLabel.layer.shadowOpacity = 0.4;
+    _psiLabel.layer.masksToBounds = NO;
 }
 
 - (void)refreshData
@@ -213,13 +224,6 @@
     }*/
     
     [self updateLabels];
-    
-    if (_hour > 20 || _hour < 7) {
-        // Set a night time background picture (this is only if we can't get webcam images before release)
-        //self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone_darker.jpg"] imageWithGaussianBlur]];
-    } else {
-        //self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
-    }
     
    [[_graphView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _graphView.pagingEnabled = TRUE;
