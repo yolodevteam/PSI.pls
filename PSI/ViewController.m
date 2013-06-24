@@ -45,7 +45,7 @@
     [self.view sendSubviewToBack:imageView];
     
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/all.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     _psiLabel.text = @"0";
@@ -165,20 +165,36 @@
         NSLog(@"There was an error reading JSON data: %@", err);
         return;
     }
-    
-    _results = results;
-        
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSInteger day = [components day];
+    NSInteger month = [components month];
+    NSInteger year = [components year];
+   
     NSString *date = [self getSingaporeTimeWithMinutes:NO];
     
     int hour = [date intValue];
     
     _hour = hour;
-     _hourString = [NSString stringWithFormat:@"%d", _hour];
+    _hourString = [NSString stringWithFormat:@"%d", _hour];
     if ([_hourString length] == 1) {
         _hourString = [NSString stringWithFormat:@"0%d", _hour];
     }
+
+    for (NSString *key in results) {
+        NSArray* split = [key componentsSeparatedByString:@":"];
+        NSLog(@"split %d", [split[0] integerValue]);
+        NSLog(@"split2 %d", [split[2] integerValue]);
+        NSLog(@"hah yolo %@, %@ %ld", [NSString stringWithFormat:@"%@", split[2]], _hourString, (long)[split[0] integerValue]);
         
-    if ([[NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]] isEqual: @"0"]) {
+        if (([split[0] integerValue] == day) && ([split[1] integerValue] == month) && ([[NSString stringWithFormat:@"%@", split[2]] isEqual:_hourString])) {
+            NSLog(@"yay!!");
+           
+            _results = [results objectForKey:key];
+        }
+    }
+    NSLog(@"results %@", _results);
+        
+   /* if ([[NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]] isEqual: @"0"]) {
         // The NEA are being slow and haven't updated their figures yet, show latest figure.
         _hour--;
         _hourString = [NSString stringWithFormat:@"%d", _hour];
@@ -190,7 +206,7 @@
     if ([[_results objectForKey:[NSString stringWithFormat:@"%d", (hour - 1)]] isEqual: @"0"]) {
         _psiLabel.font = [UIFont fontWithName:@"Helvetica Neue UltraLight" size:30];
         _psiLabel.text = @"Current data unavaliable";
-    }
+    }*/
     
     [self updateLabels];
     
@@ -228,7 +244,10 @@
 
 - (void)updateLabels
 {
-    _psiLabel.text = [NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]];
+    NSLog(@"updating!!!!!!!!!!");
+    NSLog(@"SWAG SWAG SWAG %@", [[_results objectForKey:@"psi"] objectForKey:@"psi"]);
+    _psiLabel.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"psi"] objectForKey:@"3hr"]];
+    NSLog(@"hello there");
     _time.text = [self getSingaporeTimeWithMinutes:YES];
     
     int psi = [_psiLabel.text intValue];
@@ -255,7 +274,7 @@
         _health.text = @"Hazardous";
         _health.textColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:1.0];
     }
-    
+      NSLog(@"u like swag huh?");
     [self removeLoadingView];
 
 }
