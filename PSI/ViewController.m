@@ -77,6 +77,7 @@
     [_refresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
     
     fromRefresh = NO;
+    _psiLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
 }
 
 - (void)refreshData
@@ -183,13 +184,8 @@
     NSMutableDictionary* PSIs = [NSMutableDictionary dictionaryWithCapacity:24];
     for (NSString *key in results) {
         NSArray* split = [key componentsSeparatedByString:@":"];
-        NSLog(@"split %d", [split[0] integerValue]);
-        NSLog(@"split2 %d", [split[2] integerValue]);
-        NSLog(@"hah yolo %@, %@ %ld", [NSString stringWithFormat:@"%@", split[2]], _hourString, (long)[split[0] integerValue]);
         
         if (([split[0] integerValue] == day) && ([split[1] integerValue] == month) && ([[NSString stringWithFormat:@"%@", split[2]] isEqual:_hourString])) {
-            NSLog(@"yay!!");
-           
             _results = [results objectForKey:key];
         }
         NSString* hourKey = split[2];
@@ -256,32 +252,34 @@
     _time.text = [self getSingaporeTimeWithMinutes:YES];
     
     int psi = [_psiLabel.text intValue];
-    
-    
+    float alpha = 0.8;
+    _health.textColor = [UIColor whiteColor];
+    _health.layer.cornerRadius = 5;
+    CGRect frame = _health.frame;
+    frame.size.width += 15; //l + r padding
+    _health.frame = frame;
     if (psi < 51) {
         // 'Good'
         _health.text = @"Good";
-        _health.textColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.0];
+        _health.layer.backgroundColor = [[UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha] CGColor];
     }
     else if (psi < 101) {
         _health.text = @"Moderate";
-        _health.textColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:1.0];
+        _health.layer.backgroundColor = [[UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:alpha] CGColor];
     }
     else if (psi < 201) {
         _health.text = @"Unhealthy";
-        _health.textColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:1.0];
+        _health.layer.backgroundColor = [[UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:alpha] CGColor];
     }
     else if (psi < 300) {
         _health.text = @"Very unhealthy";
-        _health.textColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0];
+       _health.layer.backgroundColor = [[UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:alpha] CGColor];
     }
     else if (psi >= 300){
         _health.text = @"Hazardous";
-        _health.textColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:1.0];
+       _health.layer.backgroundColor = [[UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:alpha] CGColor];
     }
-      NSLog(@"u like swag huh?");
     [self removeLoadingView];
-    NSLog(@"hi hi hi");
 }
 
 - (void)removeLoadingView

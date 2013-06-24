@@ -18,7 +18,6 @@ CGRect touchesAreas[kNumberOfBars];
 #warning be aware to get accurate data points all values in data[] need to be multiplied by 3 for scale
 
 -(id)initWithData:(NSDictionary*)dictData frame:(CGRect) frame controller:(ViewController*) controller {
-    NSLog(@"data %@", dictData);
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
