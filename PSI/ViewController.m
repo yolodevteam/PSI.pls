@@ -11,11 +11,14 @@
 #import "UIImage+Tools.m"
 #import <QuartzCore/QuartzCore.h>
 
+
+
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+
 
 @synthesize results = _results;
 @synthesize hour = _hour;
@@ -89,6 +92,35 @@
     _psiLabel.layer.shadowRadius = 3.5;
     _psiLabel.layer.shadowOpacity = 0.4;
     _psiLabel.layer.masksToBounds = NO;
+    
+    UITapGestureRecognizer *single_tap_recognizer;
+    single_tap_recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(tapPSI:)];
+
+    [single_tap_recognizer setNumberOfTapsRequired:1];
+    [_psiLabel setUserInteractionEnabled:YES];
+    [_psiLabel addGestureRecognizer:single_tap_recognizer];
+
+    
+}
+-(void) tapPSI: (UIGestureRecognizer *)sender
+{
+    NSString *region = @"west";
+    if (tappedPSI == TRUE) {
+        NSLog(@"tapped PSI");
+    }
+    else {
+        NSLog(@"starting animations");
+        [UIView animateWithDuration:1.0 animations:^{
+            _psiLabel.alpha = 0.0;
+            _health.alpha = 0.0;
+#warning TODO: fix alpha
+            self.pm25Region.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"pm25"] objectForKey:region]];
+            self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
+            
+        } completion:^(BOOL finished) {
+            NSLog(@"animation completed");
+        }];
+    }
 }
 
 - (void)refreshData
@@ -187,27 +219,30 @@
     int hour = [date intValue];
     
     _hour = hour;
+    _hour = 0;
     _hourString = [NSString stringWithFormat:@"%d", _hour];
     if ([_hourString length] == 1) {
         _hourString = [NSString stringWithFormat:@"0%d", _hour];
     }
     
-    NSMutableDictionary* PSIs = [NSMutableDictionary dictionaryWithCapacity:24];
+    PSIs = [NSMutableDictionary dictionaryWithCapacity:24];
     for (NSString *key in results) {
         NSArray* split = [key componentsSeparatedByString:@":"];
         
         if (([split[0] integerValue] == day) && ([split[1] integerValue] == month) && ([[NSString stringWithFormat:@"%@", split[2]] isEqual:_hourString])) {
             _results = [results objectForKey:key];
+            
+        }
+        if ((_hour == 0) && ([split[2] integerValue] == 23)) {
+            _results = [results objectForKey:key];
         }
         NSString* hourKey = split[2];
-        if ([split[0] integerValue] != day) {
-            hourKey = [NSString stringWithFormat:@"-%@", split[2]];
-        }
         if ([split[2] integerValue] < (hour+1)) {
             [PSIs setObject:[[[results objectForKey:key] objectForKey:@"psi"] objectForKey:@"3hr"] forKey:hourKey];
         }
+        
     }
-    NSLog(@"results %@", PSIs);
+
         
    /* if ([[NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]] isEqual: @"0"]) {
         // The NEA are being slow and haven't updated their figures yet, show latest figure.
@@ -252,6 +287,7 @@
 
 - (void)updateLabels
 {
+    //NSLog(@"results %@", _results);
     _psiLabel.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"psi"] objectForKey:@"3hr"]];
     _time.text = [self getSingaporeTimeWithMinutes:YES];
     

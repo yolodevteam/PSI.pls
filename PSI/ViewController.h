@@ -14,12 +14,17 @@
     BOOL canRedraw;
     BOOL fromRefresh;
     NSTimer *redrawTimer;
+    BOOL tappedPSI;
+    NSMutableDictionary* PSIs;
 }
 
 
 @property int hour;
 @property (nonatomic, strong) NSDictionary *results;
 @property (nonatomic, strong) IBOutlet UILabel *psiLabel;
+@property (nonatomic, strong) IBOutlet UILabel *psiRegion;
+@property (nonatomic, strong) IBOutlet UILabel *pm25Region;
+
 @property (nonatomic, strong) IBOutlet UILabel *health;
 @property (nonatomic, strong) NSString *hourString;
 @property (nonatomic, strong) NSMutableData *responseData;
