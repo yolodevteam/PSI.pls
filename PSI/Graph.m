@@ -18,16 +18,22 @@ CGRect touchesAreas[kNumberOfBars];
 #warning be aware to get accurate data points all values in data[] need to be multiplied by 3 for scale
 
 -(id)initWithData:(NSDictionary*)dictData frame:(CGRect) frame controller:(ViewController*) controller {
-    
+    NSLog(@"data %@", dictData);
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
 
         NSMutableArray* keys = [NSMutableArray arrayWithCapacity:24];
-    
-        for (int i = 0; i < 24; i++) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"HH";
+        NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
+        [dateFormatter setTimeZone:sgt];
+        
+        int time = [[dateFormatter stringFromDate:[NSDate date]] integerValue];
+
+        for (int i = 0; i < (time+1); i++) {
             NSString* _hourString = [NSString stringWithFormat:@"%d", i];
-            
+
             if ([_hourString length] == 1) {
                 _hourString = [NSString stringWithFormat:@"0%d", i];
             }

@@ -83,7 +83,7 @@
 {
     _refresh.enabled = NO;
 
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/all.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     // Animation block, fade all but time out lessen the blur while loading.
@@ -160,7 +160,7 @@
     NSError *err;
     
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableContainers error:&err];
-    //NSLog(@"%@", results);
+    NSLog(@"%@", results);
     if (err) {
         NSLog(@"There was an error reading JSON data: %@", err);
         return;
@@ -179,7 +179,8 @@
     if ([_hourString length] == 1) {
         _hourString = [NSString stringWithFormat:@"0%d", _hour];
     }
-
+    
+    NSMutableDictionary* PSIs = [NSMutableDictionary dictionaryWithCapacity:24];
     for (NSString *key in results) {
         NSArray* split = [key componentsSeparatedByString:@":"];
         NSLog(@"split %d", [split[0] integerValue]);
@@ -191,8 +192,15 @@
            
             _results = [results objectForKey:key];
         }
+        NSString* hourKey = split[2];
+        if ([split[0] integerValue] != day) {
+            hourKey = [NSString stringWithFormat:@"-%@", split[2]];
+        }
+        if ([split[2] integerValue] < (hour+1)) {
+            [PSIs setObject:[[[results objectForKey:key] objectForKey:@"psi"] objectForKey:@"3hr"] forKey:hourKey];
+        }
     }
-    NSLog(@"results %@", _results);
+    NSLog(@"results %@", PSIs);
         
    /* if ([[NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]] isEqual: @"0"]) {
         // The NEA are being slow and haven't updated their figures yet, show latest figure.
@@ -217,9 +225,9 @@
         //self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
     }
     
-    [[_graphView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+   [[_graphView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     _graphView.pagingEnabled = TRUE;
-    Graph* graph = [[Graph alloc] initWithData:_results frame:CGRectMake(0, 0, 1280, 312) controller:self];
+    Graph* graph = [[Graph alloc] initWithData:PSIs frame:CGRectMake(0, 0, 1280, 312) controller:self];
     // _graphView.backgroundColor = [UIColor clearColor];
     [_graphView addSubview:graph];
  
@@ -244,10 +252,7 @@
 
 - (void)updateLabels
 {
-    NSLog(@"updating!!!!!!!!!!");
-    NSLog(@"SWAG SWAG SWAG %@", [[_results objectForKey:@"psi"] objectForKey:@"psi"]);
     _psiLabel.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"psi"] objectForKey:@"3hr"]];
-    NSLog(@"hello there");
     _time.text = [self getSingaporeTimeWithMinutes:YES];
     
     int psi = [_psiLabel.text intValue];
@@ -276,7 +281,7 @@
     }
       NSLog(@"u like swag huh?");
     [self removeLoadingView];
-
+    NSLog(@"hi hi hi");
 }
 
 - (void)removeLoadingView
