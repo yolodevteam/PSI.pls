@@ -143,7 +143,22 @@
     self.psiDetailLabel.alpha = 0;
     self.pm25Detail.alpha = 0;
     self.pm25DetailLabel.alpha = 0;
-
+    
+    _health.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _health.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+    _health.layer.shadowRadius = 2.0;
+    _health.layer.shadowOpacity = 0.25;
+    _health.layer.masksToBounds = NO;
+    
+    
+    CALayer* layer = [_health layer];
+    
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.borderColor = [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2] CGColor];
+    bottomBorder.borderWidth = 1;
+    bottomBorder.frame = CGRectMake(-1, layer.frame.size.height-1, layer.frame.size.width, 1);
+    [bottomBorder setBorderColor:[[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2] CGColor]];
+    [layer addSublayer:bottomBorder];
     
 }
 -(void) tapPSI: (UIGestureRecognizer *)sender
@@ -151,14 +166,30 @@
     NSString *region = @"west";
     if (tappedPSI == TRUE) {
         NSLog(@"tapped PSI");
+        //region labels
+        self.pm25Region.alpha = 0;
+        self.pm25RegionLabel.alpha = 0;
+        self.psiRegion.alpha = 0;
+        self.psiRegionLabel.alpha = 0;
+        
+        //detail labels
+        self.psiDetail.alpha = 0;
+        self.psiDetailLabel.alpha = 0;
+        self.pm25Detail.alpha = 0;
+        self.pm25DetailLabel.alpha = 0;
+        
+        _psiLabel.alpha = 1.0;
+        _health.alpha = 1.0;
+        _time.alpha = 1;
+        
+        tappedPSI = FALSE;
     }
     else {
         NSLog(@"starting animations");
-        [UIView animateWithDuration:1.0 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             _psiLabel.alpha = 0.0;
             _health.alpha = 0.0;
             _time.alpha = 0;
-#warning TODO: fix alpha
             self.pm25Region.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"pm25"] objectForKey:region]];
             self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
             
@@ -172,14 +203,14 @@
             self.psiDetailLabel.alpha = 1;
             self.pm25Detail.alpha = 1;
             self.pm25DetailLabel.alpha = 1;
-            
+            tappedPSI = TRUE;
         } completion:^(BOOL finished) {
             NSLog(@"animation completed");
-
+            
+            
         }];
     }
 }
-
 - (void)refreshData
 {
     _refresh.enabled = NO;
@@ -319,7 +350,27 @@
         }
         
     }
-
+    if (!_results) {
+        NSLog(@"hello polis");
+        _hourString = [NSString stringWithFormat:@"%d", _hour-1];
+        NSString* monthString = [NSString stringWithFormat:@"%d", month];
+        NSString* dayString = [NSString stringWithFormat:@"%d", day];
+        
+        if ([_hourString length] == 1) {
+            _hourString = [NSString stringWithFormat:@"0%d", _hour-1];
+        }
+        if ([dayString length] == 1) {
+            dayString = [NSString stringWithFormat:@"0%d", day];
+        }
+        if ([monthString length] == 1) {
+            monthString = [NSString stringWithFormat:@"0%d", month];
+        }
+        
+        NSString* key = [NSString stringWithFormat:@"%@:%@:%@", dayString, monthString, _hourString];
+        NSLog(@"key %@", key);
+        _results = [results objectForKey:key];
+        NSLog(@"results %@", _results);
+    }
         
    /* if ([[NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]] isEqual: @"0"]) {
         // The NEA are being slow and haven't updated their figures yet, show latest figure.
@@ -369,12 +420,8 @@
     _time.text = [self getSingaporeTimeWithMinutes:YES];
     
     int psi = [_psiLabel.text intValue];
-    float alpha = 0.8;
-    _health.textColor = [UIColor whiteColor];
-    _health.layer.cornerRadius = 5;
-    CGRect frame = _health.frame;
-    frame.size.width += 15; //l + r padding
-    _health.frame = frame;
+    float alpha = 0.35;
+    
     if (psi < 51) {
         // 'Good'
         _health.text = @"Good";

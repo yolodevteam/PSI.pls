@@ -45,7 +45,14 @@ CGRect touchesAreas[kNumberOfBars];
             }
             id obj = [dictData objectForKey:_hourString];
             if (!obj) {
-                [keys addObject:0];
+                NSLog(@"swag swag pls");
+                NSString* _hourString = [NSString stringWithFormat:@"%d", i-1];
+                
+                if ([_hourString length] == 1) {
+                    _hourString = [NSString stringWithFormat:@"0%d", i-1];
+                }
+                obj = [dictData objectForKey:_hourString];
+                NSLog(@"obj #### %@", obj);
             }
             else {
                 [keys addObject:obj];
