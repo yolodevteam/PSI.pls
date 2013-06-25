@@ -23,7 +23,7 @@
 #define kTouchRadius 40
 #define kNumberOfBars 24 // one per hour
 #define kFontSize 17
-#define kFont "Helvetica Neue UltraLight"
+#define kFont "Helvetica Neue Light"
 #define kNumberOffset 2
 #define kDetailFontSize 28
 #define kDetailFont "Helvetica Neue UltraLight"

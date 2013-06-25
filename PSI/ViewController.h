@@ -23,7 +23,17 @@
 @property (nonatomic, strong) NSDictionary *results;
 @property (nonatomic, strong) IBOutlet UILabel *psiLabel;
 @property (nonatomic, strong) IBOutlet UILabel *psiRegion;
+@property (nonatomic, strong) IBOutlet UILabel *psiRegionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *pm25Region;
+@property (nonatomic, strong) IBOutlet UILabel *pm25RegionLabel;
+
+@property (nonatomic, strong) IBOutlet UILabel *psiDetail;
+@property (nonatomic, strong) IBOutlet UILabel *psiDetailLabel;
+@property (nonatomic, strong) IBOutlet UILabel *pm25Detail;
+@property (nonatomic, strong) IBOutlet UILabel *pm25DetailLabel;
+
+
+
 
 @property (nonatomic, strong) IBOutlet UILabel *health;
 @property (nonatomic, strong) NSString *hourString;

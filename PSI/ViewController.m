@@ -45,6 +45,7 @@
     
     NSLog(@"Init viewDidLoad");
     //background swag
+
     
     if (hour > 19 || hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
@@ -89,8 +90,8 @@
     _psiLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
     _psiLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
     _psiLabel.layer.shadowOffset = CGSizeMake(0.0, 0.0);
-    _psiLabel.layer.shadowRadius = 3.5;
-    _psiLabel.layer.shadowOpacity = 0.4;
+    _psiLabel.layer.shadowRadius = 6.0;
+    _psiLabel.layer.shadowOpacity = 0.25;
     _psiLabel.layer.masksToBounds = NO;
     
     UITapGestureRecognizer *single_tap_recognizer;
@@ -99,6 +100,18 @@
     [single_tap_recognizer setNumberOfTapsRequired:1];
     [_psiLabel setUserInteractionEnabled:YES];
     [_psiLabel addGestureRecognizer:single_tap_recognizer];
+    
+    //region labels
+    self.pm25Region.alpha = 0;
+    self.pm25RegionLabel.alpha = 0;
+    self.psiRegion.alpha = 0;
+    self.psiRegionLabel.alpha = 0;
+    
+    //detail labels
+    self.psiDetail.alpha = 0;
+    self.psiDetailLabel.alpha = 0;
+    self.pm25Detail.alpha = 0;
+    self.pm25DetailLabel.alpha = 0;
 
     
 }
@@ -110,15 +123,26 @@
     }
     else {
         NSLog(@"starting animations");
-        [UIView animateWithDuration:1.0 animations:^{
+        [UIView animateWithDuration:0.2 animations:^{
             _psiLabel.alpha = 0.0;
             _health.alpha = 0.0;
+            _time.alpha = 0;
 #warning TODO: fix alpha
             self.pm25Region.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"pm25"] objectForKey:region]];
             self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
             
         } completion:^(BOOL finished) {
             NSLog(@"animation completed");
+            self.pm25Region.alpha = 1;
+            self.pm25RegionLabel.alpha = 1;
+            self.psiRegion.alpha = 1;
+            self.psiRegionLabel.alpha = 1;
+            
+            //detail labels
+            self.psiDetail.alpha = 1;
+            self.psiDetailLabel.alpha = 1;
+            self.pm25Detail.alpha = 1;
+            self.pm25DetailLabel.alpha = 1;
         }];
     }
 }
@@ -219,7 +243,6 @@
     int hour = [date intValue];
     
     _hour = hour;
-    _hour = 0;
     _hourString = [NSString stringWithFormat:@"%d", _hour];
     if ([_hourString length] == 1) {
         _hourString = [NSString stringWithFormat:@"0%d", _hour];

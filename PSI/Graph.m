@@ -21,7 +21,8 @@ CGRect touchesAreas[kNumberOfBars];
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-
+        NSLog(@"data %@", dictData);
+        
         NSMutableArray* keys = [NSMutableArray arrayWithCapacity:24];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"HH";
@@ -42,10 +43,14 @@ CGRect touchesAreas[kNumberOfBars];
             if (value > highest ) {
                 highest = value + 20;
             }
-            
-            [keys addObject:[dictData objectForKey:_hourString]];
+            id obj = [dictData objectForKey:_hourString];
+            if (!obj) {
+                [keys addObject:0];
+            }
+            else {
+                [keys addObject:obj];
+            }
         }
-        
         int i = 0;
         
         for (id value in keys) {
@@ -151,11 +156,11 @@ CGRect touchesAreas[kNumberOfBars];
     CGContextSetTextMatrix(context, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
     CGContextSelectFont(context, kFont, kFontSize, kCGEncodingMacRoman);
     CGContextSetTextDrawingMode(context, kCGTextFill);
-    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.8] CGColor]);
     
     NSString* suffix;
     for (int i = 0; i < kNumberOfBars; i++) {
-        CGContextSelectFont(context, kFont, kFontSize, kCGEncodingMacRoman);
+        CGContextSelectFont(context, kDetailFont, kFontSize, kCGEncodingMacRoman);
         
         // Text at bottom
     
