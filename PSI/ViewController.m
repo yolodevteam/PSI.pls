@@ -52,13 +52,13 @@
     if (hour > 19 || hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
         if (IS_4INCH_SCREEN) {
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone-568@2x.jpg"] imageWithGaussianBlur]];
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone-568h.jpg"] imageWithGaussianBlur]];
         } else {
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
         }
     } else {
         if (IS_4INCH_SCREEN) {
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue-568@2x.jpg"] imageWithGaussianBlur]];
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue-568h.jpg"] imageWithGaussianBlur]];
         } else {
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
         }
@@ -75,11 +75,11 @@
     _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
     _loadingView.backgroundColor = [UIColor blackColor];
     
-    UIActivityIndicatorView *act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    act.center = _loadingView.center;
+    _act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _act.center = _loadingView.center;
     
-    [_loadingView addSubview:act];
-    [act startAnimating];
+    [_loadingView addSubview:_act];
+    [_act startAnimating];
     
     _errorLabel = [[UILabel alloc] init];
     _errorLabel.alpha = 0.0;
@@ -87,7 +87,7 @@
     _errorLabel.center = _loadingView.center;
     _errorLabel.textColor = [UIColor whiteColor];
     _errorLabel.font = [UIFont fontWithName:@"Helvetica UltraLight" size:30];
-    _errorLabel.backgroundColor = [UIColor whiteColor];
+    _errorLabel.backgroundColor = [UIColor clearColor];
     _errorLabel.textAlignment = NSTextAlignmentCenter;
     _errorLabel.textColor = [UIColor whiteColor];
     
@@ -118,19 +118,12 @@
     [_refresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
     
     fromRefresh = NO;
-    _psiLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
+    _psiLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0];
     _psiLabel.layer.shadowColor = [[UIColor blackColor] CGColor];
     _psiLabel.layer.shadowOffset = CGSizeMake(0.0, 0.0);
     _psiLabel.layer.shadowRadius = 6.0;
     _psiLabel.layer.shadowOpacity = 0.25;
     _psiLabel.layer.masksToBounds = NO;
-    
-    UITapGestureRecognizer *single_tap_recognizer;
-    single_tap_recognizer = [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(tapPSI:)];
-
-    [single_tap_recognizer setNumberOfTapsRequired:1];
-    [_psiLabel setUserInteractionEnabled:YES];
-    [_psiLabel addGestureRecognizer:single_tap_recognizer];
     
     //region labels
     self.pm25Region.alpha = 0;
@@ -161,56 +154,7 @@
     [layer addSublayer:bottomBorder];
     
 }
--(void) tapPSI: (UIGestureRecognizer *)sender
-{
-    NSString *region = @"west";
-    if (tappedPSI == TRUE) {
-        NSLog(@"tapped PSI");
-        //region labels
-        self.pm25Region.alpha = 0;
-        self.pm25RegionLabel.alpha = 0;
-        self.psiRegion.alpha = 0;
-        self.psiRegionLabel.alpha = 0;
-        
-        //detail labels
-        self.psiDetail.alpha = 0;
-        self.psiDetailLabel.alpha = 0;
-        self.pm25Detail.alpha = 0;
-        self.pm25DetailLabel.alpha = 0;
-        
-        _psiLabel.alpha = 1.0;
-        _health.alpha = 1.0;
-        _time.alpha = 1;
-        
-        tappedPSI = FALSE;
-    }
-    else {
-        NSLog(@"starting animations");
-        [UIView animateWithDuration:0.5 animations:^{
-            _psiLabel.alpha = 0.0;
-            _health.alpha = 0.0;
-            _time.alpha = 0;
-            self.pm25Region.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"pm25"] objectForKey:region]];
-            self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
-            
-            self.pm25Region.alpha = 1;
-            self.pm25RegionLabel.alpha = 1;
-            self.psiRegion.alpha = 1;
-            self.psiRegionLabel.alpha = 1;
-            
-            //detail labels
-            self.psiDetail.alpha = 1;
-            self.psiDetailLabel.alpha = 1;
-            self.pm25Detail.alpha = 1;
-            self.pm25DetailLabel.alpha = 1;
-            tappedPSI = TRUE;
-        } completion:^(BOOL finished) {
-            NSLog(@"animation completed");
-            
-            
-        }];
-    }
-}
+
 - (void)refreshData
 {
     _refresh.enabled = NO;
@@ -219,18 +163,29 @@
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     // Animation block, fade all but time out lessen the blur while loading.
-    _act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _act.center = self.view.center;
     _act.alpha = 0.0;
-    [self.view addSubview:_act];
     [_act startAnimating];
+    [self.view addSubview:_act];
     
     [UIView animateWithDuration:1.0 animations:^{
+        if (self.psiDetail.alpha == 1.0) {
+            self.psiDetail.alpha = 0.0;
+            self.psiRegion.alpha = 0.0;
+            self.psiDetailLabel.alpha = 0.0;
+            self.psiRegionLabel.alpha = 0.0;
+            self.pm25Detail.alpha = 0.0;
+            self.pm25DetailLabel.alpha = 0.0;
+            self.pm25Region.alpha = 0.0;
+            self.pm25RegionLabel.alpha = 0.0;
+        }
         _psiLabel.alpha = 0.0;
         _health.alpha = 0.0;
         _graphView.alpha = 0.0;
         _act.alpha = 1.0;
         _refresh.alpha = 0.0;
+        _pageControl.alpha = 0.0;
+        _info.alpha = 0.0;
     } completion:^(BOOL finished) {
         redrawTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(redrawInterface) userInfo:nil repeats:YES];
         [redrawTimer fire];
@@ -251,6 +206,9 @@
             _graphView.alpha = 1.0;
             _act.alpha = 0.0;
             _refresh.alpha = 1.0;
+            _time.alpha = 1.0;
+            _info.alpha = 1.0;
+            _pageControl.alpha = 1.0;
         } completion:^(BOOL finished){
             [_act removeFromSuperview];
         }];
@@ -290,30 +248,28 @@
         _act.alpha = 0.0;
         _errorLabel.alpha = 1.0;
     }completion:^(BOOL finished){
-        
+        [_act removeFromSuperview];
     }];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"JSON data recieved");
+    NSLog(@"Data recieved");
     
     NSError *err;
     
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableContainers error:&err];
     NSLog(@"%@", results);
     if (err) {
-        NSLog(@"There was an error reading JSON data: %@", err);
+        NSLog(@"There was an error reading data: %@", err);
         
         _errorLabel.text = @"Failed to load data.";
-        
-        
         
         [UIView animateWithDuration:1.0 animations:^{
             _act.alpha = 0.0;
             _errorLabel.alpha = 1.0;
         }completion:^(BOOL finished){
-            
+            [_act removeFromSuperview];
         }];
         
         return;
@@ -473,7 +429,50 @@
     return time;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    
+    CGPoint point = [touch locationInView:self.view];
+    
+    NSLog(@"x: %f y: %f", point.x, point.y);
+    
+    if (point.x < 320 && point.y < 209) {
+        // Touched the top some where, switch views.
+        [UIView animateWithDuration:1.0 animations:^{
+            if (self.psiDetail.alpha == 1.0) {
+                self.psiDetail.alpha = 0.0;
+                self.psiRegion.alpha = 0.0;
+                self.psiDetailLabel.alpha = 0.0;
+                self.psiRegionLabel.alpha = 0.0;
+                self.pm25Detail.alpha = 0.0;
+                self.pm25DetailLabel.alpha = 0.0;
+                self.pm25Region.alpha = 0.0;
+                self.pm25RegionLabel.alpha = 0.0;
+                _psiLabel.alpha = 1.0;
+                _health.alpha = 1.0;
+                _refresh.alpha = 1.0;
+                _time.alpha = 1.0;
+            } else {
+                self.psiDetail.alpha = 1.0;
+                self.psiRegion.alpha = 1.0;
+                self.psiDetailLabel.alpha = 1.0;
+                self.psiRegionLabel.alpha = 1.0;
+                self.pm25Detail.alpha = 1.0;
+                self.pm25DetailLabel.alpha = 1.0;
+                self.pm25Region.alpha = 1.0;
+                self.pm25RegionLabel.alpha = 1.0;
+                _psiLabel.alpha = 0.0;
+                _health.alpha = 0.0;
+                _time.alpha = 0.0;
+            }
 
+        } completion:^(BOOL finished) {
+        }];
+
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

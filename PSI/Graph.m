@@ -200,7 +200,7 @@ CGRect touchesAreas[kNumberOfBars];
 
             
             // Text at data point
-            int number = (data[i] * highest) * 3;
+            int number = (data[i] * highest) * 3 + 1;
             NSString *detailText = [NSString stringWithFormat:@"%d", number];
         
             CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphHeight - maxGraphHeight * data[i] - 5, [detailText cStringUsingEncoding:NSUTF8StringEncoding], [detailText length]);
