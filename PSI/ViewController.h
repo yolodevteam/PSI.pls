@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Graph.h"
 
+#define IS_4INCH_SCREEN (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568) < DBL_EPSILON)
+
 @interface ViewController : UIViewController <NSURLConnectionDataDelegate, UIScrollViewDelegate>
 {
     BOOL canRedraw;
@@ -47,5 +49,9 @@
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *act;
 @property (nonatomic, strong) IBOutlet UIPageControl* pageControl;
 @property BOOL loading;
+@property (nonatomic, strong) UILabel *errorLabel;
+@property (nonatomic, strong) UIButton *errorRefresh;
+
+
 
 @end

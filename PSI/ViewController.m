@@ -34,6 +34,8 @@
 @synthesize refresh = _refresh;
 @synthesize act = _act;
 @synthesize loading = _loading;
+@synthesize errorLabel = _errorLabel;
+@synthesize errorRefresh = _errorRefresh;
 
 - (void)viewDidLoad
 {
@@ -49,9 +51,17 @@
     
     if (hour > 19 || hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
+        if (IS_4INCH_SCREEN) {
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone-568@2x.jpg"] imageWithGaussianBlur]];
+        } else {
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
+        }
     } else {
-        self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
+        if (IS_4INCH_SCREEN) {
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue-568@2x.jpg"] imageWithGaussianBlur]];
+        } else {
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
+        }
     }
     
     
@@ -61,8 +71,8 @@
     _psiLabel.text = @"0";
     
     [_info addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
-    
-    _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+    _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
     _loadingView.backgroundColor = [UIColor blackColor];
     
     UIActivityIndicatorView *act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -70,11 +80,32 @@
     
     [_loadingView addSubview:act];
     [act startAnimating];
+    
+    _errorLabel = [[UILabel alloc] init];
+    _errorLabel.alpha = 0.0;
+    _errorLabel.frame = CGRectMake(0, 0, 320, 100);
+    _errorLabel.center = _loadingView.center;
+    _errorLabel.textColor = [UIColor whiteColor];
+    _errorLabel.font = [UIFont fontWithName:@"Helvetica UltraLight" size:30];
+    _errorLabel.backgroundColor = [UIColor whiteColor];
+    _errorLabel.textAlignment = NSTextAlignmentCenter;
+    _errorLabel.textColor = [UIColor whiteColor];
+    
+    [_loadingView addSubview:_errorLabel];
+    
+    _errorRefresh = [UIButton buttonWithType:UIButtonTypeCustom];
+    //_errorRefresh.frame = CGRectMake(((self.view.bounds.size.width / 2) - (0.5 * 15)), ((self.view.bounds.size.height / 2) - (0.5 * 19)), 15, 19);
+    _errorRefresh.frame = CGRectMake(0, 0, 15, 19);
+    [_errorRefresh setImage:[UIImage imageNamed:@"UIBarButtonRefresh.png"] forState:UIControlStateNormal];
+    [_errorRefresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_loadingView addSubview:_errorRefresh];
         
     [self.view addSubview:_loadingView];
     
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(checkTime) userInfo:nil repeats:YES];
     [timer fire];
+    
     
     UIColor *color = _refresh.currentTitleColor;
     _refresh.titleLabel.layer.shadowColor = [color CGColor];
@@ -123,7 +154,7 @@
     }
     else {
         NSLog(@"starting animations");
-        [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:1.0 animations:^{
             _psiLabel.alpha = 0.0;
             _health.alpha = 0.0;
             _time.alpha = 0;
@@ -131,8 +162,6 @@
             self.pm25Region.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"pm25"] objectForKey:region]];
             self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
             
-        } completion:^(BOOL finished) {
-            NSLog(@"animation completed");
             self.pm25Region.alpha = 1;
             self.pm25RegionLabel.alpha = 1;
             self.psiRegion.alpha = 1;
@@ -143,6 +172,10 @@
             self.psiDetailLabel.alpha = 1;
             self.pm25Detail.alpha = 1;
             self.pm25DetailLabel.alpha = 1;
+            
+        } completion:^(BOOL finished) {
+            NSLog(@"animation completed");
+
         }];
     }
 }
@@ -219,6 +252,15 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     NSLog(@"Failed to load data: %@", error);
+    
+    _errorLabel.text = @"Failed to load data.";
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        _act.alpha = 0.0;
+        _errorLabel.alpha = 1.0;
+    }completion:^(BOOL finished){
+        
+    }];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -231,6 +273,18 @@
     NSLog(@"%@", results);
     if (err) {
         NSLog(@"There was an error reading JSON data: %@", err);
+        
+        _errorLabel.text = @"Failed to load data.";
+        
+        
+        
+        [UIView animateWithDuration:1.0 animations:^{
+            _act.alpha = 0.0;
+            _errorLabel.alpha = 1.0;
+        }completion:^(BOOL finished){
+            
+        }];
+        
         return;
     }
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
