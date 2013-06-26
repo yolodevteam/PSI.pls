@@ -276,7 +276,7 @@
 {
     NSLog(@"Failed to load data: %@", error);
     
-    _errorLabel.text = @"Failed to load data.";
+    _errorLabel.text = @"Failed to load data :(";
     
     [UIView animateWithDuration:1.0 animations:^{
         _act.alpha = 0.0;
