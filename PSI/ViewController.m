@@ -517,8 +517,17 @@
                         
                 }
                 label.alpha = 1;
-                self.pm25Region.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"pm25"] objectForKey:region]];
+                self.pm25Region.text = [NSString stringWithFormat:@"%@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:region]];
                 self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
+                
+                int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:region] integerValue];
+                self.pm25Region.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
+                
+                int psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
+                self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+                
+
+                
 
             }
             else if (self.psiDetail.alpha == 1.0) {
@@ -564,7 +573,18 @@
                 self.regionEast.alpha = 0.75;
                 self.regionWest.alpha = 0.75;
                 self.regionCentral.alpha = 0.75 ;
-                 
+                
+                self.pm25Detail.text = [NSString stringWithFormat:@"%@ - %@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:@"min"], [[_results objectForKey:@"pm25"] objectForKey:@"max"]];
+                int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:@"max"] integerValue];
+                self.pm25Detail.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
+            
+                self.psiDetail.text = [NSString stringWithFormat:@"%@ - %@", [[_results objectForKey:@"pm25"] objectForKey:@"min"] , [[_results objectForKey:@"psi"] objectForKey:@"max"]];
+                
+                int psi_t = [[[_results objectForKey:@"psi"] objectForKey:@"max"] integerValue];
+                self.psiDetail.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+
+                
+                
                 _psiLabel.alpha = 0.0;
                 _health.alpha = 0.0;
             }
