@@ -555,7 +555,7 @@
                 _refresh.alpha = 1.0;
                 
             } else {
-                self.readings24.text = @"24-hour PSI";
+                self.readings24.text = @"24-hour Readings";
                 self.psiDetail.alpha = 1.0;
                 self.psiRegion.alpha = 1.0;
                 self.psiDetailLabel.alpha = 1.0;

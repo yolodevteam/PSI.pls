@@ -35,7 +35,7 @@
     
     [_done addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
     
-    _textView.text = @"Coded by ttwj & NinjaLikesCheez.\n\nUsing data found at http://dawo.me/\n\nA YoloDev Team Production.";
+    _textView.text = @"Credits:\n NinjaLikesCheez: App development\n zhongfu: Backend development \n ttwj: App and Backend development\n \nUsing data found at http://dawo.me/\n\nA YoloDev Team Production. \n Images (c) Colin Chan Photography 2013";
 }
 
 - (void)dismissSelf
