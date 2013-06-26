@@ -127,6 +127,8 @@
     self.psiRegionLabel.alpha = 0;
     self.psiRegionLabel.layer.cornerRadius = 5;
     self.pm25RegionLabel.layer.cornerRadius = 5;
+    self.psiRegion.layer.cornerRadius = 5;
+    self.pm25Region.layer.cornerRadius = 5;
     
     //detail labels
     self.psiDetail.alpha = 0;
@@ -458,11 +460,11 @@
     return time;
 }
 -(void) resetRegion {
-    self.regionNorth.alpha = 0.7;
-    self.regionSouth.alpha = 0.7;
-    self.regionEast.alpha = 0.7;
-    self.regionWest.alpha = 0.7;
-    self.regionCentral.alpha = 0.7;
+    self.regionNorth.alpha = 0.4;
+    self.regionSouth.alpha = 0.4;
+    self.regionEast.alpha = 0.4;
+    self.regionWest.alpha = 0.4;
+    self.regionCentral.alpha = 0.4;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -526,14 +528,11 @@
                     
                     int psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
                     self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+               
                 //}completion:^(BOOL finished){
                     
                 //}];
-                
-
-                
-
-                
+                       
 
             } else if (self.psiDetail.alpha == 1.0) {
                 self.psiDetail.alpha = 0.0;
@@ -548,20 +547,18 @@
                 self.psiDetailLabel.alpha = 0;
                 self.pm25Detail.alpha = 0;
                 self.pm25DetailLabel.alpha = 0;
-                self.readings24.text = @"3-hour PSI";
-                
+                self.readings24.alpha = 0;
                 self.regionNorth.alpha = 0;
                 self.regionSouth.alpha = 0;
                 self.regionEast.alpha = 0;
                 self.regionWest.alpha = 0;
                 self.regionCentral.alpha = 0;
-                
+                _time.alpha = 1;
                 _psiLabel.alpha = 1.0;
                 _health.alpha = 1.0;
                 _refresh.alpha = 1.0;
                 
             } else {
-                self.readings24.alpha = 0;
                 self.readings24.text = @"24-hour PSI";
                 self.psiDetail.alpha = 1.0;
                 self.psiRegion.alpha = 1.0;
@@ -575,6 +572,7 @@
                 self.regionNorth.alpha = 0.4;
                 self.regionSouth.alpha = 0.4;
                 self.regionEast.alpha = 0.4;
+                 _time.alpha = 0;
                 self.regionWest.alpha = 0.4;
                 self.regionCentral.alpha = 0.4;
                 
@@ -587,8 +585,20 @@
                 int psi_t = [[[_results objectForKey:@"psi"] objectForKey:@"max"] integerValue];
                 self.psiDetail.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
 
+                NSString* region = @"north";
+                [self resetRegion];
+                self.regionNorth.alpha = 1;
+                //[UIView animateWithDuration:1.0 animations:^{
+                self.pm25Region.text = [NSString stringWithFormat:@"%@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:region]];
+                self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
                 
+                pm25 = [[[_results objectForKey:@"pm25"] objectForKey:region] integerValue];
+                self.pm25Region.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
                 
+                psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
+                self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+                
+                self.pm25Region.alpha = 1;
                 _psiLabel.alpha = 0.0;
                 _health.alpha = 0.0;
             }
