@@ -567,12 +567,12 @@
                 self.pm25DetailLabel.alpha = 1.0;
                 self.pm25Region.alpha = 1.0;
                 self.pm25RegionLabel.alpha = 1.0;
-                self.readings24.alpha = 0.75;
-                self.regionNorth.alpha = 0.75;
-                self.regionSouth.alpha = 0.75;
-                self.regionEast.alpha = 0.75;
-                self.regionWest.alpha = 0.75;
-                self.regionCentral.alpha = 0.75 ;
+                self.readings24.alpha = 0.4;
+                self.regionNorth.alpha = 0.4;
+                self.regionSouth.alpha = 0.4;
+                self.regionEast.alpha = 0.4;
+                self.regionWest.alpha = 0.4;
+                self.regionCentral.alpha = 0.4;
                 
                 self.pm25Detail.text = [NSString stringWithFormat:@"%@ - %@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:@"min"], [[_results objectForKey:@"pm25"] objectForKey:@"max"]];
                 int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:@"max"] integerValue];
