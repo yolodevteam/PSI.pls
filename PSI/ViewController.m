@@ -300,7 +300,6 @@
     NSError *err;
     
     NSDictionary *results = [NSJSONSerialization JSONObjectWithData:_responseData options:NSJSONReadingMutableContainers error:&err];
-    NSLog(@"%@", results);
     if (err) {
         NSLog(@"There was an error reading data: %@", err);
         
@@ -348,7 +347,6 @@
         
     }
     if (!_results) {
-        NSLog(@"hello polis");
         _hourString = [NSString stringWithFormat:@"%d", _hour-1];
         NSString* monthString = [NSString stringWithFormat:@"%d", month];
         NSString* dayString = [NSString stringWithFormat:@"%d", day];
@@ -364,9 +362,7 @@
         }
         
         NSString* key = [NSString stringWithFormat:@"%@:%@:%@", dayString, monthString, _hourString];
-        NSLog(@"key %@", key);
         _results = [results objectForKey:key];
-        NSLog(@"results %@", _results);
     }
         
     
@@ -473,7 +469,7 @@
     
     CGPoint point = [touch locationInView:self.view];
     
-    NSLog(@"x: %f y: %f", point.x, point.y);
+    //NSLog(@"x: %f y: %f", point.x, point.y);
     
     if (point.x < 320 && point.y < 209) {
         // Touched the top some where, switch views.

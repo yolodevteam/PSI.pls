@@ -16,6 +16,8 @@
 		AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */; };
 		AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */; };
 		AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */; };
+		ADCB4226177B2E38007EF14A /* apple-touch-icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4225177B2E38007EF14A /* apple-touch-icon-57x57.png */; };
+		ADCB4228177B2E57007EF14A /* apple-touch-icon-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4227177B2E57007EF14A /* apple-touch-icon-114x114.png */; };
 		E90770D81775A4D200139FFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D71775A4D200139FFC /* UIKit.framework */; };
 		E90770DA1775A4D200139FFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D91775A4D200139FFC /* Foundation.framework */; };
 		E90770DC1775A4D200139FFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770DB1775A4D200139FFC /* CoreGraphics.framework */; };
@@ -45,6 +47,8 @@
 		AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone@2x.jpg"; sourceTree = "<group>"; };
 		AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone-568h.jpg"; sourceTree = "<group>"; };
 		AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tools.m"; sourceTree = "<group>"; };
+		ADCB4225177B2E38007EF14A /* apple-touch-icon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-57x57.png"; sourceTree = "<group>"; };
+		ADCB4227177B2E57007EF14A /* apple-touch-icon-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-114x114.png"; sourceTree = "<group>"; };
 		E90770D41775A4D200139FFC /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90770D71775A4D200139FFC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E90770D91775A4D200139FFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +93,8 @@
 		E90770CB1775A4D200139FFC = {
 			isa = PBXGroup;
 			children = (
+				ADCB4227177B2E57007EF14A /* apple-touch-icon-114x114.png */,
+				ADCB4225177B2E38007EF14A /* apple-touch-icon-57x57.png */,
 				E90770DD1775A4D200139FFC /* PSI */,
 				E90770D61775A4D200139FFC /* Frameworks */,
 				E90770D51775A4D200139FFC /* Products */,
@@ -224,6 +230,8 @@
 				AD5FC20317785C9A0098B5AC /* bg_blue@2x.jpg in Resources */,
 				AD312B13177AF25300746699 /* Icon@2x.png in Resources */,
 				AD312B15177AF27100746699 /* Icon.png in Resources */,
+				ADCB4226177B2E38007EF14A /* apple-touch-icon-57x57.png in Resources */,
+				ADCB4228177B2E57007EF14A /* apple-touch-icon-114x114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

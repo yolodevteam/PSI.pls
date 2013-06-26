@@ -22,7 +22,6 @@ CGRect touchesAreas[kNumberOfBars];
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-        NSLog(@"data %@", dictData);
         
         NSMutableArray* keys = [NSMutableArray arrayWithCapacity:24];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -46,14 +45,12 @@ CGRect touchesAreas[kNumberOfBars];
             }
             id obj = [dictData objectForKey:_hourString];
             if (!obj) {
-                NSLog(@"swag swag pls");
                 NSString* _hourString = [NSString stringWithFormat:@"%d", i-1];
                 
                 if ([_hourString length] == 1) {
                     _hourString = [NSString stringWithFormat:@"0%d", i-1];
                 }
                 obj = [dictData objectForKey:_hourString];
-                NSLog(@"obj #### %@", obj);
             }
             else {
                 [keys addObject:obj];
@@ -73,7 +70,6 @@ CGRect touchesAreas[kNumberOfBars];
 
 - (void)drawRect:(CGRect)rect
 {
-    NSLog(@"rect %f %f", rect.size.width, rect.size.height);
     // Setup code
     context = UIGraphicsGetCurrentContext();
     
