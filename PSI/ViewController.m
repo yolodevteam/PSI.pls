@@ -315,6 +315,8 @@
         return;
     }
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
+    [components setTimeZone:sgt];
     NSInteger day = [components day];
     NSInteger month = [components month];
     NSInteger year = [components year];
@@ -573,6 +575,15 @@
                 self.regionCentral.alpha = 0.4;
                 
                 self.pm25Detail.text = [NSString stringWithFormat:@"%@ - %@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:@"min"], [[_results objectForKey:@"pm25"] objectForKey:@"max"]];
+                [self.pm25Detail sizeToFit];
+                CGRect frame = self.pm25Detail.frame;
+                 //l + r padding
+                frame.size.width += 10;
+                self.pm25Detail.frame = frame;
+                self.pm25Detail.numberOfLines = 1;
+                self.pm25Detail.minimumFontSize = 8.;
+                self.pm25Detail.adjustsFontSizeToFitWidth = YES;
+                
                 int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:@"max"] integerValue];
                 self.pm25Detail.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
             
