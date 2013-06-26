@@ -137,6 +137,12 @@
     self.pm25Detail.alpha = 0;
     self.pm25DetailLabel.alpha = 0;
     
+    self.regionNorth.alpha = 0;
+    self.regionSouth.alpha = 0;
+    self.regionEast.alpha = 0;
+    self.regionWest.alpha = 0;
+    self.regionCentral.alpha = 0;
+    
     _health.layer.shadowColor = [[UIColor blackColor] CGColor];
     _health.layer.shadowOffset = CGSizeMake(0.0, 0.0);
     _health.layer.shadowRadius = 2.0;
@@ -428,6 +434,13 @@
     
     return time;
 }
+-(void) resetRegion {
+    self.regionNorth.alpha = 0.7;
+    self.regionSouth.alpha = 0.7;
+    self.regionEast.alpha = 0.7;
+    self.regionWest.alpha = 0.7;
+    self.regionCentral.alpha = 0.7;
+}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -439,8 +452,48 @@
     
     if (point.x < 320 && point.y < 209) {
         // Touched the top some where, switch views.
-        [UIView animateWithDuration:1.0 animations:^{
-            if (self.psiDetail.alpha == 1.0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            if ((touch.view.tag < 425) && (touch.view.tag > 419)) {
+                NSLog(@"North south east west who's the best? %d", touch.view.tag);
+                NSString *region;
+                UILabel* label = (UILabel*) touch.view;
+                [self resetRegion];
+                switch (touch.view.tag) {
+                    case 420: {
+                        //north
+                        region = @"north";
+                        break;
+                    }
+                
+                    case 421: {
+                        //north
+                        region = @"south";
+                        break;
+                    }
+                    case 422: {
+                        //north
+                        region = @"east";
+                        break;
+                    }
+                    case 423: {
+                        //north
+                        region = @"west";
+                        break;
+                    }
+                    case 424: {
+                        //north
+                        region = @"central";
+                        break;
+                    }
+                        
+                }
+                label.alpha = 1;
+                self.pm25Region.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"pm25"] objectForKey:region]];
+                self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
+
+            }
+            else if (self.psiDetail.alpha == 1.0) {
                 self.psiDetail.alpha = 0.0;
                 self.psiRegion.alpha = 0.0;
                 self.psiDetailLabel.alpha = 0.0;
@@ -449,11 +502,26 @@
                 self.pm25DetailLabel.alpha = 0.0;
                 self.pm25Region.alpha = 0.0;
                 self.pm25RegionLabel.alpha = 0.0;
+                self.psiDetail.alpha = 0;
+                self.psiDetailLabel.alpha = 0;
+                self.pm25Detail.alpha = 0;
+                self.pm25DetailLabel.alpha = 0;
+                self.readings24.text = @"3-hour PSI";
+                
+                self.regionNorth.alpha = 0;
+                self.regionSouth.alpha = 0;
+                self.regionEast.alpha = 0;
+                self.regionWest.alpha = 0;
+                self.regionCentral.alpha = 0;
+                
                 _psiLabel.alpha = 1.0;
                 _health.alpha = 1.0;
                 _refresh.alpha = 1.0;
-                _time.alpha = 1.0;
-            } else {
+            }
+            
+            else {
+                self.readings24.alpha = 0;
+                self.readings24.text = @"24-hour PSI";
                 self.psiDetail.alpha = 1.0;
                 self.psiRegion.alpha = 1.0;
                 self.psiDetailLabel.alpha = 1.0;
@@ -462,9 +530,15 @@
                 self.pm25DetailLabel.alpha = 1.0;
                 self.pm25Region.alpha = 1.0;
                 self.pm25RegionLabel.alpha = 1.0;
+                self.readings24.alpha = 0.75;
+                self.regionNorth.alpha = 0.75;
+                self.regionSouth.alpha = 0.75;
+                self.regionEast.alpha = 0.75;
+                self.regionWest.alpha = 0.75;
+                self.regionCentral.alpha = 0.75 ;
+                 
                 _psiLabel.alpha = 0.0;
                 _health.alpha = 0.0;
-                _time.alpha = 0.0;
             }
 
         } completion:^(BOOL finished) {

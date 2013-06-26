@@ -34,8 +34,12 @@
 @property (nonatomic, strong) IBOutlet UILabel *pm25Detail;
 @property (nonatomic, strong) IBOutlet UILabel *pm25DetailLabel;
 
-
-
+@property (nonatomic, strong) IBOutlet UILabel* readings24;
+@property (nonatomic, strong) IBOutlet UILabel* regionNorth;
+@property (nonatomic, strong) IBOutlet UILabel* regionSouth;
+@property (nonatomic, strong) IBOutlet UILabel* regionEast;
+@property (nonatomic, strong) IBOutlet UILabel* regionWest;
+@property (nonatomic, strong) IBOutlet UILabel* regionCentral;
 
 @property (nonatomic, strong) IBOutlet UILabel *health;
 @property (nonatomic, strong) NSString *hourString;
