@@ -137,6 +137,16 @@
     self.pm25Detail.alpha = 0;
     self.pm25DetailLabel.alpha = 0;
     
+    self.psiDetail.adjustsFontSizeToFitWidth = YES;
+    self.psiDetail.minimumFontSize = 14;
+    self.psiDetail.layer.cornerRadius = 5;
+    
+    self.pm25Detail.adjustsFontSizeToFitWidth = YES;
+    self.pm25Detail.minimumFontSize = 14;
+    self.pm25Detail.layer.cornerRadius = 5;
+    
+    
+    
     self.regionNorth.alpha = 0;
     self.regionSouth.alpha = 0;
     self.regionEast.alpha = 0;
@@ -197,7 +207,25 @@
         [redrawTimer fire];
     }];
 }
+-(UIColor*) getColorFromPSI:(int) PSI withAlpha:(float) alpha {
+    if (PSI < 51) {
+        // 'Good'
+        return [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha];
+    }
+    else if (PSI < 101) {
+        return [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:alpha];
+    }
+    else if (PSI < 201) {
+        return [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:alpha];
+    }
+    else if (PSI < 300) {
+        return [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:alpha];
+    }
+    else if (PSI >= 300){
+        return [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:alpha];
+    }
 
+}
 - (void)redrawInterface
 {
     if (canRedraw) {
