@@ -473,7 +473,7 @@
     
     //NSLog(@"x: %f y: %f", point.x, point.y);
     
-    if (point.x < 320 && point.y < 209) {
+    if (point.x < 320 && point.y < 224) {
         // Touched the top some where, switch views.
         [UIView animateWithDuration:1.0 animations:^{
             
