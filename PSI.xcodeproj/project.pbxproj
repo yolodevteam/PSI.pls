@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD312B13177AF25300746699 /* apple-touch-icon-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = AD312B12177AF25300746699 /* apple-touch-icon-114x114.png */; };
-		AD312B15177AF27100746699 /* apple-touch-icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = AD312B14177AF27100746699 /* apple-touch-icon-57x57.png */; };
+		AD312B13177AF25300746699 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD312B12177AF25300746699 /* Icon@2x.png */; };
+		AD312B15177AF27100746699 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD312B14177AF27100746699 /* Icon.png */; };
 		AD5FC20117785C9A0098B5AC /* bg_blue-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD5FC1FE17785C9A0098B5AC /* bg_blue-568h.jpg */; };
 		AD5FC20217785C9A0098B5AC /* bg_blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD5FC1FF17785C9A0098B5AC /* bg_blue.jpg */; };
 		AD5FC20317785C9A0098B5AC /* bg_blue@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD5FC20017785C9A0098B5AC /* bg_blue@2x.jpg */; };
@@ -26,8 +26,7 @@
 		E90770EC1775A4D200139FFC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770EB1775A4D200139FFC /* Default@2x.png */; };
 		E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770ED1775A4D200139FFC /* Default-568h@2x.png */; };
 		E90770F11775A4D200139FFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90770F01775A4D200139FFC /* ViewController.m */; };
-		E90770F41775A4D200139FFC /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90770F21775A4D200139FFC /* ViewController_iPhone.xib */; };
-		E90770F71775A4D200139FFC /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90770F51775A4D200139FFC /* ViewController_iPad.xib */; };
+		E90770F41775A4D200139FFC /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90770F21775A4D200139FFC /* ViewController.xib */; };
 		E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E49971775F25F002E9C46 /* InformationViewController.m */; };
 		E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92E49981775F25F002E9C46 /* InformationViewController.xib */; };
 		E92E499C17760B23002E9C46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92E499B17760B23002E9C46 /* QuartzCore.framework */; };
@@ -37,8 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AD312B12177AF25300746699 /* apple-touch-icon-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-114x114.png"; sourceTree = "<group>"; };
-		AD312B14177AF27100746699 /* apple-touch-icon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-57x57.png"; sourceTree = "<group>"; };
+		AD312B12177AF25300746699 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		AD312B14177AF27100746699 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		AD5FC1FE17785C9A0098B5AC /* bg_blue-568h.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_blue-568h.jpg"; sourceTree = "<group>"; };
 		AD5FC1FF17785C9A0098B5AC /* bg_blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_blue.jpg; sourceTree = "<group>"; };
 		AD5FC20017785C9A0098B5AC /* bg_blue@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_blue@2x.jpg"; sourceTree = "<group>"; };
@@ -61,8 +60,7 @@
 		E90770ED1775A4D200139FFC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E90770EF1775A4D200139FFC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		E90770F01775A4D200139FFC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E90770F31775A4D200139FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		E90770F61775A4D200139FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		E90770F31775A4D200139FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		E92E49961775F25F002E9C46 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
 		E92E49971775F25F002E9C46 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		E92E49981775F25F002E9C46 /* InformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationViewController.xib; sourceTree = "<group>"; };
@@ -91,8 +89,6 @@
 		E90770CB1775A4D200139FFC = {
 			isa = PBXGroup;
 			children = (
-				AD312B14177AF27100746699 /* apple-touch-icon-57x57.png */,
-				AD312B12177AF25300746699 /* apple-touch-icon-114x114.png */,
 				E90770DD1775A4D200139FFC /* PSI */,
 				E90770D61775A4D200139FFC /* Frameworks */,
 				E90770D51775A4D200139FFC /* Products */,
@@ -121,15 +117,12 @@
 		E90770DD1775A4D200139FFC /* PSI */ = {
 			isa = PBXGroup;
 			children = (
-				E9614C2C1776F9F000FA08A2 /* UIButtonBarRefresh.png */,
-				E9614C2D1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png */,
 				E90770E61775A4D200139FFC /* AppDelegate.h */,
 				E90770E71775A4D200139FFC /* AppDelegate.m */,
 				AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */,
 				E90770EF1775A4D200139FFC /* ViewController.h */,
 				E90770F01775A4D200139FFC /* ViewController.m */,
-				E90770F21775A4D200139FFC /* ViewController_iPhone.xib */,
-				E90770F51775A4D200139FFC /* ViewController_iPad.xib */,
+				E90770F21775A4D200139FFC /* ViewController.xib */,
 				E92E49961775F25F002E9C46 /* InformationViewController.h */,
 				E92E49971775F25F002E9C46 /* InformationViewController.m */,
 				E92E49981775F25F002E9C46 /* InformationViewController.xib */,
@@ -147,6 +140,8 @@
 				E90770E01775A4D200139FFC /* InfoPlist.strings */,
 				E90770E31775A4D200139FFC /* main.m */,
 				E90770E51775A4D200139FFC /* PSI-Prefix.pch */,
+				AD312B14177AF27100746699 /* Icon.png */,
+				AD312B12177AF25300746699 /* Icon@2x.png */,
 				AD9DA18D1776E4BA005B2C62 /* bg_iphone.jpg */,
 				AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */,
 				AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */,
@@ -156,6 +151,8 @@
 				E90770E91775A4D200139FFC /* Default.png */,
 				E90770EB1775A4D200139FFC /* Default@2x.png */,
 				E90770ED1775A4D200139FFC /* Default-568h@2x.png */,
+				E9614C2C1776F9F000FA08A2 /* UIButtonBarRefresh.png */,
+				E9614C2D1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -215,8 +212,7 @@
 				E90770EA1775A4D200139FFC /* Default.png in Resources */,
 				E90770EC1775A4D200139FFC /* Default@2x.png in Resources */,
 				E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */,
-				E90770F41775A4D200139FFC /* ViewController_iPhone.xib in Resources */,
-				E90770F71775A4D200139FFC /* ViewController_iPad.xib in Resources */,
+				E90770F41775A4D200139FFC /* ViewController.xib in Resources */,
 				E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */,
 				AD9DA1901776E4BA005B2C62 /* bg_iphone.jpg in Resources */,
 				AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */,
@@ -226,8 +222,8 @@
 				AD5FC20117785C9A0098B5AC /* bg_blue-568h.jpg in Resources */,
 				AD5FC20217785C9A0098B5AC /* bg_blue.jpg in Resources */,
 				AD5FC20317785C9A0098B5AC /* bg_blue@2x.jpg in Resources */,
-				AD312B13177AF25300746699 /* apple-touch-icon-114x114.png in Resources */,
-				AD312B15177AF27100746699 /* apple-touch-icon-57x57.png in Resources */,
+				AD312B13177AF25300746699 /* Icon@2x.png in Resources */,
+				AD312B15177AF27100746699 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,20 +254,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		E90770F21775A4D200139FFC /* ViewController_iPhone.xib */ = {
+		E90770F21775A4D200139FFC /* ViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E90770F31775A4D200139FFC /* en */,
 			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		E90770F51775A4D200139FFC /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E90770F61775A4D200139FFC /* en */,
-			);
-			name = ViewController_iPad.xib;
+			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -338,13 +326,15 @@
 		E90770FB1775A4D200139FFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSI/PSI-Prefix.pch";
 				INFOPLIST_FILE = "PSI/PSI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -353,13 +343,15 @@
 		E90770FC1775A4D200139FFC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSI/PSI-Prefix.pch";
 				INFOPLIST_FILE = "PSI/PSI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

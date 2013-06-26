@@ -7,6 +7,7 @@
 //
 
 #import "Graph.h"
+#import <Accelerate/Accelerate.h>
 
 @implementation Graph
 float data[24];
@@ -200,8 +201,8 @@ CGRect touchesAreas[kNumberOfBars];
 
             
             // Text at data point
-            int number = (data[i] * highest) * 3 + 1;
-            NSString *detailText = [NSString stringWithFormat:@"%d", number];
+            float number = (data[i] * highest) * 3 + 1;
+            NSString *detailText = [NSString stringWithFormat:@"%d", (int)roundf(number)];
         
             CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphHeight - maxGraphHeight * data[i] - 5, [detailText cStringUsingEncoding:NSUTF8StringEncoding], [detailText length]);
         }
@@ -215,9 +216,7 @@ CGRect touchesAreas[kNumberOfBars];
     
     for (int i = 0; i < kNumberOfBars; i++) {
         if (CGRectContainsPoint(touchesAreas[i], point)) {
-            NSLog(@"Tapped point with index %d, value %f", i, (data[i] * highest) * 3);
 
-#warning TODO: call delegate in ViewController to update readings
             
             break;
         }

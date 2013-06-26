@@ -41,13 +41,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
     NSString *date = [self getSingaporeTimeWithMinutes:NO];
     
     int hour = [date intValue];
-    
-    NSLog(@"Init viewDidLoad");
-    //background swag
-
     
     if (hour > 19 || hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
@@ -63,7 +60,6 @@
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
         }
     }
-    
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/all.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -94,7 +90,6 @@
     [_loadingView addSubview:_errorLabel];
     
     _errorRefresh = [UIButton buttonWithType:UIButtonTypeCustom];
-    //_errorRefresh.frame = CGRectMake(((self.view.bounds.size.width / 2) - (0.5 * 15)), ((self.view.bounds.size.height / 2) - (0.5 * 19)), 15, 19);
     _errorRefresh.frame = CGRectMake(0, 0, 15, 19);
     [_errorRefresh setImage:[UIImage imageNamed:@"UIBarButtonRefresh.png"] forState:UIControlStateNormal];
     [_errorRefresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
@@ -130,6 +125,8 @@
     self.pm25RegionLabel.alpha = 0;
     self.psiRegion.alpha = 0;
     self.psiRegionLabel.alpha = 0;
+    self.psiRegionLabel.layer.cornerRadius = 5;
+    self.pm25RegionLabel.layer.cornerRadius = 5;
     
     //detail labels
     self.psiDetail.alpha = 0;
@@ -194,6 +191,12 @@
             self.pm25DetailLabel.alpha = 0.0;
             self.pm25Region.alpha = 0.0;
             self.pm25RegionLabel.alpha = 0.0;
+            self.regionCentral.alpha = 0.0;
+            self.regionNorth.alpha = 0.0;
+            self.regionEast.alpha = 0.0;
+            self.regionSouth.alpha = 0.0;
+            self.regionWest.alpha = 0.0;
+            self.readings24.alpha = 0.0;
         }
         _psiLabel.alpha = 0.0;
         _health.alpha = 0.0;
@@ -224,6 +227,8 @@
     else if (PSI >= 300){
         return [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:alpha];
     }
+    
+    return [UIColor clearColor];
 
 }
 - (void)redrawInterface
@@ -362,19 +367,6 @@
         NSLog(@"results %@", _results);
     }
         
-   /* if ([[NSString stringWithFormat:@"%@", [_results objectForKey:_hourString]] isEqual: @"0"]) {
-        // The NEA are being slow and haven't updated their figures yet, show latest figure.
-        _hour--;
-        _hourString = [NSString stringWithFormat:@"%d", _hour];
-        if ([_hourString length] == 1) {
-            _hourString = [NSString stringWithFormat:@"0%@", _hourString];
-        }
-    }
-    
-    if ([[_results objectForKey:[NSString stringWithFormat:@"%d", (hour - 1)]] isEqual: @"0"]) {
-        _psiLabel.font = [UIFont fontWithName:@"Helvetica Neue UltraLight" size:30];
-        _psiLabel.text = @"Current data unavaliable";
-    }*/
     
     [self updateLabels];
     
@@ -405,7 +397,10 @@
 
 - (void)updateLabels
 {
-    //NSLog(@"results %@", _results);
+    if ([[_results objectForKey:@"psi"] objectForKey:@"3hr"] == NULL) {
+        _psiLabel.text = @"Error loading data.";
+        _psiLabel.font = [UIFont fontWithName:@"HelveticaNeue UltraLight" size:25];
+    }
     _psiLabel.text = [NSString stringWithFormat:@"%@", [[_results objectForKey:@"psi"] objectForKey:@"3hr"]];
     _time.text = [self getSingaporeTimeWithMinutes:YES];
     
@@ -480,7 +475,7 @@
     
     if (point.x < 320 && point.y < 209) {
         // Touched the top some where, switch views.
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:1.0 animations:^{
             
             if ((touch.view.tag < 425) && (touch.view.tag > 419)) {
                 NSLog(@"North south east west who's the best? %d", touch.view.tag);
@@ -514,23 +509,33 @@
                         region = @"central";
                         break;
                     }
-                        
+                    default: {
+                        region = @"north";
+                    }
+                
                 }
+                
                 label.alpha = 1;
-                self.pm25Region.text = [NSString stringWithFormat:@"%@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:region]];
-                self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
                 
-                int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:region] integerValue];
-                self.pm25Region.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
-                
-                int psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
-                self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+                //[UIView animateWithDuration:1.0 animations:^{
+                    self.pm25Region.text = [NSString stringWithFormat:@"%@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:region]];
+                    self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
+                    
+                    int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:region] integerValue];
+                    self.pm25Region.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
+                    
+                    int psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
+                    self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+                //}completion:^(BOOL finished){
+                    
+                //}];
                 
 
                 
 
-            }
-            else if (self.psiDetail.alpha == 1.0) {
+                
+
+            } else if (self.psiDetail.alpha == 1.0) {
                 self.psiDetail.alpha = 0.0;
                 self.psiRegion.alpha = 0.0;
                 self.psiDetailLabel.alpha = 0.0;
@@ -554,9 +559,8 @@
                 _psiLabel.alpha = 1.0;
                 _health.alpha = 1.0;
                 _refresh.alpha = 1.0;
-            }
-            
-            else {
+                
+            } else {
                 self.readings24.alpha = 0;
                 self.readings24.text = @"24-hour PSI";
                 self.psiDetail.alpha = 1.0;
@@ -590,6 +594,7 @@
             }
 
         } completion:^(BOOL finished) {
+            
         }];
 
         

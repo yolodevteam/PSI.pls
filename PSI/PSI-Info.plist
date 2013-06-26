@@ -16,6 +16,8 @@
 			<array>
 				<string>apple-touch-icon-114x114.png</string>
 				<string>apple-touch-icon-57x57.png</string>
+				<string>Icon.png</string>
+				<string>Icon@2x.png</string>
 			</array>
 		</dict>
 	</dict>
