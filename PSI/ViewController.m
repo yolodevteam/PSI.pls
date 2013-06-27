@@ -143,8 +143,7 @@
     self.pm25Detail.adjustsFontSizeToFitWidth = YES;
     self.pm25Detail.minimumFontSize = 14;
     self.pm25Detail.layer.cornerRadius = 5;
-    
-    
+
     
     self.regionNorth.alpha = 0;
     self.regionSouth.alpha = 0;
@@ -167,6 +166,8 @@
     bottomBorder.frame = CGRectMake(-1, layer.frame.size.height-1, layer.frame.size.width, 1);
     [bottomBorder setBorderColor:[[UIColor colorWithRed:1 green:1 blue:1 alpha:0.2] CGColor]];
     [layer addSublayer:bottomBorder];
+    
+    self.pageControl.numberOfPages = 4;
     
 }
 
@@ -478,7 +479,7 @@
         [UIView animateWithDuration:1.0 animations:^{
             
             if ((touch.view.tag < 425) && (touch.view.tag > 419)) {
-                NSLog(@"North south east west who's the best? %d", touch.view.tag);
+                //NSLog(@"North south east west who's the best? %d", touch.view.tag);
                 NSString *region;
                 UILabel* label = (UILabel*) touch.view;
                 [self resetRegion];
@@ -518,14 +519,15 @@
                 label.alpha = 1;
                 
                 //[UIView animateWithDuration:1.0 animations:^{
-                    self.pm25Region.text = [NSString stringWithFormat:@"%@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:region]];
-                    self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
-                    
-                    int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:region] integerValue];
-                    self.pm25Region.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
-                    
-                    int psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
-                    self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+                self.pm25Region.text = [NSString stringWithFormat:@"%@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:region]];
+                self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
+                
+                int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:region] integerValue];
+                int AQI = [self getAQIfromPM25:pm25];
+                self.pm25Region.backgroundColor = [self getColorFromAQI:AQI];
+                
+                int psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
+                self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.75];
                
                 //}completion:^(BOOL finished){
                     
@@ -584,14 +586,18 @@
                 self.pm25Detail.minimumFontSize = 8.;
                 self.pm25Detail.adjustsFontSizeToFitWidth = YES;
                 
+                //24-hour average
                 int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:@"max"] integerValue];
-                self.pm25Detail.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
+                int AQI = [self getAQIfromPM25:pm25];
+                self.pm25Detail.backgroundColor = [self getColorFromAQI:AQI];
             
                 self.psiDetail.text = [NSString stringWithFormat:@"%@ - %@", [[_results objectForKey:@"pm25"] objectForKey:@"min"] , [[_results objectForKey:@"psi"] objectForKey:@"max"]];
                 
                 int psi_t = [[[_results objectForKey:@"psi"] objectForKey:@"max"] integerValue];
-                self.psiDetail.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+                self.psiDetail.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.75];
 
+                
+                //regional data
                 NSString* region = @"north";
                 [self resetRegion];
                 self.regionNorth.alpha = 1;
@@ -600,10 +606,11 @@
                 self.psiRegion.text = [NSString stringWithFormat:@"%@",[[_results objectForKey:@"psi"] objectForKey:region]];
                 
                 pm25 = [[[_results objectForKey:@"pm25"] objectForKey:region] integerValue];
-                self.pm25Region.backgroundColor = [self getColorFromPSI:pm25 withAlpha:0.6];
+                AQI = [self getAQIfromPM25:pm25];
+                self.pm25Region.backgroundColor = [self getColorFromAQI:AQI];
                 
                 psi_t = [[[_results objectForKey:@"psi"] objectForKey:region] integerValue];
-                self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.6];
+                self.psiRegion.backgroundColor = [self getColorFromPSI:psi_t withAlpha:0.75];
                 
                 self.pm25Region.alpha = 1;
                 _psiLabel.alpha = 0.0;
@@ -617,7 +624,85 @@
         
     }
 }
-
+-(int)getAQIfromPM25: (float) PM25 {
+    int AQILow, AQIHigh, AQI;
+    float breakPointLow, breakPointHigh;
+    if (PM25 < 12.1) {
+        AQILow = 0;
+        AQIHigh = 50;
+        breakPointLow = 0.0;
+        breakPointHigh = 12.0;
+    }
+    else if (PM25 < 35.5) {
+        AQILow = 51;
+        AQIHigh = 100;
+        breakPointLow = 12.1;
+        breakPointHigh = 35.4;
+    }
+    else if (PM25 < 55.5) {
+        AQILow = 101;
+        AQIHigh = 150;
+        breakPointLow = 35.5;
+        breakPointHigh = 55.4;
+    }
+    else if (PM25 < 150.5) {
+        AQILow = 151;
+        AQIHigh = 200;
+        breakPointLow = 55.5;
+        breakPointHigh = 150.4;
+    }
+    else if (PM25 < 250.5) {
+        AQILow = 201;
+        AQIHigh = 300;
+        breakPointLow = 150.5;
+        breakPointHigh = 250.4;
+    }
+    else if (PM25 < 350.5) {
+        AQILow = 301;
+        AQIHigh = 400;
+        breakPointLow = 250.5;
+        breakPointHigh = 350.4;
+    }
+    else {
+        AQILow = 401;
+        AQIHigh = 500;
+        breakPointLow = 350.5;
+        breakPointHigh = 500.4;
+    }
+    AQI = ceil((((AQIHigh-AQILow)/(breakPointHigh-breakPointLow)) * (PM25 - breakPointLow)) + AQILow);
+    NSLog(@"AQI %d, %d %d, %f", AQI, AQILow, AQIHigh, PM25);
+    return AQI;
+}
+- (UIColor*) getColorFromAQI: (int) AQI {
+    float alpha = 0.75;
+    
+    if (AQI < 51) {
+        //green
+        NSLog(@"green");
+        return [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha];
+    }
+    else if (AQI < 101) {
+        //yellow
+        NSLog(@"yellow");
+        return [UIColor colorWithRed:0.945 green:0.769 blue:0.059 alpha:alpha];
+    }
+    else if (AQI < 151) {
+        NSLog(@"orange");
+        return [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:alpha];
+    }
+    else if (AQI < 201) {
+        NSLog(@"red..");
+        return [UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:alpha];
+    }
+    else if (AQI < 301) {
+        NSLog(@"purple");
+        return [UIColor colorWithRed:0.557 green:0.267 blue:0.678 alpha:alpha];
+    }
+    else {
+        NSLog(@"maroon");
+        return [UIColor colorWithRed:0.173 green:0.243 blue:0.314 alpha:alpha];
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
