@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AD312B13177AF25300746699 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD312B12177AF25300746699 /* Icon@2x.png */; };
-		AD312B15177AF27100746699 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD312B14177AF27100746699 /* Icon.png */; };
 		AD5FC20117785C9A0098B5AC /* bg_blue-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD5FC1FE17785C9A0098B5AC /* bg_blue-568h.jpg */; };
 		AD5FC20217785C9A0098B5AC /* bg_blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD5FC1FF17785C9A0098B5AC /* bg_blue.jpg */; };
 		AD5FC20317785C9A0098B5AC /* bg_blue@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD5FC20017785C9A0098B5AC /* bg_blue@2x.jpg */; };
@@ -16,8 +14,6 @@
 		AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */; };
 		AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */; };
 		AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */; };
-		ADCB4226177B2E38007EF14A /* apple-touch-icon-57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4225177B2E38007EF14A /* apple-touch-icon-57x57.png */; };
-		ADCB4228177B2E57007EF14A /* apple-touch-icon-114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4227177B2E57007EF14A /* apple-touch-icon-114x114.png */; };
 		E90770D81775A4D200139FFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D71775A4D200139FFC /* UIKit.framework */; };
 		E90770DA1775A4D200139FFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D91775A4D200139FFC /* Foundation.framework */; };
 		E90770DC1775A4D200139FFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770DB1775A4D200139FFC /* CoreGraphics.framework */; };
@@ -35,11 +31,11 @@
 		E92E499F17760BA2002E9C46 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E499E17760BA2002E9C46 /* Graph.m */; };
 		E9614C2E1776F9F000FA08A2 /* UIButtonBarRefresh.png in Resources */ = {isa = PBXBuildFile; fileRef = E9614C2C1776F9F000FA08A2 /* UIButtonBarRefresh.png */; };
 		E9614C2F1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E9614C2D1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png */; };
+		E9F02F5E177C585D00F4B438 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4225177B2E38007EF14A /* Icon.png */; };
+		E9F02F5F177C585E00F4B438 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCB4227177B2E57007EF14A /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AD312B12177AF25300746699 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
-		AD312B14177AF27100746699 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		AD5FC1FE17785C9A0098B5AC /* bg_blue-568h.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_blue-568h.jpg"; sourceTree = "<group>"; };
 		AD5FC1FF17785C9A0098B5AC /* bg_blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_blue.jpg; sourceTree = "<group>"; };
 		AD5FC20017785C9A0098B5AC /* bg_blue@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_blue@2x.jpg"; sourceTree = "<group>"; };
@@ -47,8 +43,8 @@
 		AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone@2x.jpg"; sourceTree = "<group>"; };
 		AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone-568h.jpg"; sourceTree = "<group>"; };
 		AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tools.m"; sourceTree = "<group>"; };
-		ADCB4225177B2E38007EF14A /* apple-touch-icon-57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-57x57.png"; sourceTree = "<group>"; };
-		ADCB4227177B2E57007EF14A /* apple-touch-icon-114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-114x114.png"; sourceTree = "<group>"; };
+		ADCB4225177B2E38007EF14A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		ADCB4227177B2E57007EF14A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		E90770D41775A4D200139FFC /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90770D71775A4D200139FFC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E90770D91775A4D200139FFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,8 +89,6 @@
 		E90770CB1775A4D200139FFC = {
 			isa = PBXGroup;
 			children = (
-				ADCB4227177B2E57007EF14A /* apple-touch-icon-114x114.png */,
-				ADCB4225177B2E38007EF14A /* apple-touch-icon-57x57.png */,
 				E90770DD1775A4D200139FFC /* PSI */,
 				E90770D61775A4D200139FFC /* Frameworks */,
 				E90770D51775A4D200139FFC /* Products */,
@@ -146,8 +140,8 @@
 				E90770E01775A4D200139FFC /* InfoPlist.strings */,
 				E90770E31775A4D200139FFC /* main.m */,
 				E90770E51775A4D200139FFC /* PSI-Prefix.pch */,
-				AD312B14177AF27100746699 /* Icon.png */,
-				AD312B12177AF25300746699 /* Icon@2x.png */,
+				ADCB4227177B2E57007EF14A /* Icon@2x.png */,
+				ADCB4225177B2E38007EF14A /* Icon.png */,
 				AD9DA18D1776E4BA005B2C62 /* bg_iphone.jpg */,
 				AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */,
 				AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */,
@@ -228,10 +222,8 @@
 				AD5FC20117785C9A0098B5AC /* bg_blue-568h.jpg in Resources */,
 				AD5FC20217785C9A0098B5AC /* bg_blue.jpg in Resources */,
 				AD5FC20317785C9A0098B5AC /* bg_blue@2x.jpg in Resources */,
-				AD312B13177AF25300746699 /* Icon@2x.png in Resources */,
-				AD312B15177AF27100746699 /* Icon.png in Resources */,
-				ADCB4226177B2E38007EF14A /* apple-touch-icon-57x57.png in Resources */,
-				ADCB4228177B2E57007EF14A /* apple-touch-icon-114x114.png in Resources */,
+				E9F02F5E177C585D00F4B438 /* Icon.png in Resources */,
+				E9F02F5F177C585E00F4B438 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,8 +326,8 @@
 		E90770FB1775A4D200139FFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSI/PSI-Prefix.pch";
 				INFOPLIST_FILE = "PSI/PSI-Info.plist";
@@ -351,8 +343,8 @@
 		E90770FC1775A4D200139FFC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSI/PSI-Prefix.pch";
 				INFOPLIST_FILE = "PSI/PSI-Info.plist";

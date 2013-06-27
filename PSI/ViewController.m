@@ -49,13 +49,17 @@
     if (hour > 19 || hour < 7) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
         if (IS_4INCH_SCREEN) {
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone-568h.jpg"] imageWithGaussianBlur]];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_iphone-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
+            [self.view addSubview:imageView];
+            [self.view sendSubviewToBack:imageView];
         } else {
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
         }
     } else {
         if (IS_4INCH_SCREEN) {
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue-568h.jpg"] imageWithGaussianBlur]];
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_blue-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
+            [self.view addSubview:imageView];
+            [self.view sendSubviewToBack:imageView];
         } else {
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
         }
