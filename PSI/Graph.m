@@ -122,20 +122,26 @@ CGRect touchesAreas[kNumberOfBars];
     UIColor* pointColor;
     for (int i = 0; i < kNumberOfBars; i++) {
         value = (data[i] * highest) * 3;
+        NSLog(@"da value %f", value);
         if (value < 51) {
             // 'Good'
+            NSLog(@"good");
             pointColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.0];
         }
         else if (value < 101) {
+            NSLog(@"moderate");
             pointColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:1.0];
         }
         else if (value < 201) {
+             NSLog(@"unhealthy");
             pointColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:1.0];
         }
         else if (value < 300) {
+             NSLog(@"very unhealthy");
             pointColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0];
         }
         else if (value >= 300){
+             NSLog(@"yolo");
             pointColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:1.0];
         }
         CGContextSetFillColorWithColor(context, [pointColor CGColor]);
@@ -150,12 +156,11 @@ CGRect touchesAreas[kNumberOfBars];
             CGRect touchPoint = CGRectMake(x - kTouchRadius, y - kTouchRadius, 2 * kTouchRadius, 2 * kTouchRadius);
             
             CGContextAddEllipseInRect(context, rect);
-            
+            CGContextDrawPath(context, kCGPathFillStroke);
             touchesAreas[i] = touchPoint;
         }
     }
     
-    CGContextDrawPath(context, kCGPathFillStroke);
     
     CGContextSetTextMatrix(context, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
     CGContextSelectFont(context, kFont, kFontSize, kCGEncodingMacRoman);
@@ -197,7 +202,7 @@ CGRect touchesAreas[kNumberOfBars];
 
             
             // Text at data point
-            float number = (data[i] * highest) * 3 + 1;
+            float number = ceil((data[i] * highest) * 3);
             NSString *detailText = [NSString stringWithFormat:@"%d", (int)roundf(number)];
         
             CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphHeight - maxGraphHeight * data[i] - 5, [detailText cStringUsingEncoding:NSUTF8StringEncoding], [detailText length]);

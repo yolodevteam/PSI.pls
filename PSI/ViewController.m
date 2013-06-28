@@ -129,10 +129,14 @@
     self.pm25RegionLabel.alpha = 0;
     self.psiRegion.alpha = 0;
     self.psiRegionLabel.alpha = 0;
-    self.psiRegionLabel.layer.cornerRadius = 5;
-    self.pm25RegionLabel.layer.cornerRadius = 5;
+
     self.psiRegion.layer.cornerRadius = 5;
     self.pm25Region.layer.cornerRadius = 5;
+    
+    [self addShadow:self.psiDetailLabel];
+    [self addShadow:self.pm25DetailLabel];
+    [self addShadow:self.pm25RegionLabel];
+    [self addShadow:self.psiRegionLabel];
     
     //detail labels
     self.psiDetail.alpha = 0;
@@ -172,6 +176,7 @@
     [layer addSublayer:bottomBorder];
     
     self.pageControl.numberOfPages = 4;
+    
     
 }
 
@@ -480,7 +485,7 @@
     
     if (point.x < 320 && point.y < 224) {
         // Touched the top some where, switch views.
-        [UIView animateWithDuration:1.0 animations:^{
+        [UIView animateWithDuration:0.75 animations:^{
             
             if ((touch.view.tag < 425) && (touch.view.tag > 419)) {
                 //NSLog(@"North south east west who's the best? %d", touch.view.tag);
@@ -563,6 +568,7 @@
                 _refresh.alpha = 1.0;
                 
             } else {
+                self.readings24.alpha = 0;
                 self.readings24.text = @"24-hour Readings";
                 self.psiDetail.alpha = 1.0;
                 self.psiRegion.alpha = 1.0;
@@ -580,15 +586,8 @@
                 self.regionWest.alpha = 0.4;
                 self.regionCentral.alpha = 0.4;
                 
-                self.pm25Detail.text = [NSString stringWithFormat:@"%@ - %@ µg/m3", [[_results objectForKey:@"pm25"] objectForKey:@"min"], [[_results objectForKey:@"pm25"] objectForKey:@"max"]];
-                [self.pm25Detail sizeToFit];
-                CGRect frame = self.pm25Detail.frame;
-                 //l + r padding
-                frame.size.width += 10;
-                self.pm25Detail.frame = frame;
-                self.pm25Detail.numberOfLines = 1;
-                self.pm25Detail.minimumFontSize = 8.;
-                self.pm25Detail.adjustsFontSizeToFitWidth = YES;
+              
+                [self update24_PM25Detail];
                 
                 //24-hour average
                 int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:@"max"] integerValue];
@@ -711,6 +710,27 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) update24_PM25Detail {
+    self.pm25Detail.numberOfLines = 1;
+    self.pm25Detail.minimumFontSize = 16;
+    self.pm25Detail.adjustsFontSizeToFitWidth = YES;
+    self.pm25Detail.text = [NSString stringWithFormat:@" %@ - %@ µg/m3 ", [[_results objectForKey:@"pm25"] objectForKey:@"min"], [[_results objectForKey:@"pm25"] objectForKey:@"max"]];
+    
+    //24-hour average
+    int pm25 = [[[_results objectForKey:@"pm25"] objectForKey:@"max"] integerValue];
+    int AQI = [self getAQIfromPM25:pm25];
+    self.pm25Detail.backgroundColor = [self getColorFromAQI:AQI];
+    self.pm25Detail.alpha = 1;
+}
+- (void) addShadow:(UILabel* )label {
+    label.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0];
+    label.layer.shadowColor = [[UIColor blackColor] CGColor];
+    label.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+    label.layer.shadowRadius = 3.0;
+    label.layer.shadowOpacity = 0.15;
+    label.layer.masksToBounds = NO;
 }
 
 @end
