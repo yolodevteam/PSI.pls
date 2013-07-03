@@ -7,7 +7,7 @@
 //
 
 #import "Graph.h"
-#import <Accelerate/Accelerate.h>
+//#import <Accelerate/Accelerate.h>
 
 @implementation Graph
 float data[24];
@@ -118,6 +118,7 @@ CGRect touchesAreas[kNumberOfBars];
     
     // Points on the line graph
     float value;
+    float alpha = 0.7;
     
     UIColor* pointColor;
     for (int i = 0; i < kNumberOfBars; i++) {
@@ -126,25 +127,25 @@ CGRect touchesAreas[kNumberOfBars];
         if (value < 51) {
             // 'Good'
             NSLog(@"good");
-            pointColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:1.0];
+            pointColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha];
         }
         else if (value < 101) {
             NSLog(@"moderate");
-            pointColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:1.0];
+            pointColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:alpha];
         }
         else if (value < 201) {
              NSLog(@"unhealthy");
-            pointColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:1.0];
+            pointColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:alpha];
         }
         else if (value < 300) {
              NSLog(@"very unhealthy");
-            pointColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:1.0];
+            pointColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:alpha];
         }
         else if (value >= 300){
              NSLog(@"yolo");
-            pointColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:1.0];
+            pointColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:alpha];
         }
-        CGContextSetFillColorWithColor(context, [pointColor CGColor]);
+        
 
         float x = kOffsetX + i * kStepX;
         float y = kGraphHeight - maxGraphHeight * data[i];
@@ -152,6 +153,8 @@ CGRect touchesAreas[kNumberOfBars];
         if (data[i] == 0) {
             break;
         } else {
+            NSLog(@"data i %f %d", data[i], i);
+            CGContextSetFillColorWithColor(context, [pointColor CGColor]);
             CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
             CGRect touchPoint = CGRectMake(x - kTouchRadius, y - kTouchRadius, 2 * kTouchRadius, 2 * kTouchRadius);
             
@@ -199,7 +202,6 @@ CGRect touchesAreas[kNumberOfBars];
         } else {
             
             CGContextSelectFont(context, kFont, 22, kCGEncodingMacRoman);
-
             
             // Text at data point
             float number = ceil((data[i] * highest) * 3);
