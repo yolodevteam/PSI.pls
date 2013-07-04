@@ -63,6 +63,7 @@
     _topBarBackgroundColor = [UIColor colorWithWhite:0.1 alpha:0];
     _topBarItemLabelsFont = [UIFont systemFontOfSize:12];
     _pageIndicatorViewSize = CGSizeMake(17., 7.);
+
 }
 
 #pragma mark - View life cycle
@@ -80,6 +81,7 @@
         | UIViewAutoresizingFlexibleHeight;
     self.scrollView.delegate = self;
     self.scrollView.pagingEnabled = YES;
+    self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
     [self startObservingContentOffsetForScrollView:self.scrollView];    
@@ -307,6 +309,11 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     self.scrollView.userInteractionEnabled = NO;
+    if (scrollView.contentOffset.y > 0 || scrollView.contentOffset.y < 0) {
+        CGPoint offset = scrollView.contentOffset;
+        offset.y = 0;
+        scrollView.contentOffset = offset;
+    }
 }
 
 #pragma mark - KVO

@@ -7,15 +7,14 @@
 //
 
 #import "MainViewController.h"
-#import "DAPagesContainer.h"
 #import "UIImage+Tools.m"
 #import "InformationViewController.h"
 #import "PSIData.h"
+#import "DataViewController.h"
+#import "RegionViewController.h"
 
 @interface MainViewController ()
 
-
-@property (strong, nonatomic) DAPagesContainer *pagesContainer;
 
 @end
 
@@ -42,57 +41,42 @@
     self.pagesContainer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.pagesView addSubview:self.pagesContainer.view];
     [self.pagesContainer didMoveToParentViewController:self];
-    
-    UIViewController *beaverViewController = [[UIViewController alloc] init];
-    UIImageView *beaverImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"beaver.jpg"]];
-    beaverImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [beaverViewController.view addSubview:beaverImageView];
-    beaverViewController.title = @"History";
 
-    UIViewController *buckDeerViewController = [[UIViewController alloc] init];
-    UIImageView *buckDeerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"buckDeer.jpg"]];
-    buckDeerImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [buckDeerViewController.view addSubview:buckDeerImageView];
-    buckDeerViewController.title = @"3-Hour";
-    
-    UIViewController *catViewController = [[UIViewController alloc] init];
-    UIImageView *catImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cat.jpg"]];
-    catImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [catViewController.view addSubview:catImageView];
-    catViewController.title = @"North";
-    
-    UIViewController *lionViewController = [[UIViewController alloc] init];
-    UIImageView *lionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lion.jpg"]];
-    lionImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [lionViewController.view addSubview:lionImageView];
-    lionViewController.title = @"South";
-    
-    self.pagesContainer.viewControllers = @[beaverViewController, buckDeerViewController, catViewController, lionViewController];
+    RegionViewController *historyController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    historyController.title = @"History";
+
+    RegionViewController *threeHourController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    threeHourController.title = @"3-Hour";
+    threeHourController.region = @"3hr";
+
+
+    RegionViewController *northController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    northController.title = @"North";
+    northController.region = @"north";
+
+    RegionViewController *southController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    southController.title = @"South";
+    southController.region = @"south";
+
+    RegionViewController *eastController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    eastController.title = @"East";
+    eastController.region = @"east";
+
+    RegionViewController *westController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    westController.title = @"West";
+    westController.region = @"west";
+
+    RegionViewController *centralController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    centralController.title = @"Central";
+    centralController.region = @"central";
+
+
+
+
+    self.pagesContainer.viewControllers = @[historyController, threeHourController, northController, southController, eastController, westController, centralController];
     // Do any additional setup after loading the view from its nib.
     
-    NSString *date = [self getSingaporeTimeWithMinutes:NO];
-    
-    int hour = [date intValue];
-    
-    if (hour > 19 || hour < 7) {
-        // Set a night time background picture (this is only if we can't get webcam images before release)
-        if (IS_4INCH_SCREEN) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_iphone-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
-            [self.view addSubview:imageView];
-            [self.view sendSubviewToBack:imageView];
-        } else {
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
-        }
-    } else {
-        if (IS_4INCH_SCREEN) {
-            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_blue-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
-            [self.view addSubview:imageView];
-            [self.view sendSubviewToBack:imageView];
-        } else {
-            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
-        }
-    }
-    
+        
     [self.info addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
     
    /* _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
@@ -125,31 +109,14 @@
     
     [self.view addSubview:_loadingView];
     */
-    PSIData* data = [[PSIData alloc] init];
-    [data loadData];
-    
+
+
 
 }
-- (NSString *)getSingaporeTimeWithMinutes:(BOOL)minutes
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
-    if (minutes) {
-        dateFormatter.dateFormat = @"HH:mm";
-    } else {
-        dateFormatter.dateFormat = @"HH";
-    }
-    
-    NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
-    //[dateFormatter setTimeZone:sgt];
-    
-    NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-    
-    return time;
-}
+
 - (void)showInfo
 {
-    InformationViewController *info = [[InformationViewController alloc] initWithNibName:@"InformationViewController" bundle:nil];
+        InformationViewController *info = [[InformationViewController alloc] initWithNibName:@"InformationViewController" bundle:nil];
     info.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     [self presentModalViewController:info animated:YES];
@@ -161,5 +128,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

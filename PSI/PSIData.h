@@ -19,11 +19,20 @@
     NSArray* sortedKeys;
 }
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) id <PSIDataDelegate> delegate;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSDictionary *results;
 @property (nonatomic, strong) NSArray* sortedResults;
 
 -(void)loadData;
+-(NSDictionary *) getLastHourData;
+-(int) getLastHour;
+
+//utils
+-(UIColor*) getColorFromPSI:(int) PSI withAlpha:(float) alpha;
+- (NSString* )getHealthFromPSI:(int) PSI;
+-(int)getAQIfromPM25: (float) PM25;
+- (UIColor*) getColorFromAQI: (int) AQI;
+- (NSString* )getHealthFromAQI:(int)AQI;
 
 @end

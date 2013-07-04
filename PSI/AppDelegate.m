@@ -7,25 +7,23 @@
 //
 
 #import "AppDelegate.h"
-
-#import "MainViewController.h"
+#import "PullToRefreshViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    self.viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
-    
+
+    self.viewController = [[PullToRefreshViewController alloc] initWithNibName:@"PullToRefreshViewController" bundle:nil];
+
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    
+
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    
+
     return YES;
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -43,6 +43,7 @@
     CGContextMoveToPoint   (context, CGRectGetMinX(rect), CGRectGetMinY(rect));
     CGContextAddLineToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
     CGContextClosePath(context);
     
     CGContextSetFillColorWithColor(context, self.color.CGColor);
