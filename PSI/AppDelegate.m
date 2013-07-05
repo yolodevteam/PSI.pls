@@ -15,7 +15,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    self.viewController = [[PullToRefreshViewController alloc] initWithNibName:@"PullToRefreshViewController" bundle:nil];
+    self.viewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
 
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];

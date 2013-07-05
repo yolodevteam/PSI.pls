@@ -12,6 +12,7 @@
 #import "PSIData.h"
 #import "DataViewController.h"
 #import "RegionViewController.h"
+#import "HistoryViewController.h"
 
 @interface MainViewController ()
 
@@ -35,6 +36,31 @@
 {
     [super viewDidLoad];
     NSLog(@"hello swag");
+
+    NSString *date = [self getSingaporeTimeWithMinutes:NO];
+
+    int hour = [date intValue];
+
+    if (hour > 19 || hour < 7) {
+        // Set a night time background picture (this is only if we can't get webcam images before release)
+        if (IS_4INCH_SCREEN) {
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_iphone-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
+            [self.view addSubview:imageView];
+            [self.view sendSubviewToBack:imageView];
+        } else {
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
+        }
+    } else {
+        if (IS_4INCH_SCREEN) {
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_blue-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
+            [self.view addSubview:imageView];
+            [self.view sendSubviewToBack:imageView];
+        } else {
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
+        }
+    }
+
+
     self.pagesContainer = [[DAPagesContainer alloc] init];
     [self.pagesContainer willMoveToParentViewController:self];
     self.pagesContainer.view.frame = self.pagesView.bounds;
@@ -42,7 +68,7 @@
     [self.pagesView addSubview:self.pagesContainer.view];
     [self.pagesContainer didMoveToParentViewController:self];
 
-    RegionViewController *historyController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
+    HistoryViewController *historyController = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
     historyController.title = @"History";
 
     RegionViewController *threeHourController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
@@ -74,6 +100,7 @@
 
 
     self.pagesContainer.viewControllers = @[historyController, threeHourController, northController, southController, eastController, westController, centralController];
+    [self.pagesContainer setSelectedIndex:1 animated:NO];
     // Do any additional setup after loading the view from its nib.
     
         
@@ -109,7 +136,9 @@
     
     [self.view addSubview:_loadingView];
     */
-
+    self.data =  [[PSIData alloc] init];
+    self.data.delegate = self;
+    [self.data loadData];
 
 
 }
@@ -129,5 +158,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)loadingCompleted:(PSIData *)data {
+    NSLog(@"LOADING COMPLETED GUYS!!! %@", data);
+    for (RegionViewController *region in self.pagesContainer.viewControllers) {
+        NSLog(@"title %@", region.title);
+        [region setData:data];
+    }
+}
+- (NSString *)getSingaporeTimeWithMinutes:(BOOL)minutes
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 
+    if (minutes) {
+        dateFormatter.dateFormat = @"HH:mm";
+    } else {
+        dateFormatter.dateFormat = @"HH";
+    }
+
+    NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
+    //[dateFormatter setTimeZone:sgt];
+
+    NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+
+    return time;
+}
 @end

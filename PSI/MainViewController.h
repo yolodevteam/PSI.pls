@@ -13,9 +13,10 @@
 @class PSIData;
 
 
+#define IS_4INCH_SCREEN (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568) < DBL_EPSILON)
 
 
-@interface MainViewController : UIViewController  {
+@interface MainViewController : UIViewController<PSIDataDelegate>  {
 
 }
 

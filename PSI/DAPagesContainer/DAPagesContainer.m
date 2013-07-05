@@ -59,10 +59,10 @@
 
 - (void)setUp
 {
-    _topBarHeight = 44.;
+    _topBarHeight = 38.;
     _topBarBackgroundColor = [UIColor colorWithWhite:0.1 alpha:0];
     _topBarItemLabelsFont = [UIFont systemFontOfSize:12];
-    _pageIndicatorViewSize = CGSizeMake(17., 7.);
+    _pageIndicatorViewSize = CGSizeMake(45., 3.);
 
 }
 
@@ -95,7 +95,7 @@
     [self.view addSubview:self.topBar];
 
     self.pageIndicatorView = [[DAPageIndicatorView alloc] initWithFrame:CGRectMake(0.,
-                                                                                   self.topBarHeight,
+                                                                                   0,
                                                                                    self.pageIndicatorViewSize.width,
                                                                                    self.pageIndicatorViewSize.height)];
     [self.view addSubview:self.pageIndicatorView];
@@ -123,12 +123,18 @@
 {
     UIButton *previosSelectdItem = self.topBar.itemViews[self.selectedIndex];
     UIButton *nextSelectdItem = self.topBar.itemViews[selectedIndex];
+    UIViewController *leftViewController = self.viewControllers[MIN(self.selectedIndex, selectedIndex)];
+    UIViewController *rightViewController = self.viewControllers[MAX(self.selectedIndex, selectedIndex)];
     if (abs(self.selectedIndex - selectedIndex) <= 1) {
         [self.scrollView setContentOffset:CGPointMake(selectedIndex * self.scrollWidth, 0.) animated:animated];
         if (selectedIndex == _selectedIndex) {
             self.pageIndicatorView.center = CGPointMake([self.topBar centerForSelectedItemAtIndex:selectedIndex].x,
                                                         self.pageIndicatorView.center.y);
+            leftViewController.view.alpha = 1.0;
+            rightViewController.view.alpha = 1.0;
+
         }
+
         [UIView animateWithDuration:(animated) ? 0.3 : 0. delay:0. options:UIViewAnimationOptionBeginFromCurrentState animations:^
          {
              [previosSelectdItem setTitleColor:[UIColor colorWithWhite:0.6 alpha:1.] forState:UIControlStateNormal];
@@ -138,8 +144,6 @@
         // This means we should "jump" over at least one view controller
         self.shouldObserveContentOffset = NO;
         BOOL scrollingRight = (selectedIndex > self.selectedIndex);
-        UIViewController *leftViewController = self.viewControllers[MIN(self.selectedIndex, selectedIndex)];
-        UIViewController *rightViewController = self.viewControllers[MAX(self.selectedIndex, selectedIndex)];
         leftViewController.view.frame = CGRectMake(0., 0., self.scrollWidth, self.scrollHeight);
         rightViewController.view.frame = CGRectMake(self.scrollWidth, 0., self.scrollWidth, self.scrollHeight);
         self.scrollView.contentSize = CGSizeMake(2 * self.scrollWidth, self.scrollHeight);
@@ -148,9 +152,17 @@
         if (scrollingRight) {
             self.scrollView.contentOffset = CGPointZero;
             targetOffset = CGPointMake(self.scrollWidth, 0.);
+            [UIView animateWithDuration:0.5 animations:^{
+                leftViewController.view.alpha = 1.0;
+                rightViewController.view.alpha = 1.0;
+            }];
         } else {
             self.scrollView.contentOffset = CGPointMake(self.scrollWidth, 0.);
             targetOffset = CGPointZero;
+            [UIView animateWithDuration:0.5 animations:^{
+                rightViewController.view.alpha = 1.0;
+                leftViewController.view.alpha = 1.0;
+            }];
             
         }
         [self.scrollView setContentOffset:targetOffset animated:YES];
@@ -160,6 +172,10 @@
             self.topBar.scrollView.contentOffset = [self.topBar contentOffsetForSelectedItemAtIndex:selectedIndex];
             [previosSelectdItem setTitleColor:[UIColor colorWithWhite:0.6 alpha:1.] forState:UIControlStateNormal];
             [nextSelectdItem setTitleColor:[UIColor colorWithWhite:1. alpha:1.] forState:UIControlStateNormal];
+
+            leftViewController.view.alpha = 1.0;
+            rightViewController.view.alpha = 1.0;
+
         } completion:^(BOOL finished) {
             for (NSUInteger i = 0; i < self.viewControllers.count; i++) {
                 UIViewController *viewController = self.viewControllers[i];
@@ -173,6 +189,8 @@
         }];
     }
     _selectedIndex = selectedIndex;
+
+
 }
 
 - (void)updateLayoutForNewOrientation:(UIInterfaceOrientation)orientation
@@ -283,7 +301,7 @@
 
 - (void)itemAtIndex:(NSUInteger)index didSelectInPagesContainerTopBar:(DAPagesContainerTopBar *)bar
 {
-    [self setSelectedIndex:index animated:YES];
+    //[self setSelectedIndex:index animated:YES];
 }
 
 #pragma mark - UIScrollView delegate
@@ -328,24 +346,45 @@
     if (oldX != self.scrollView.contentOffset.x && self.shouldObserveContentOffset) {
         BOOL scrollingTowards = (self.scrollView.contentOffset.x > oldX);
         NSInteger targetIndex = (scrollingTowards) ? self.selectedIndex + 1 : self.selectedIndex - 1;
+
         if (targetIndex >= 0 && targetIndex < self.viewControllers.count) {
+            UIViewController *leftView = self.viewControllers[MIN(self.selectedIndex, targetIndex)];
+            UIViewController *rightView = self.viewControllers[MAX(self.selectedIndex, targetIndex)];
             CGFloat ratio = (self.scrollView.contentOffset.x - oldX) / CGRectGetWidth(self.scrollView.frame);
             CGFloat previousItemContentOffsetX = [self.topBar contentOffsetForSelectedItemAtIndex:self.selectedIndex].x;
             CGFloat nextItemContentOffsetX = [self.topBar contentOffsetForSelectedItemAtIndex:targetIndex].x;
             CGFloat previousItemPageIndicatorX = [self.topBar centerForSelectedItemAtIndex:self.selectedIndex].x;
             CGFloat nextItemPageIndicatorX = [self.topBar centerForSelectedItemAtIndex:targetIndex].x;
             UIButton *previosSelectedItem = self.topBar.itemViews[self.selectedIndex];
+
             UIButton *nextSelectedItem = self.topBar.itemViews[targetIndex];
             [previosSelectedItem setTitleColor:[UIColor colorWithWhite:0.6 + 0.4 * (1 - fabsf(ratio))
                                                                  alpha:1.] forState:UIControlStateNormal];
             [nextSelectedItem setTitleColor:[UIColor colorWithWhite:0.6 + 0.4 * fabsf(ratio)
                                                               alpha:1.] forState:UIControlStateNormal];
+
             if (scrollingTowards) {
                 self.topBar.scrollView.contentOffset = CGPointMake(previousItemContentOffsetX +
                                                                    (nextItemContentOffsetX - previousItemContentOffsetX) * ratio , 0.);
                 self.pageIndicatorView.center = CGPointMake(previousItemPageIndicatorX +
                                         (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
                                                             self.pageIndicatorView.center.y);
+
+                if (self.fadeIndex == targetIndex) {
+                    [UIView animateWithDuration:0.5 animations:^{
+                        leftView.view.alpha = 1.0;
+                        rightView.view.alpha = 1.0;
+                    }];
+                }
+                else {
+                    NSLog(@"420 FADE IT LEFTRIGHT");
+                    [UIView animateWithDuration:0.5 animations:^{
+                        leftView.view.alpha = 0.5;
+                        rightView.view.alpha = 1.0;
+                    }];
+
+                }
+
   
             } else {
                 self.topBar.scrollView.contentOffset = CGPointMake(previousItemContentOffsetX -
@@ -353,7 +392,26 @@
                 self.pageIndicatorView.center = CGPointMake(previousItemPageIndicatorX -
                                         (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
                                                             self.pageIndicatorView.center.y);
+                if (self.selectedIndex == targetIndex) {
+                    [UIView animateWithDuration:0.5 animations:^{
+                        leftView.view.alpha = 1.0;
+                        rightView.view.alpha = 1.0;
+                    }];
+                }
+                else {
+                    NSLog(@"420 FADE IT RIGHTLEFT %d, %d", self.selectedIndex, targetIndex);
+                    if (self)
+                    [UIView animateWithDuration:0.5 animations:^{
+                        leftView.view.alpha = 1.0;
+                        rightView.view.alpha = 0.5;
+                    }];
+                }
+
             }
+
+        }
+        else {
+
         }
     }
 }

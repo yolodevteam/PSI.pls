@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.opaque = NO;
-        _color = [UIColor blackColor];
+        _color = [UIColor colorWithWhite:1 alpha:0.6];
     }
     return self;
 }
@@ -40,10 +40,12 @@
     CGContextClearRect(context, rect);
     
     CGContextBeginPath(context);
-    CGContextMoveToPoint   (context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    CGContextAddRect(context, rect);
+/*    CGContextMoveToPoint   (context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect));
     CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));
-    CGContextAddLineToPoint(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextAddLineToPoint(context, CGRectGetMidX(rect), CGRectGetMidY(rect));
+    //CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMinY(rect));*/
     CGContextClosePath(context);
     
     CGContextSetFillColorWithColor(context, self.color.CGColor);

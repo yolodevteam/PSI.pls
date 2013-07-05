@@ -59,8 +59,8 @@ NSInteger customSort(id num1, id num2, void *context)
     for (NSString *key in _results) {
         NSLog(@"time %@", key);
     }
-    sortedKeys = [[_results allKeys] sortedArrayUsingFunction:customSort context:NULL];
-    _sortedResults = [_results objectsForKeys: sortedKeys notFoundMarker: [NSNull null]];
+    _sortedKeys = [[_results allKeys] sortedArrayUsingFunction:customSort context:NULL];
+    _sortedResults = [_results objectsForKeys: _sortedKeys notFoundMarker: [NSNull null]];
     [self.delegate loadingCompleted:self];
     NSLog(@"swaggie 2345");
 }
@@ -68,7 +68,7 @@ NSInteger customSort(id num1, id num2, void *context)
     return [_sortedResults lastObject];
 }
 -(int) getLastHour {
-    id lastKey = [sortedKeys lastObject];
+    id lastKey = [_sortedKeys lastObject];
     NSArray* split = [lastKey componentsSeparatedByString:@":"];
     return [split[2] integerValue];
 }

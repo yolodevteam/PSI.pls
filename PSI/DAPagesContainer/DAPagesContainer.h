@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) NSArray *viewControllers;
 @property (assign, nonatomic) NSUInteger selectedIndex;
+@property (assign, nonatomic) NSUInteger fadeIndex;
 
 @property (assign, nonatomic) NSUInteger topBarHeight;
 @property (assign, nonatomic) CGSize pageIndicatorViewSize;

@@ -13,7 +13,7 @@
 @end
 
 @implementation DataViewController {
-    PSIData* _data;
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

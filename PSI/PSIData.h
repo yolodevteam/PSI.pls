@@ -16,13 +16,14 @@
 @end
 
 @interface PSIData : NSObject<NSURLConnectionDataDelegate> {
-    NSArray* sortedKeys;
+
 }
 
 @property (nonatomic, assign) id <PSIDataDelegate> delegate;
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) NSDictionary *results;
 @property (nonatomic, strong) NSArray* sortedResults;
+@property (nonatomic, strong) NSArray* sortedKeys;
 
 -(void)loadData;
 -(NSDictionary *) getLastHourData;

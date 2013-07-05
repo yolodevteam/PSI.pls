@@ -11,6 +11,8 @@
 
 @interface DataViewController : UIViewController
 
+@property (nonatomic, strong) PSIData* data;
+
 -(void)setData:(PSIData* )data;
 
 @end
