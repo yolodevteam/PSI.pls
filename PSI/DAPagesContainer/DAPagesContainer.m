@@ -383,8 +383,7 @@
                     NSLog(@"TABLES ARE IN DANGER BRO");
                     NSLog(@"420 FADE IT LEFTRIGHT");
                     [UIView animateWithDuration:0.5 animations:^{
-                        leftView.view.alpha = scrollView.contentOffset.x/320;
-                        NSLog(@"swag swag %f", (scrollView.contentOffset.x/320));
+                        leftView.view.alpha = 0.5;
                         rightView.view.alpha = 1.0;
                     }];
 
@@ -400,9 +399,7 @@
                 NSLog(@"420 FADE IT RIGHTLEFT %d, %d", self.selectedIndex, targetIndex);
                 [UIView animateWithDuration:0.5 animations:^{
                     leftView.view.alpha = 1.0;
-
-                    rightView.view.alpha = scrollView.contentOffset.x/320;
-                    NSLog(@"swag swag %f", (scrollView.contentOffset.x/320));
+                    rightView.view.alpha = 0.5;
                 }];
 
 

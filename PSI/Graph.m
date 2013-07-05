@@ -134,9 +134,13 @@ CGRect touchesAreas[kNumberOfBars];
         } else {
             NSLog(@"data i %f %d", scaled, i);
             CGContextSetFillColorWithColor(context, [pointColor CGColor]);
-            CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
+            int radius = 0;
+            if (i == 0 || i == 4 || i == 8 | i == 12 || i == 16 || i == 20 || i == 24) {
+                radius = kCircleRadius;
+            }
+            CGRect rect = CGRectMake(x - radius, y - radius, 2 * radius, 2 * radius);
             CGRect touchPoint = CGRectMake(x - kTouchRadius, y - kTouchRadius, 2 * kTouchRadius, 2 * kTouchRadius);
-            
+
             CGContextAddEllipseInRect(context, rect);
             CGContextDrawPath(context, kCGPathFillStroke);
             touchesAreas[i] = touchPoint;
