@@ -100,6 +100,9 @@
                                                                                    self.pageIndicatorViewSize.height)];
     [self.view addSubview:self.pageIndicatorView];
     self.topBar.backgroundColor = self.pageIndicatorView.color = self.topBarBackgroundColor;
+    self.scrollView.bounces = NO;
+    self.scrollView.bouncesZoom = NO;
+    self.scrollView.alwaysBounceHorizontal = NO;
 }
 
 - (void)viewDidUnload
@@ -285,10 +288,14 @@
 
 - (void)startObservingContentOffsetForScrollView:(UIScrollView *)scrollView
 {
-    [scrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
-    self.observingScrollView = scrollView;
-}
+    //[scrollView addObserver:self forKeyPath:@"contentOffset" options:0 context:nil];
 
+    //self.observingScrollView = scrollView;
+}
+- (void)didAddSubview:(UIView *)subview {
+    NSLog(@"no swag pls %@", subview);
+    [subview removeObserver:self forKeyPath:@"contentOffset"];
+}
 - (void)stopObservingContentOffset
 {
     if (self.observingScrollView) {
@@ -326,23 +333,19 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    self.scrollView.userInteractionEnabled = NO;
     if (scrollView.contentOffset.y > 0 || scrollView.contentOffset.y < 0) {
         CGPoint offset = scrollView.contentOffset;
         offset.y = 0;
         scrollView.contentOffset = offset;
+        //NSLog(@"no scrolling lol");
+        return;
     }
-}
-
-#pragma mark - KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-					  ofObject:(id)object
-						change:(NSDictionary *)change
-                       context:(void *)context
-{
- 
+    NSLog(@"da offset %f %f", scrollView.contentOffset.y, scrollView.contentOffset.x);
     CGFloat oldX = self.selectedIndex * CGRectGetWidth(self.scrollView.frame);
+    NSLog(@"oldX %f", oldX);
+    if (scrollView.contentOffset.x == 0 || scrollView.contentOffset.x == -0 || scrollView.contentOffset.x == -1 || scrollView.contentOffset.x == 1) {
+        return;
+    }
     if (oldX != self.scrollView.contentOffset.x && self.shouldObserveContentOffset) {
         BOOL scrollingTowards = (self.scrollView.contentOffset.x > oldX);
         NSInteger targetIndex = (scrollingTowards) ? self.selectedIndex + 1 : self.selectedIndex - 1;
@@ -365,10 +368,10 @@
 
             if (scrollingTowards) {
                 self.topBar.scrollView.contentOffset = CGPointMake(previousItemContentOffsetX +
-                                                                   (nextItemContentOffsetX - previousItemContentOffsetX) * ratio , 0.);
+                        (nextItemContentOffsetX - previousItemContentOffsetX) * ratio , 0.);
                 self.pageIndicatorView.center = CGPointMake(previousItemPageIndicatorX +
-                                        (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
-                                                            self.pageIndicatorView.center.y);
+                        (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
+                        self.pageIndicatorView.center.y);
 
                 if (self.fadeIndex == targetIndex) {
                     [UIView animateWithDuration:0.5 animations:^{
@@ -377,43 +380,40 @@
                     }];
                 }
                 else {
+                    NSLog(@"TABLES ARE IN DANGER BRO");
                     NSLog(@"420 FADE IT LEFTRIGHT");
                     [UIView animateWithDuration:0.5 animations:^{
-                        leftView.view.alpha = 0.5;
+                        leftView.view.alpha = scrollView.contentOffset.x/320;
+                        NSLog(@"swag swag %f", (scrollView.contentOffset.x/320));
                         rightView.view.alpha = 1.0;
                     }];
 
                 }
 
-  
+
             } else {
                 self.topBar.scrollView.contentOffset = CGPointMake(previousItemContentOffsetX -
-                                                                   (nextItemContentOffsetX - previousItemContentOffsetX) * ratio , 0.);
+                        (nextItemContentOffsetX - previousItemContentOffsetX) * ratio , 0.);
                 self.pageIndicatorView.center = CGPointMake(previousItemPageIndicatorX -
-                                        (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
-                                                            self.pageIndicatorView.center.y);
-                if (self.selectedIndex == targetIndex) {
-                    [UIView animateWithDuration:0.5 animations:^{
-                        leftView.view.alpha = 1.0;
-                        rightView.view.alpha = 1.0;
-                    }];
-                }
-                else {
-                    NSLog(@"420 FADE IT RIGHTLEFT %d, %d", self.selectedIndex, targetIndex);
-                    if (self)
-                    [UIView animateWithDuration:0.5 animations:^{
-                        leftView.view.alpha = 1.0;
-                        rightView.view.alpha = 0.5;
-                    }];
-                }
+                        (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
+                        self.pageIndicatorView.center.y);
+                NSLog(@"420 FADE IT RIGHTLEFT %d, %d", self.selectedIndex, targetIndex);
+                [UIView animateWithDuration:0.5 animations:^{
+                    leftView.view.alpha = 1.0;
+
+                    rightView.view.alpha = scrollView.contentOffset.x/320;
+                    NSLog(@"swag swag %f", (scrollView.contentOffset.x/320));
+                }];
+
+
+
 
             }
-
-        }
-        else {
-
         }
     }
+    self.scrollView.userInteractionEnabled = NO;
 }
+#pragma mark - KVO
+
 
 @end

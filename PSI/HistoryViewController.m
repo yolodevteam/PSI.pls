@@ -29,8 +29,8 @@
 {
     [super viewDidLoad];
     NSLog(@"yolo swag yolo232443434344343");
-    self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.5];
 
 }
@@ -40,15 +40,44 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //NSLog(@"HEY HEY HEYHEHEHYEHYHE");
+    //self.tableView.userInteractionEnabled = NO;
+    if (scrollView.contentOffset.x > 0 || scrollView.contentOffset.x < 0) {
+        CGPoint offset = scrollView.contentOffset;
+        offset.y = 0;
+        scrollView.contentOffset = offset;
+        NSLog(@"no scrolling lol");
+        return;
+    }
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"HistoryCell";
+   static NSString *cellIdentifier = @"HistoryCell";
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
+    UILabel *psi;
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+
+
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+
+        psi = [[UILabel alloc] initWithFrame:CGRectMake(190, 6, 128, 26)];
+
+        psi.textColor = [UIColor whiteColor];
+        psi.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19];
+        psi.layer.cornerRadius = 5;
+        psi.textAlignment = UITextAlignmentCenter;
+        [cell addSubview:psi];
+        NSLog(@"no swag 420 %@", cell.textLabel.text);
     }
+    int psi_t = [[[[self.data.sortedResults objectAtIndex:indexPath.row] objectForKey:@"psi"] objectForKey:@"3hr"] integerValue];
+    psi.text = [NSString stringWithFormat:@"%d", psi_t];
+    psi.backgroundColor = [self.data getColorFromPSI:psi_t withAlpha:0.75];
+
     NSArray* split = [[self.data.sortedKeys objectAtIndex:indexPath.row] componentsSeparatedByString:@":"];
     int hour = [split[2] integerValue];
     NSString* suffix;
@@ -66,16 +95,8 @@
         }
     }
     cell.textLabel.text = [NSString stringWithFormat:@"%d%@", hour, suffix];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
-    UILabel *psi = [[UILabel alloc] initWithFrame:CGRectMake(190, 2, 128, 26)];
-    int psi_t = [[[[self.data.sortedResults objectAtIndex:indexPath.row] objectForKey:@"psi"] objectForKey:@"3hr"] integerValue];
     psi.text = [NSString stringWithFormat:@"%d", psi_t];
-    psi.backgroundColor = [self.data getColorFromPSI:psi_t withAlpha:0.75];
-    psi.layer.cornerRadius = 5;
-    psi.textAlignment = UITextAlignmentCenter;
-    [cell addSubview:psi];
-    NSLog(@"no swag 420 %@", cell.textLabel.text);
+
     return cell;
 
 
@@ -97,6 +118,9 @@
     [super setData:data];
     NSLog(@"hello hello 12930-940849038403748374837##########");
     [self.tableView reloadData];
+    int lastRowNumber = [self.tableView numberOfRowsInSection:0] - 1;
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
+    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
     Graph* graph = [[Graph alloc] initWithData:data frame:CGRectMake(0, 0, 1280, 312) controller:self];
     [self.graphScrollView addSubview:graph];
 }

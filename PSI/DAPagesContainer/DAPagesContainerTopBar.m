@@ -31,6 +31,7 @@ CGFloat const DAPagesContainerTopBarItemsOffset = 30.;
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.scrollView.showsHorizontalScrollIndicator = NO;
+        self.scrollView.userInteractionEnabled = NO;
         [self addSubview:self.scrollView];
         self.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18];
     }

@@ -97,7 +97,7 @@
     centralController.region = @"central";
 
 
-
+   // [historyController.tableView removeObserver:<#(NSObject *)observer#> forKeyPath:<#(NSString *)keyPath#> :self forKeyPath:@"contentOffset" options:0 context:nil];
 
     self.pagesContainer.viewControllers = @[historyController, threeHourController, northController, southController, eastController, westController, centralController];
     [self.pagesContainer setSelectedIndex:1 animated:NO];
