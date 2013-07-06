@@ -11,11 +11,19 @@
 
 @implementation Graph {
     NSMutableArray* psiValues;
+    CGRect _rect;
     PSIData *_data;
+    int newPointPos;
+
 }
 float data[24];
 float scale;
 float highest = 0;
+int average;
+BOOL newPoint = NO;
+CGFloat dash[] = {3,2};
+CGFloat dashNormal[1]={1};
+
 
 CGRect touchesAreas[kNumberOfBars];
 
@@ -36,137 +44,164 @@ CGRect touchesAreas[kNumberOfBars];
             }
             [psiValues addObject:[NSNumber numberWithInt:psi]];
         }
-        NSLog(@"PSISSSSS ###################### %@", psiValues);
+
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
+    int maxGraphHeight = kGraphHeight - kOffsetY;
     // Setup code
     context = UIGraphicsGetCurrentContext();
-    
+
     CGContextClearRect(context, rect);
 
-    
+
     // Clear background
-    
+
     CGContextSetLineWidth(context, 0.6);
     CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5] CGColor]);
-    CGFloat dash[] = {6, 4};
+
     CGContextSetLineDash(context, 0.0, dash, 2);
-    
+
     // Verticle lines (time stamp)
     int numVertLines = 24;
     for (int i = 0; i < numVertLines; i++) {
         CGContextMoveToPoint(context, kOffsetX + i * kStepX, kGraphTop);
-        if (i == 0 || i == 4 || i == 8 | i == 12 || i == 16 || i == 20 || i == 24) {
+        if (i == 2 || i == 6 || i == 10|| i == 14 || i == 18 || i == 22) {
             CGContextAddLineToPoint(context, kOffsetX + i * kStepX, kGraphBottom);
         }
 
     }
-    float normal[1]={1};
-    CGContextSetLineDash(context,0,normal,0);
-    
-
     CGContextStrokePath(context);
-    
+    CGContextSetLineDash(context, 0,dashNormal,0);
+
+
+
+
     // Line graph line
-    
+
     CGContextSetLineWidth(context, 2.0);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    
-    
-    int maxGraphHeight = kGraphHeight - kOffsetY;
-    
+
+
+
+
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, kOffsetX, kGraphHeight - (maxGraphHeight * data[0]));
+
 
     float scaled;
-    for (int i = 0; i < sizeof(data)/sizeof(float); i++) {
+    for (int i = 0; i < kNumberOfBars; i++) {
         scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
-        NSLog(@"SCALED 420%%%%%%%%%%%%%%%%%^^^^^^^&^ %f", scaled);
-        if (scaled == 0) {
-            break;
+
+        if (i == 0) {
+            CGContextMoveToPoint(context, kOffsetX, kGraphHeight - (maxGraphHeight * scaled));
         } else {
             CGContextAddLineToPoint(context, kOffsetX + i * kStepX, kGraphHeight - maxGraphHeight * scaled);
         }
     }
-    
+
     CGContextDrawPath(context, kCGPathStroke);
-    
+
     // Points on the line graph
     int value;
     float alpha = 0.7;
-    
+
     UIColor* pointColor;
+
+    CGContextSetLineWidth(context, 0.6);
+    CGContextSetStrokeColorWithColor(context, [[UIColor colorWithWhite:1 alpha:0.6] CGColor]);
     for (int i = 0; i < kNumberOfBars; i++) {
-        value = [[psiValues objectAtIndex:i] integerValue];
-        NSLog(@"da value %d", value);
-        if (value < 51) {
-            // 'Good'
-            NSLog(@"good");
-            pointColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha];
-        }
-        else if (value < 101) {
-            NSLog(@"moderate");
-            pointColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:alpha];
-        }
-        else if (value < 201) {
-             NSLog(@"unhealthy");
-            pointColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:alpha];
-        }
-        else if (value < 300) {
-             NSLog(@"very unhealthy");
-            pointColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:alpha];
-        }
-        else if (value >= 300){
-             NSLog(@"yolo");
-            pointColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:alpha];
-        }
-
-        scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
-        float x = kOffsetX + i * kStepX;
-        float y = kGraphHeight - maxGraphHeight * scaled;
-        
-        if (scaled == 0) {
-            break;
-        } else {
-            NSLog(@"data i %f %d", scaled, i);
+        if ((newPoint == YES) && (i == newPointPos)) {
+            value = [[psiValues objectAtIndex:i] integerValue];
+            scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
+            pointColor = [self getPointColorForPSI:value withAlpha:0.9];
             CGContextSetFillColorWithColor(context, [pointColor CGColor]);
-            int radius = 0;
-            if (i == 0 || i == 4 || i == 8 | i == 12 || i == 16 || i == 20 || i == 24) {
-                radius = kCircleRadius;
-            }
-            CGRect rect = CGRectMake(x - radius, y - radius, 2 * radius, 2 * radius);
-            CGRect touchPoint = CGRectMake(x - kTouchRadius, y - kTouchRadius, 2 * kTouchRadius, 2 * kTouchRadius);
 
+            float x = kOffsetX + i * kStepX;
+            float y = kGraphHeight - maxGraphHeight * scaled;
+
+            CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
             CGContextAddEllipseInRect(context, rect);
+            CGContextSetShadowWithColor(context, CGSizeMake(1, 1), 5 , [[UIColor colorWithRed:0.204 green:0.596 blue:0.859 alpha:1.0] CGColor]);
             CGContextDrawPath(context, kCGPathFillStroke);
-            touchesAreas[i] = touchPoint;
+
         }
     }
-    
-    
+    CGContextSetShadow(context, CGSizeMake(0, 0), 0);
+
+
+
+    alpha = 0.13;
+    pointColor = [self getPointColorForPSI:value withAlpha:alpha];
+    CGContextSetFillColorWithColor(context, [pointColor CGColor]);
+
+    CGContextBeginPath(context);
+
+    CGContextMoveToPoint(context, kOffsetX, kGraphBottom);
+    for (int i = 0; i < kNumberOfBars; i++) {
+        scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
+        CGContextAddLineToPoint(context, kOffsetX + (i * kStepX), kGraphHeight - (maxGraphHeight * scaled));
+    }
+
+    CGContextAddLineToPoint(context, kOffsetX + (sizeof(data) - 1) * kStepX, kGraphHeight);
+    CGContextClosePath(context);
+    CGContextDrawPath(context, kCGPathFill);
+
+
+    //selection points
+    CGContextSetLineWidth(context, 1.6);
+    CGContextSetShadowWithColor(context, CGSizeMake(1, 1), 5 , [[UIColor colorWithRed:0.204 green:0.596 blue:0.859 alpha:1.0] CGColor]);
+
+    CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+    for (int i = 0; i < kNumberOfBars; i++) {
+        if ((newPoint == YES) && (i == newPointPos)) {
+            value = [[psiValues objectAtIndex:i] integerValue];
+            scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
+            pointColor = [self getPointColorForPSI:value withAlpha:0.9];
+            CGContextSetFillColorWithColor(context, [pointColor CGColor]);
+
+            float x = kOffsetX + i * kStepX;
+            float y = kGraphHeight - maxGraphHeight * scaled;
+
+            CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
+            CGContextAddEllipseInRect(context, rect);
+            CGContextDrawPath(context, kCGPathFillStroke);
+
+        }
+    }
+    CGContextSetShadow(context, CGSizeMake(0, 0), 0);
+
+    CGContextDrawPath(context, kCGPathFillStroke);
+
+
+
+    CGContextMoveToPoint(context, 0, kGraphHeight);
+    CGContextAddLineToPoint(context, 320, kGraphHeight);
+    CGContextStrokePath(context);
+
     CGContextSetTextMatrix(context, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
     CGContextSelectFont(context, kFont, kFontSize, kCGEncodingMacRoman);
     CGContextSetTextDrawingMode(context, kCGTextFill);
     CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:1 green:1 blue:1 alpha:0.8] CGColor]);
-    
     NSString* suffix;
+    NSString* hourString;
+    float hourAlpha = 0.65;
+
     for (int i = 0; i < kNumberOfBars; i++) {
-        CGContextSelectFont(context, kDetailFont, kFontSize, kCGEncodingMacRoman);
-        if (i == 0 || i == 4 || i == 8 | i == 12 || i == 16 || i == 20 || i == 24) {
+
+        if (i == 2 || i == 6 || i == 10|| i == 14 || i == 18) {
             // Text at bottom
+
             NSArray* split = [[_data.sortedKeys objectAtIndex:i] componentsSeparatedByString:@":"];
             int hour = [split[2] integerValue];
-            NSString *value;
             if (hour == 0) {
                 suffix = @"am";
-                value = [NSString stringWithFormat:@"%d", hour];
+                hourString = [NSString stringWithFormat:@"%d", hour];
             }
             else if (hour > 12) {
-                value = [NSString stringWithFormat:@"%d", hour-12];
+                hourString = [NSString stringWithFormat:@"%d", hour-12];
                 suffix = @"pm";
             }
             else {
@@ -174,41 +209,55 @@ CGRect touchesAreas[kNumberOfBars];
                 if (hour == 12) {
                     suffix = @"pm";
                 }
-                value = [NSString stringWithFormat:@"%d", hour];
+                hourString = [NSString stringWithFormat:@"%d", hour];
             }
 
-            value = [NSString stringWithFormat:@"%@%@", value, suffix];
+            hourString = [NSString stringWithFormat:@"%@%@", hourString, suffix];
 
-            CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphBottom - 5, [value cStringUsingEncoding:NSUTF8StringEncoding], [value length]);
+            CGContextShowTextAtPoint(context, kOffsetX + (i * kStepX) + kNumberOffset, kGraphBottom - 5, [hourString cStringUsingEncoding:NSUTF8StringEncoding], [hourString length]);
 
-            if (data[i] == 0){
-                continue;
-            } else {
-
-                CGContextSelectFont(context, kFont, 22, kCGEncodingMacRoman);
-
-                // Text at data point
-                float number = ceil((data[i] * highest) * 3);
-                NSString *detailText = [NSString stringWithFormat:@"%d", (int)roundf(number)];
-
-                CGContextShowTextAtPoint(context, kOffsetX + i * kStepX + kNumberOffset, kGraphHeight - maxGraphHeight * data[i] - 5, [detailText cStringUsingEncoding:NSUTF8StringEncoding], [detailText length]);
-            }
         }
+
     }
+}
+-(void)showPoint:(int) index {
+    newPointPos = index;
+    newPoint = YES;
+    [self setNeedsDisplay];
+
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
-    
+
     for (int i = 0; i < kNumberOfBars; i++) {
         if (CGRectContainsPoint(touchesAreas[i], point)) {
 
-            
+
             break;
         }
     }
 }
-
+-(UIColor*) getPointColorForPSI:(int) value withAlpha:(float)alpha{
+    UIColor* pointColor;
+    if (value < 51) {
+        // 'Good'
+        pointColor = [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha];
+    }
+    else if (value < 101) {
+        pointColor = [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:alpha];
+    }
+    else if (value < 201) {
+        pointColor = [UIColor colorWithRed:0.953 green:0.612 blue:0.071 alpha:alpha];
+    }
+    else if (value < 300) {
+        pointColor = [UIColor colorWithRed:0.753 green:0.224 blue:0.169 alpha:alpha];
+    }
+    else if (value >= 300){
+        pointColor = [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:alpha];
+    }
+    return pointColor;
+}
 @end

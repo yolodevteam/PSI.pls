@@ -10,24 +10,24 @@
 #import "ViewController.h"
 #import "PSIData.h"
 
-#define kGraphHeight 177
+#define kGraphHeight 154
 #define kGraphWidth 620
-#define kOffsetX 1 // this needs to change to offset the graph to the right. Is 1 because line is 0.7 else clipping would occur
-#define kStepX 13 // grid lines
+#define kOffsetX 0// this needs to change to offset the graph to the right. Is 1 because line is 0.7 else clipping would occur
+#define kStepX 13.913  // grid lines #math
 #define kStepY 10
 #define kOffsetY 10
-#define kGraphBottom 200
+#define kGraphBottom 177
 #define kGraphTop 0
 #define kBarTop 10  
 #define kBarWidth 20
 #define kCircleRadius 4
 #define kTouchRadius 40
 #define kNumberOfBars 24 // one per hour
-#define kFontSize 17
+#define kFontSize 15
 #define kFont "Helvetica Neue Light"
-#define kNumberOffset 2
+#define kNumberOffset 3
 #define kDetailFontSize 28
-#define kDetailFont "Helvetica Neue UltraLight"
+#define kDetailFont "Helvetica Neue Light"
 
 @interface Graph : UIScrollView
 {
@@ -35,5 +35,6 @@
 }
 
 -(id)initWithData:(PSIData*) data frame:(CGRect) frame controller:(UIViewController*) controller;
+-(void)showPoint:(int) index;
 
 @end

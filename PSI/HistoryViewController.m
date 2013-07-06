@@ -14,7 +14,10 @@
 
 @end
 
-@implementation HistoryViewController
+@implementation HistoryViewController {
+    UITableViewCell *tappedCell;
+    Graph* _graph;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +34,13 @@
     NSLog(@"yolo swag yolo232443434344343");
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.5];
+    self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.3];
+    self.tableView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.05];
+
+}
+
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
 
 }
 
@@ -52,30 +61,54 @@
         return;
     }
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self selectAtIndexPath:indexPath];
+}
+
+-(void)selectAtIndexPath:(NSIndexPath *) indexPath {
+    NSLog(@"SELECTED YOLO SWAG %@", indexPath);
+    if (tappedCell != nil) {
+        tappedCell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.0];
+    }
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    tappedCell = cell;
+    [_graph showPoint:indexPath.row];
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    static NSString *cellIdentifier = @"HistoryCell";
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    UILabel *psi;
+    UIButton *psi;
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-
-
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
 
-        psi = [[UILabel alloc] initWithFrame:CGRectMake(190, 6, 128, 26)];
-
-        psi.textColor = [UIColor whiteColor];
-        psi.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19];
+        psi = [[UIButton alloc] initWithFrame:CGRectMake(190, 0, 128, 26)];
+        psi.center = CGPointMake(250 ,cell.contentView.bounds.size.height/2);
+        psi.titleLabel.textColor = [UIColor whiteColor];
+        psi.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19];
         psi.layer.cornerRadius = 5;
-        psi.textAlignment = UITextAlignmentCenter;
+        psi.titleLabel.textAlignment = UITextAlignmentCenter;
+        psi.layer.shadowColor = [[UIColor blackColor] CGColor];
+        psi.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+        psi.layer.shadowRadius = 2.0;
+        psi.layer.shadowOpacity = 0.1;
+        psi.layer.masksToBounds = NO;
+
+        [psi addTarget:self action:@selector(buttonPressedAction:) forControlEvents:UIControlEventTouchUpInside];
+
         [cell addSubview:psi];
         NSLog(@"no swag 420 %@", cell.textLabel.text);
     }
     int psi_t = [[[[self.data.sortedResults objectAtIndex:indexPath.row] objectForKey:@"psi"] objectForKey:@"3hr"] integerValue];
-    psi.text = [NSString stringWithFormat:@"%d", psi_t];
+
     psi.backgroundColor = [self.data getColorFromPSI:psi_t withAlpha:0.75];
 
     NSArray* split = [[self.data.sortedKeys objectAtIndex:indexPath.row] componentsSeparatedByString:@":"];
@@ -94,12 +127,21 @@
             suffix = @"pm";
         }
     }
+    [psi setTitle:[NSString stringWithFormat:@"%d", psi_t] forState:UIControlStateNormal];
     cell.textLabel.text = [NSString stringWithFormat:@"%d%@", hour, suffix];
-    psi.text = [NSString stringWithFormat:@"%d", psi_t];
+
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        //NSLog(@)
+        [self selectAtIndexPath:[NSIndexPath indexPathForRow:[self.data.sortedKeys count] -1 inSection:0]];
+    }
 
     return cell;
 
 
+}
+- (void)buttonPressedAction:(id)sender
+{
+    NSLog(@"pressed yolo swag");
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -121,8 +163,8 @@
     int lastRowNumber = [self.tableView numberOfRowsInSection:0] - 1;
     NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    Graph* graph = [[Graph alloc] initWithData:data frame:CGRectMake(0, 0, 1280, 312) controller:self];
-    [self.graphScrollView addSubview:graph];
+    _graph = [[Graph alloc] initWithData:data frame:CGRectMake(0, 0, 320, 312) controller:self];
+    [self.graphScrollView addSubview:_graph];
 }
 
 @end

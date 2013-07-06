@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		367D537817A76CA5DB7F371F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D50B62FBCC98D2D65904E /* HistoryViewController.m */; };
+		367D5574D9DA9F9C712E5BC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D53B3613F98669C82203B /* AppDelegate.m */; };
+		367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367D5550E17285DB8B1D2018 /* HistoryViewController.xib */; };
 		AD49097D1781C4640086E13B /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD49097B1781C4640086E13B /* MainViewController.xib */; };
 		AD49097E1781C4640086E13B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49097C1781C4640086E13B /* MainViewController.m */; };
 		AD4909861781CC010086E13B /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4909811781CC010086E13B /* DAPageIndicatorView.m */; };
@@ -32,7 +35,6 @@
 		E90770DC1775A4D200139FFC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770DB1775A4D200139FFC /* CoreGraphics.framework */; };
 		E90770E21775A4D200139FFC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E90770E01775A4D200139FFC /* InfoPlist.strings */; };
 		E90770E41775A4D200139FFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E90770E31775A4D200139FFC /* main.m */; };
-		E90770E81775A4D200139FFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E90770E71775A4D200139FFC /* AppDelegate.m */; };
 		E90770EA1775A4D200139FFC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770E91775A4D200139FFC /* Default.png */; };
 		E90770EC1775A4D200139FFC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770EB1775A4D200139FFC /* Default@2x.png */; };
 		E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770ED1775A4D200139FFC /* Default-568h@2x.png */; };
@@ -49,6 +51,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		367D50B62FBCC98D2D65904E /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		367D5302A0D9CF31E5AE4FA9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		367D53B3613F98669C82203B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		367D5550E17285DB8B1D2018 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		367D581D53D42969863D01B7 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		AD49097A1781C4640086E13B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AD49097B1781C4640086E13B /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		AD49097C1781C4640086E13B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -89,8 +96,6 @@
 		E90770E11775A4D200139FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E90770E31775A4D200139FFC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E90770E51775A4D200139FFC /* PSI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PSI-Prefix.pch"; sourceTree = "<group>"; };
-		E90770E61775A4D200139FFC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E90770E71775A4D200139FFC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E90770E91775A4D200139FFC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E90770EB1775A4D200139FFC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E90770ED1775A4D200139FFC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -151,6 +156,8 @@
 				ADD554A61784053900DA1391 /* JSONKit */,
 				ADEB614E178537E800A2C67F /* SpiralPullToRefresh.h */,
 				ADEB614F178537E800A2C67F /* SpiralPullToRefresh.m */,
+				367D5302A0D9CF31E5AE4FA9 /* AppDelegate.h */,
+				367D53B3613F98669C82203B /* AppDelegate.m */,
 			);
 			name = "External Libraries";
 			sourceTree = "<group>";
@@ -197,8 +204,6 @@
 				AD49097C1781C4640086E13B /* MainViewController.m */,
 				ADD554A01784049800DA1391 /* PSIData.h */,
 				ADD554A11784049800DA1391 /* PSIData.m */,
-				E90770E61775A4D200139FFC /* AppDelegate.h */,
-				E90770E71775A4D200139FFC /* AppDelegate.m */,
 				ADEB61491785185700A2C67F /* PullToRefreshViewController.h */,
 				ADEB614A1785185700A2C67F /* PullToRefreshViewController.m */,
 				ADEB614B1785185700A2C67F /* PullToRefreshViewController.xib */,
@@ -212,6 +217,9 @@
 				E92E499D17760BA2002E9C46 /* Graph.h */,
 				E92E499E17760BA2002E9C46 /* Graph.m */,
 				E90770DE1775A4D200139FFC /* Supporting Files */,
+				367D50B62FBCC98D2D65904E /* HistoryViewController.m */,
+				367D581D53D42969863D01B7 /* HistoryViewController.h */,
+				367D5550E17285DB8B1D2018 /* HistoryViewController.xib */,
 			);
 			path = PSI;
 			sourceTree = "<group>";
@@ -310,6 +318,7 @@
 				AD49097D1781C4640086E13B /* MainViewController.xib in Resources */,
 				ADEB614817844C5900A2C67F /* RegionViewController.xib in Resources */,
 				ADEB614D1785185700A2C67F /* PullToRefreshViewController.xib in Resources */,
+				367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E90770E41775A4D200139FFC /* main.m in Sources */,
-				E90770E81775A4D200139FFC /* AppDelegate.m in Sources */,
 				E90770F11775A4D200139FFC /* ViewController.m in Sources */,
 				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,
 				E92E499F17760BA2002E9C46 /* Graph.m in Sources */,
@@ -336,6 +344,8 @@
 				ADEB614717844C5900A2C67F /* RegionViewController.m in Sources */,
 				ADEB614C1785185700A2C67F /* PullToRefreshViewController.m in Sources */,
 				ADEB6150178537E800A2C67F /* SpiralPullToRefresh.m in Sources */,
+				367D537817A76CA5DB7F371F /* HistoryViewController.m in Sources */,
+				367D5574D9DA9F9C712E5BC2 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,14 +449,17 @@
 		E90770FC1775A4D200139FFC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Danny Kilgallon (BA4TQWJNQP)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Danny Kilgallon (BA4TQWJNQP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Danny Kilgallon (BA4TQWJNQP)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSI/PSI-Prefix.pch";
 				INFOPLIST_FILE = "PSI/PSI-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F77857AC-AB57-4B3F-8C2E-997766F219FD";
+				"PROVISIONING_PROFILE[sdk=*]" = "F77857AC-AB57-4B3F-8C2E-997766F219FD";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F77857AC-AB57-4B3F-8C2E-997766F219FD";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
