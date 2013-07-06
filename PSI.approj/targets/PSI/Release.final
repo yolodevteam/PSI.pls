@@ -1,0 +1,234 @@
+{
+    "xcode_project": "PSI.xcodeproj", 
+    "java_sources": [], 
+    "pchs": [
+        "./PSI/PSI-Prefix.pch"
+    ], 
+    "assets": [
+        {
+            "asset": "PSI/Default@2x.png", 
+            "target": "Default@2x.png"
+        }, 
+        {
+            "asset": "PSI/Default-568h@2x.png", 
+            "target": "Default-568h@2x.png"
+        }, 
+        {
+            "asset": "PSI/Default.png", 
+            "target": "Default.png"
+        }, 
+        {
+            "asset": "PSI/InformationViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "PSI/en.lproj/ViewController.xib", 
+            "target": null
+        }, 
+        {
+            "asset": "PSI/bg_iphone.jpg", 
+            "target": "bg_iphone.jpg"
+        }, 
+        {
+            "asset": "PSI/bg_iphone@2x.jpg", 
+            "target": "bg_iphone@2x.jpg"
+        }, 
+        {
+            "asset": "PSI/bg_iphone-568h.jpg", 
+            "target": "bg_iphone-568h.jpg"
+        }, 
+        {
+            "asset": "PSI/UIButtonBarRefresh.png", 
+            "target": "UIButtonBarRefresh.png"
+        }, 
+        {
+            "asset": "PSI/UIButtonBarRefresh@2x.png", 
+            "target": "UIButtonBarRefresh@2x.png"
+        }, 
+        {
+            "asset": "PSI/bg_blue-568h.jpg", 
+            "target": "bg_blue-568h.jpg"
+        }, 
+        {
+            "asset": "PSI/bg_blue.jpg", 
+            "target": "bg_blue.jpg"
+        }, 
+        {
+            "asset": "PSI/bg_blue@2x.jpg", 
+            "target": "bg_blue@2x.jpg"
+        }, 
+        {
+            "asset": "PSI/en.lproj/InfoPlist.strings", 
+            "target": "en.lproj/InfoPlist.strings"
+        }, 
+        {
+            "asset": "Icon.png", 
+            "target": "Icon.png"
+        }, 
+        {
+            "asset": "Icon@2x.png", 
+            "target": "Icon@2x.png"
+        }
+    ], 
+    "link_flags": [], 
+    "config": {
+        "FEATURES": [
+            "portrait"
+        ], 
+        "SHORT_VERSION": "1.0", 
+        "APPLICATION_NAME": "PSI", 
+        "LONG_VERSION": "1.0", 
+        "APPLICATION_IDENTIFIER": "org.faptrackr.PSI", 
+        "TEMPLATE_VALUES": {
+            "PRODUCT_NAME": "PSI", 
+            "EXECUTABLE_NAME": "PSI"
+        }, 
+        "APPLICATION_FULL_NAME": "PSI"
+    }, 
+    "header_paths": [
+        {
+            "header_path": "PSI-generated-files.hmap", 
+            "type": "iquote", 
+            "hmap": {}
+        }, 
+        {
+            "header_path": "PSI-own-target-headers.hmap", 
+            "type": "I", 
+            "hmap": {}
+        }, 
+        {
+            "header_path": "PSI-all-target-headers.hmap", 
+            "type": "I", 
+            "hmap": {}
+        }, 
+        {
+            "header_path": "PSI-project-headers.hmap", 
+            "type": "iquote", 
+            "hmap": {
+                "Graph.h": {
+                    "prefix": "PSI/", 
+                    "suffix": "Graph.h", 
+                    "key": "Graph.h"
+                }, 
+                "PSI-Prefix.pch": {
+                    "prefix": "PSI/", 
+                    "suffix": "PSI-Prefix.pch", 
+                    "key": "PSI-Prefix.pch"
+                }, 
+                "AppDelegate.h": {
+                    "prefix": "PSI/", 
+                    "suffix": "AppDelegate.h", 
+                    "key": "AppDelegate.h"
+                }, 
+                "InformationViewController.h": {
+                    "prefix": "PSI/", 
+                    "suffix": "InformationViewController.h", 
+                    "key": "InformationViewController.h"
+                }, 
+                "ViewController.h": {
+                    "prefix": "PSI/", 
+                    "suffix": "ViewController.h", 
+                    "key": "ViewController.h"
+                }
+            }
+        }
+    ], 
+    "modules": [], 
+    "sources": [
+        {
+            "source": "PSI/AppDelegate.m", 
+            "header_paths": [], 
+            "flags": [], 
+            "language": "objc", 
+            "defines": {}
+        }, 
+        {
+            "source": "PSI/Graph.m", 
+            "header_paths": [], 
+            "flags": [], 
+            "language": "objc", 
+            "defines": {}
+        }, 
+        {
+            "source": "PSI/InformationViewController.m", 
+            "header_paths": [], 
+            "flags": [], 
+            "language": "objc", 
+            "defines": {}
+        }, 
+        {
+            "source": "PSI/UIImage+Tools.m", 
+            "header_paths": [], 
+            "flags": [], 
+            "language": "objc", 
+            "defines": {}
+        }, 
+        {
+            "source": "PSI/ViewController.m", 
+            "header_paths": [], 
+            "flags": [], 
+            "language": "objc", 
+            "defines": {}
+        }, 
+        {
+            "source": "PSI/main.m", 
+            "header_paths": [], 
+            "flags": [], 
+            "language": "objc", 
+            "defines": {}
+        }
+    ], 
+    "version": "1", 
+    "flags": [
+        "-DNS_BLOCK_ASSERTIONS=1", 
+        "-fwritable-strings", 
+        "-fobjc-arc", 
+        "-fasm-blocks", 
+        {
+            "flag": "-std=gnu99", 
+            "not_type": "c++"
+        }, 
+        {
+            "flag": "-fgnu-keywords", 
+            "not_type": "c++"
+        }, 
+        "-fno-asm", 
+        "-fpascal-strings", 
+        "-Wempty-body", 
+        "-Wno-deprecated-declarations", 
+        "-Wreturn-type", 
+        "-Wswitch", 
+        "-Wparentheses", 
+        "-Wformat", 
+        "-Wuninitialized", 
+        "-Wunused-value", 
+        "-Wunused-variable", 
+        {
+            "flag": "-Winvalid-offsetof", 
+            "type": "c++"
+        }, 
+        {
+            "flag": "-Wprotocol", 
+            "type": "objc"
+        }
+    ], 
+    "infoplists": [
+        "./PSI/PSI-Info.plist"
+    ], 
+    "deps": [
+        "UIKit", 
+        "QuartzCore", 
+        "UIKit", 
+        "Foundation", 
+        "CoreGraphics"
+    ], 
+    "libs": [], 
+    "java_sourcepaths": [], 
+    "java_res_dirs": [], 
+    "type": "app", 
+    "java_libs": [], 
+    "defines": {
+        "__IPHONE_OS_VERSION_MIN_REQUIRED": 50000, 
+        "NS_BLOCK_ASSERTIONS": 1
+    }
+}
