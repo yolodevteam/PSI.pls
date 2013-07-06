@@ -18,7 +18,6 @@
     UITableViewCell *tappedCell;
     Graph* _graph;
 }
-BOOL loaded = NO;
 int show = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -62,9 +61,7 @@ int show = 0;
 }
 
 -(void)selectAtIndexPath:(NSIndexPath *) indexPath {
-    if (loaded == YES) {
-        return;
-    }
+
     if (tappedCell != nil) {
         tappedCell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.0];
     }
@@ -73,7 +70,6 @@ int show = 0;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     tappedCell = cell;
     [_graph showPoint:indexPath.row];
-    loaded = YES;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,7 +83,7 @@ int show = 0;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
-        cell.textLabel.backgroundColor = [UIColor clearColor];
+
 
         psi = [[UIButton alloc] initWithFrame:CGRectMake(190, 0, 128, 26)];
         psi.center = CGPointMake(250 ,cell.contentView.bounds.size.height/2);
@@ -112,7 +108,7 @@ int show = 0;
         }
     }
     int psi_t = [[[[self.data.sortedResults objectAtIndex:indexPath.row] objectForKey:@"psi"] objectForKey:@"3hr"] integerValue];
-
+    cell.textLabel.backgroundColor = [UIColor clearColor];
     psi.backgroundColor = [self.data getColorFromPSI:psi_t withAlpha:0.75];
 
     NSArray* split = [[self.data.sortedKeys objectAtIndex:indexPath.row] componentsSeparatedByString:@":"];

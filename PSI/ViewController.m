@@ -326,7 +326,7 @@
     }
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
-    //[components setTimeZone:sgt];
+    [components setTimeZone:sgt];
     NSInteger day = [components day];
     NSInteger month = [components month];
     //NSInteger year = [components year];

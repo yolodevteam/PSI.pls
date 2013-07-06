@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "PullToRefreshViewController.h"
 
 @implementation AppDelegate
 

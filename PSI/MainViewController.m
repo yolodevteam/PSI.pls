@@ -176,7 +176,7 @@
     }
 
     NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
-    //[dateFormatter setTimeZone:sgt];
+    [dateFormatter setTimeZone:sgt];
 
     NSString *time = [dateFormatter stringFromDate:[NSDate date]];
 

@@ -36,8 +36,6 @@
 		E90770EA1775A4D200139FFC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770E91775A4D200139FFC /* Default.png */; };
 		E90770EC1775A4D200139FFC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770EB1775A4D200139FFC /* Default@2x.png */; };
 		E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E90770ED1775A4D200139FFC /* Default-568h@2x.png */; };
-		E90770F11775A4D200139FFC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90770F01775A4D200139FFC /* ViewController.m */; };
-		E90770F41775A4D200139FFC /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90770F21775A4D200139FFC /* ViewController.xib */; };
 		E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92E49971775F25F002E9C46 /* InformationViewController.m */; };
 		E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92E49981775F25F002E9C46 /* InformationViewController.xib */; };
 		E92E499C17760B23002E9C46 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E92E499B17760B23002E9C46 /* QuartzCore.framework */; };
@@ -94,9 +92,6 @@
 		E90770E91775A4D200139FFC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E90770EB1775A4D200139FFC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E90770ED1775A4D200139FFC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E90770EF1775A4D200139FFC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E90770F01775A4D200139FFC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E90770F31775A4D200139FFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		E92E49961775F25F002E9C46 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
 		E92E49971775F25F002E9C46 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		E92E49981775F25F002E9C46 /* InformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformationViewController.xib; sourceTree = "<group>"; };
@@ -200,9 +195,6 @@
 				ADD554A01784049800DA1391 /* PSIData.h */,
 				ADD554A11784049800DA1391 /* PSIData.m */,
 				AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */,
-				E90770EF1775A4D200139FFC /* ViewController.h */,
-				E90770F01775A4D200139FFC /* ViewController.m */,
-				E90770F21775A4D200139FFC /* ViewController.xib */,
 				E92E49961775F25F002E9C46 /* InformationViewController.h */,
 				E92E49971775F25F002E9C46 /* InformationViewController.m */,
 				E92E49981775F25F002E9C46 /* InformationViewController.xib */,
@@ -295,7 +287,6 @@
 				E90770EA1775A4D200139FFC /* Default.png in Resources */,
 				E90770EC1775A4D200139FFC /* Default@2x.png in Resources */,
 				E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */,
-				E90770F41775A4D200139FFC /* ViewController.xib in Resources */,
 				E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */,
 				AD9DA1901776E4BA005B2C62 /* bg_iphone.jpg in Resources */,
 				AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */,
@@ -321,7 +312,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E90770E41775A4D200139FFC /* main.m in Sources */,
-				E90770F11775A4D200139FFC /* ViewController.m in Sources */,
 				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,
 				E92E499F17760BA2002E9C46 /* Graph.m in Sources */,
 				AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */,
@@ -348,14 +338,6 @@
 				E90770E11775A4D200139FFC /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E90770F21775A4D200139FFC /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E90770F31775A4D200139FFC /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

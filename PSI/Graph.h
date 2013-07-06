@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ViewController.h"
 #import "PSIData.h"
 
 #define kGraphHeight 154
