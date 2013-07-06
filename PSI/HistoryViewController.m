@@ -18,6 +18,8 @@
     UITableViewCell *tappedCell;
     Graph* _graph;
 }
+BOOL loaded = NO;
+int show = 0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,7 +33,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"yolo swag yolo232443434344343");
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.separatorColor = [UIColor colorWithWhite:1 alpha:0.3];
@@ -39,10 +40,6 @@
 
 }
 
--(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -51,8 +48,7 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    //NSLog(@"HEY HEY HEYHEHEHYEHYHE");
-    //self.tableView.userInteractionEnabled = NO;
+
     if (scrollView.contentOffset.x > 0 || scrollView.contentOffset.x < 0) {
         CGPoint offset = scrollView.contentOffset;
         offset.y = 0;
@@ -66,7 +62,9 @@
 }
 
 -(void)selectAtIndexPath:(NSIndexPath *) indexPath {
-    NSLog(@"SELECTED YOLO SWAG %@", indexPath);
+    if (loaded == YES) {
+        return;
+    }
     if (tappedCell != nil) {
         tappedCell.backgroundColor = [UIColor colorWithWhite:0 alpha:0.0];
     }
@@ -75,6 +73,7 @@
     cell.textLabel.backgroundColor = [UIColor clearColor];
     tappedCell = cell;
     [_graph showPoint:indexPath.row];
+    loaded = YES;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,7 +104,12 @@
         [psi addTarget:self action:@selector(buttonPressedAction:) forControlEvents:UIControlEventTouchUpInside];
 
         [cell addSubview:psi];
-        NSLog(@"no swag 420 %@", cell.textLabel.text);
+    }
+    switch (show) {
+        case 0: {
+
+            break;
+        }
     }
     int psi_t = [[[[self.data.sortedResults objectAtIndex:indexPath.row] objectForKey:@"psi"] objectForKey:@"3hr"] integerValue];
 
@@ -130,10 +134,7 @@
     [psi setTitle:[NSString stringWithFormat:@"%d", psi_t] forState:UIControlStateNormal];
     cell.textLabel.text = [NSString stringWithFormat:@"%d%@", hour, suffix];
 
-    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
-        //NSLog(@)
-        [self selectAtIndexPath:[NSIndexPath indexPathForRow:[self.data.sortedKeys count] -1 inSection:0]];
-    }
+
 
     return cell;
 
@@ -141,7 +142,15 @@
 }
 - (void)buttonPressedAction:(id)sender
 {
-    NSLog(@"pressed yolo swag");
+    NSLog(@"pressed button");
+    if (show < 3) {
+        show++;
+    }
+    else {
+        show = 0;
+    }
+    [self.tableView reloadData];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

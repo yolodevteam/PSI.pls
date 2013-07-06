@@ -292,8 +292,7 @@
 
     //self.observingScrollView = scrollView;
 }
-- (void)didAddSubview:(UIView *)subview {
-    NSLog(@"no swag pls %@", subview);
+- (void)didAddSubview:(UIView *)subview {;
     [subview removeObserver:self forKeyPath:@"contentOffset"];
 }
 - (void)stopObservingContentOffset
@@ -340,9 +339,7 @@
         //NSLog(@"no scrolling lol");
         return;
     }
-    NSLog(@"da offset %f %f", scrollView.contentOffset.y, scrollView.contentOffset.x);
     CGFloat oldX = self.selectedIndex * CGRectGetWidth(self.scrollView.frame);
-    NSLog(@"oldX %f", oldX);
     if (scrollView.contentOffset.x == 0 || scrollView.contentOffset.x == -0 || scrollView.contentOffset.x == -1 || scrollView.contentOffset.x == 1) {
         return;
     }
@@ -380,8 +377,6 @@
                     }];
                 }
                 else {
-                    NSLog(@"TABLES ARE IN DANGER BRO");
-                    NSLog(@"420 FADE IT LEFTRIGHT");
                     [UIView animateWithDuration:0.5 animations:^{
                         leftView.view.alpha = 0.5;
                         rightView.view.alpha = 1.0;
@@ -396,7 +391,6 @@
                 self.pageIndicatorView.center = CGPointMake(previousItemPageIndicatorX -
                         (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
                         self.pageIndicatorView.center.y);
-                NSLog(@"420 FADE IT RIGHTLEFT %d, %d", self.selectedIndex, targetIndex);
                 [UIView animateWithDuration:0.5 animations:^{
                     leftView.view.alpha = 1.0;
                     rightView.view.alpha = 0.5;

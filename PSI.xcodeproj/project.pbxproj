@@ -27,8 +27,6 @@
 		ADEB6143178430E800A2C67F /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6141178430E800A2C67F /* DataViewController.m */; };
 		ADEB614717844C5900A2C67F /* RegionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB614517844C5900A2C67F /* RegionViewController.m */; };
 		ADEB614817844C5900A2C67F /* RegionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEB614617844C5900A2C67F /* RegionViewController.xib */; };
-		ADEB614C1785185700A2C67F /* PullToRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB614A1785185700A2C67F /* PullToRefreshViewController.m */; };
-		ADEB614D1785185700A2C67F /* PullToRefreshViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEB614B1785185700A2C67F /* PullToRefreshViewController.xib */; };
 		ADEB6150178537E800A2C67F /* SpiralPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB614F178537E800A2C67F /* SpiralPullToRefresh.m */; };
 		E90770D81775A4D200139FFC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D71775A4D200139FFC /* UIKit.framework */; };
 		E90770DA1775A4D200139FFC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90770D91775A4D200139FFC /* Foundation.framework */; };
@@ -83,9 +81,6 @@
 		ADEB614417844C5900A2C67F /* RegionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionViewController.h; sourceTree = "<group>"; };
 		ADEB614517844C5900A2C67F /* RegionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionViewController.m; sourceTree = "<group>"; };
 		ADEB614617844C5900A2C67F /* RegionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegionViewController.xib; sourceTree = "<group>"; };
-		ADEB61491785185700A2C67F /* PullToRefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullToRefreshViewController.h; sourceTree = "<group>"; };
-		ADEB614A1785185700A2C67F /* PullToRefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullToRefreshViewController.m; sourceTree = "<group>"; };
-		ADEB614B1785185700A2C67F /* PullToRefreshViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PullToRefreshViewController.xib; sourceTree = "<group>"; };
 		ADEB614E178537E800A2C67F /* SpiralPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpiralPullToRefresh.h; sourceTree = "<group>"; };
 		ADEB614F178537E800A2C67F /* SpiralPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpiralPullToRefresh.m; sourceTree = "<group>"; };
 		E90770D41775A4D200139FFC /* PSI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,9 +199,6 @@
 				AD49097C1781C4640086E13B /* MainViewController.m */,
 				ADD554A01784049800DA1391 /* PSIData.h */,
 				ADD554A11784049800DA1391 /* PSIData.m */,
-				ADEB61491785185700A2C67F /* PullToRefreshViewController.h */,
-				ADEB614A1785185700A2C67F /* PullToRefreshViewController.m */,
-				ADEB614B1785185700A2C67F /* PullToRefreshViewController.xib */,
 				AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */,
 				E90770EF1775A4D200139FFC /* ViewController.h */,
 				E90770F01775A4D200139FFC /* ViewController.m */,
@@ -317,7 +309,6 @@
 				E9F02F5F177C585E00F4B438 /* Icon@2x.png in Resources */,
 				AD49097D1781C4640086E13B /* MainViewController.xib in Resources */,
 				ADEB614817844C5900A2C67F /* RegionViewController.xib in Resources */,
-				ADEB614D1785185700A2C67F /* PullToRefreshViewController.xib in Resources */,
 				367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +333,6 @@
 				ADD554A51784052900DA1391 /* JSONKit.m in Sources */,
 				ADEB6143178430E800A2C67F /* DataViewController.m in Sources */,
 				ADEB614717844C5900A2C67F /* RegionViewController.m in Sources */,
-				ADEB614C1785185700A2C67F /* PullToRefreshViewController.m in Sources */,
 				ADEB6150178537E800A2C67F /* SpiralPullToRefresh.m in Sources */,
 				367D537817A76CA5DB7F371F /* HistoryViewController.m in Sources */,
 				367D5574D9DA9F9C712E5BC2 /* AppDelegate.m in Sources */,
