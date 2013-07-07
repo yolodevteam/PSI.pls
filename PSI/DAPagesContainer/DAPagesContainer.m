@@ -63,6 +63,7 @@
     _topBarBackgroundColor = [UIColor colorWithWhite:0.1 alpha:0];
     _topBarItemLabelsFont = [UIFont systemFontOfSize:12];
     _pageIndicatorViewSize = CGSizeMake(45., 3.);
+    self.scrollView.directionalLockEnabled = TRUE;
 
 }
 

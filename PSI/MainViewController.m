@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 ttwj. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "MainViewController.h"
 #import "UIImage+Tools.m"
-#import "InformationViewController.h"
-#import "PSIData.h"
 #import "DataViewController.h"
 #import "RegionViewController.h"
 #import "HistoryViewController.h"
@@ -19,7 +18,9 @@
 
 @end
 
-@implementation MainViewController
+@implementation MainViewController {
+    InformationViewController *info;
+}
 
 
 
@@ -41,7 +42,7 @@
 
     int hour = [date intValue];
 
-    if (hour > 18 || hour < 6) {
+    /* if (hour > 18 || hour < 6) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
         if (IS_4INCH_SCREEN) {
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_iphone-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
@@ -50,7 +51,7 @@
         } else {
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_iphone.jpg"] imageWithGaussianBlur]];
         }
-    } else {
+    } else {*/
         if (IS_4INCH_SCREEN) {
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_blue-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
             [self.view addSubview:imageView];
@@ -58,7 +59,7 @@
         } else {
             self.view.backgroundColor = [UIColor colorWithPatternImage:[[UIImage imageNamed:@"bg_blue.jpg"] imageWithGaussianBlur]];
         }
-    }
+    //}
 
 
     self.pagesContainer = [[DAPagesContainer alloc] init];
@@ -105,37 +106,19 @@
     
         
     [self.info addTarget:self action:@selector(showInfo) forControlEvents:UIControlEventTouchUpInside];
-    
-   /* _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
-    _loadingView.backgroundColor = [UIColor blackColor];
-    
-    _act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    _act.center = _loadingView.center;
-    
-    [_loadingView addSubview:_act];
-    [_act startAnimating];
-    
-    _errorLabel = [[UILabel alloc] init];
-    _errorLabel.alpha = 0.0;
-    _errorLabel.frame = CGRectMake(0, 0, 320, 100);
-    _errorLabel.center = _loadingView.center;
-    _errorLabel.textColor = [UIColor whiteColor];
-    _errorLabel.font = [UIFont fontWithName:@"Helvetica UltraLight" size:30];
-    _errorLabel.backgroundColor = [UIColor clearColor];
-    _errorLabel.textAlignment = NSTextAlignmentCenter;
-    _errorLabel.textColor = [UIColor whiteColor];
-    
-    [_loadingView addSubview:_errorLabel];
-    
-    _errorRefresh = [UIButton buttonWithType:UIButtonTypeCustom];
-    _errorRefresh.frame = CGRectMake(0, 0, 15, 19);
-    [_errorRefresh setImage:[UIImage imageNamed:@"UIBarButtonRefresh.png"] forState:UIControlStateNormal];
-    [_errorRefresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_loadingView addSubview:_errorRefresh];
-    
-    [self.view addSubview:_loadingView];
-    */
+
+    UIColor *color = _refresh.currentTitleColor;
+    _refresh.titleLabel.layer.shadowColor = [color CGColor];
+    _refresh.titleLabel.layer.shadowRadius = 4.0f;
+    _refresh.titleLabel.layer.shadowOpacity = 0.9;
+    _refresh.titleLabel.layer.shadowOffset = CGSizeZero;
+    _refresh.titleLabel.layer.masksToBounds = YES;
+    _refresh.showsTouchWhenHighlighted = YES;
+
+    [_refresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
+
+    [self showLoadingView];
+
     self.data =  [[PSIData alloc] init];
     self.data.delegate = self;
     [self.data loadData];
@@ -144,9 +127,11 @@
 
 - (void)showInfo
 {
-    InformationViewController *info = [[InformationViewController alloc] initWithNibName:@"InformationViewController" bundle:nil];
-    info.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    info.delegate = self;
+    if (info == nil) {
+        info = [[InformationViewController alloc] initWithNibName:@"InformationViewController" bundle:nil];
+        info.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        info.delegate = self;
+    }
     //[self presentModalViewController:info animated:YES ];
     [self presentTransparentModalViewController:info animated:YES withAlpha:0.89];
 }
@@ -161,9 +146,9 @@
 }
 
 -(void)loadingCompleted:(PSIData *)data {
+    _refresh.enabled = YES;
     int lasthour = [self.data getLastHour];
     NSString* suffix;
-    NSLog(@"last hour %d", lasthour);
     if (lasthour > 12) {
         suffix = @"pm";
         lasthour = lasthour - 12;
@@ -180,11 +165,11 @@
     self.timeLabel.text = [NSString stringWithFormat:@"%@ at %d%@", [self getSingaporeDate], lasthour, suffix];
     
 
-    NSLog(@"LOADING COMPLETED GUYS!!! %@", data);
     for (RegionViewController *region in self.pagesContainer.viewControllers) {
         NSLog(@"title %@", region.title);
         [region setData:data];
     }
+    [self removeLoadingView];
 }
 - (NSString *)getSingaporeTimeWithMinutes:(BOOL)minutes
 {
@@ -281,4 +266,57 @@
 
 }
 
+- (void)removeLoadingView
+{
+    [UIView animateWithDuration:0.8 animations:^{
+        _loadingView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [_loadingView removeFromSuperview];
+    }];
+}
+-(void)showLoadingView {
+    _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height + 20)];
+    _loadingView.backgroundColor = [UIColor blackColor];
+
+    _act = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    _act.center = _loadingView.center;
+
+    [_loadingView addSubview:_act];
+    [_act startAnimating];
+
+    _errorLabel = [[UILabel alloc] init];
+    _errorLabel.alpha = 0.0;
+    _errorLabel.frame = CGRectMake(0, 0, 320, 100);
+    _errorLabel.center = _loadingView.center;
+    _errorLabel.textColor = [UIColor whiteColor];
+    _errorLabel.font = [UIFont fontWithName:@"Helvetica UltraLight" size:30];
+    _errorLabel.backgroundColor = [UIColor clearColor];
+    _errorLabel.textAlignment = NSTextAlignmentCenter;
+    _errorLabel.textColor = [UIColor whiteColor];
+
+    [_loadingView addSubview:_errorLabel];
+
+    _errorRefresh = [UIButton buttonWithType:UIButtonTypeCustom];
+    _errorRefresh.frame = CGRectMake(0, 0, 15, 19);
+    [_errorRefresh setImage:[UIImage imageNamed:@"UIBarButtonRefresh.png"] forState:UIControlStateNormal];
+    [_errorRefresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
+
+    [_loadingView addSubview:_errorRefresh];
+
+    _loadingView.alpha = 0;
+    [self.view addSubview:_loadingView];
+    [UIView animateWithDuration:0.8 animations:^{
+        _loadingView.alpha = 0.8;
+    } completion:^(BOOL finished) {
+        //swag
+    }];
+
+
+}
+- (void)refreshData
+{
+    _refresh.enabled = NO;
+    [self showLoadingView];;
+    [_data loadData];
+}
 @end

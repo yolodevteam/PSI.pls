@@ -149,7 +149,7 @@ CGRect touchesAreas[kNumberOfBars];
 
     CGContextBeginPath(context);
 
-    CGContextMoveToPoint(context, kOffsetX, kGraphBottom);
+    CGContextMoveToPoint(context, kOffsetX, kGraphHeight);
     for (int i = 0; i < kNumberOfBars; i++) {
         scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
         CGContextAddLineToPoint(context, kOffsetX + (i * kStepX), kGraphHeight - (maxGraphHeight * scaled));
@@ -207,9 +207,10 @@ CGRect touchesAreas[kNumberOfBars];
 
             NSArray* split = [[_data.sortedKeys objectAtIndex:i] componentsSeparatedByString:@":"];
             int hour = [split[2] integerValue];
+
             if (hour == 0) {
                 suffix = @"am";
-                hourString = [NSString stringWithFormat:@"%d", hour];
+                hourString = [NSString stringWithFormat:@"%d", 12];
             }
             else if (hour > 12) {
                 hourString = [NSString stringWithFormat:@"%d", hour-12];

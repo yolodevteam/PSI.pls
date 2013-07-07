@@ -188,7 +188,7 @@ NSInteger customSort(id num1, id num2, void *context)
         breakPointHigh = 500.4;
     }
     AQI = ceil((((AQIHigh-AQILow)/(breakPointHigh-breakPointLow)) * (PM25 - breakPointLow)) + AQILow);
-    NSLog(@"AQI %d, %d %d, %f", AQI, AQILow, AQIHigh, PM25);
+    //NSLog(@"AQI %d, %d %d, %f", AQI, AQILow, AQIHigh, PM25);
     return AQI;
 }
 - (UIColor*) getColorFromAQI: (int) AQI {
@@ -196,28 +196,28 @@ NSInteger customSort(id num1, id num2, void *context)
 
     if (AQI < 51) {
         //green
-        NSLog(@"green");
+        //NSLog(@"green");
         return [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha];
     }
     else if (AQI < 101) {
         //yellow
-        NSLog(@"yellow");
+        //NSLog(@"yellow");
         return [UIColor colorWithRed:0.945 green:0.769 blue:0.059 alpha:alpha];
     }
     else if (AQI < 151) {
-        NSLog(@"orange");
+        //NSLog(@"orange");
         return [UIColor colorWithRed:0.827 green:0.329 blue:0 alpha:alpha];
     }
     else if (AQI < 201) {
-        NSLog(@"red..");
+        //NSLog(@"red..");
         return [UIColor colorWithRed:0.906 green:0.298 blue:0.235 alpha:alpha];
     }
     else if (AQI < 301) {
-        NSLog(@"purple");
+        //NSLog(@"purple");
         return [UIColor colorWithRed:0.557 green:0.267 blue:0.678 alpha:alpha];
     }
     else {
-        NSLog(@"maroon");
+        //NSLog(@"maroon");
         return [UIColor colorWithRed:0.173 green:0.243 blue:0.314 alpha:alpha];
     }
 }

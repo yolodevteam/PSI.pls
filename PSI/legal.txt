@@ -1,3 +1,6 @@
+Legal
+-----------------
+
 DAPageContainer
 ================
 Copyright (c) 2012 Arthur Evstifeev

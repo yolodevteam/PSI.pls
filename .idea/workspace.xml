@@ -2,33 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecd43f09-7488-40c7-9872-64a9529339b3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PSI/RTLabel.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PSI/RTLabel.m" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/PSI/legal.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI.xcodeproj/project.xcworkspace/xcuserdata/ttwj.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/PSI.xcodeproj/project.xcworkspace/xcuserdata/ttwj.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/Graph.h" afterPath="$PROJECT_DIR$/PSI/Graph.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/bg_blue-568h.jpg" afterPath="$PROJECT_DIR$/PSI/bg_blue-568h.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/bg_blue.jpg" afterPath="$PROJECT_DIR$/PSI/bg_blue.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/bg_blue@2x.jpg" afterPath="$PROJECT_DIR$/PSI/bg_blue@2x.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" afterPath="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/Graph.m" afterPath="$PROJECT_DIR$/PSI/Graph.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/HistoryViewController.xib" afterPath="$PROJECT_DIR$/PSI/HistoryViewController.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/InformationViewController.h" afterPath="$PROJECT_DIR$/PSI/InformationViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/HistoryViewController.m" afterPath="$PROJECT_DIR$/PSI/HistoryViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/InformationViewController.m" afterPath="$PROJECT_DIR$/PSI/InformationViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/InformationViewController.xib" afterPath="$PROJECT_DIR$/PSI/InformationViewController.xib" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/MainViewController.h" afterPath="$PROJECT_DIR$/PSI/MainViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/MainViewController.m" afterPath="$PROJECT_DIR$/PSI/MainViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/MainViewController.xib" afterPath="$PROJECT_DIR$/PSI/MainViewController.xib" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/PSIData.m" afterPath="$PROJECT_DIR$/PSI/PSIData.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/RegionViewController.xib" afterPath="$PROJECT_DIR$/PSI/RegionViewController.xib" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/PSI.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/legal.txt" afterPath="$PROJECT_DIR$/PSI/legal.txt" />
     </list>
     <ignored path="PSI.pls.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373198673361" ignored="false" />
-    <file path="/MainViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373203570211" ignored="false" />
+    <file path="/MainViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373213916233" ignored="false" />
     <file path="/PSIData.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372925016592" ignored="false" />
-    <file path="/PSIData.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372924916590" ignored="false" />
+    <file path="/PSIData.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373211892692" ignored="false" />
     <file path="/DataViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372846690076" ignored="false" />
-    <file path="/MainViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373203423235" ignored="false" />
+    <file path="/MainViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373213388166" ignored="false" />
     <file path="/DataViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372849422503" ignored="false" />
-    <file path="/DAPagesContainer.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372859078067" ignored="false" />
+    <file path="/DAPagesContainer.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373212986825" ignored="false" />
     <file path="/DAPageIndicatorView.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372858671330" ignored="false" />
     <file path="/RegionViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372900661143" ignored="false" />
     <file path="/RegionViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372926184974" ignored="false" />
@@ -37,12 +34,12 @@
     <file path="/AppDelegate.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372905964427" ignored="false" />
     <file path="/PullToRefreshViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372920871262" ignored="false" />
     <file path="/SpiralPullToRefresh.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372917550877" ignored="false" />
-    <file path="/HistoryViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373108262414" ignored="false" />
-    <file path="/InformationViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373206127596" ignored="false" />
+    <file path="/HistoryViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373214218641" ignored="false" />
+    <file path="/InformationViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373212036932" ignored="false" />
     <file path="/InformationViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373203321738" ignored="false" />
-    <file path="/legal.txt" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373205650309" ignored="false" />
+    <file path="/legal.txt" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373213174189" ignored="false" />
     <file path="/Graph.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373210137825" ignored="false" />
-    <file path="/Graph.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373210581925" ignored="false" />
+    <file path="/Graph.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373213996568" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,16 +62,7 @@
       <file leaf-file-name="PSIData.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/PSIData.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="190" column="28" selection-start="5079" selection-end="5079" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RTLabel.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSI/RTLabel.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="22" selection-start="139" selection-end="139" vertical-scroll-proportion="0.0">
+            <state line="215" column="16" selection-start="5822" selection-end="5822" vertical-scroll-proportion="-15.384615">
               <folding />
             </state>
           </provider>
@@ -83,7 +71,7 @@
       <file leaf-file-name="legal.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/legal.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="16" selection-start="3646" selection-end="3646" vertical-scroll-proportion="0.0">
+            <state line="1" column="17" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -92,7 +80,7 @@
       <file leaf-file-name="InformationViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/InformationViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="15" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0">
+            <state line="24" column="32" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#136#173#0" expanded="true" />
               </folding>
@@ -100,38 +88,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformationViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSI/InformationViewController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="541" selection-end="541" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Graph.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSI/Graph.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Graph.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Graph.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/Graph.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="76" selection-start="5975" selection-end="5975" vertical-scroll-proportion="0.37378642">
+            <state line="212" column="28" selection-start="6919" selection-end="6919" vertical-scroll-proportion="-5.923077">
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PSIData.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PSI/PSIData.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="2" selection-start="118" selection-end="118" vertical-scroll-proportion="-1.7045455">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bg_iphone.jpg" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PSI/bg_iphone.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bg_blue-568h.jpg" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PSI/bg_blue-568h.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MainViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/MainViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="190" column="0" selection-start="7306" selection-end="7306" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="37" column="24" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#131#164#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,7 +134,7 @@
       <file leaf-file-name="HistoryViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/HistoryViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="27" selection-start="4005" selection-end="4005" vertical-scroll-proportion="0.0">
+            <state line="171" column="32" selection-start="5433" selection-end="5433" vertical-scroll-proportion="-9.846154">
               <folding>
                 <element signature="e#134#167#0" expanded="true" />
               </folding>
@@ -150,7 +145,7 @@
       <file leaf-file-name="MainViewController.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/MainViewController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="261" selection-end="372" vertical-scroll-proportion="0.0">
+            <state line="29" column="53" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -174,22 +169,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/PSI/PSIData.h" />
         <option value="$PROJECT_DIR$/PSI/RegionViewController.m" />
-        <option value="$PROJECT_DIR$/PSI/PSIData.m" />
-        <option value="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" />
         <option value="$PROJECT_DIR$/PSI/AppDelegate.m" />
-        <option value="$PROJECT_DIR$/PSI/HistoryViewController.m" />
         <option value="$PROJECT_DIR$/PSI/RTLabel.m" />
         <option value="$PROJECT_DIR$/PSI/RTLabel.h" />
         <option value="$PROJECT_DIR$/PSI/TransparentModalViewController.m" />
         <option value="$PROJECT_DIR$/PSI/InformationViewController.h" />
-        <option value="$PROJECT_DIR$/PSI/MainViewController.h" />
-        <option value="$PROJECT_DIR$/PSI/MainViewController.m" />
-        <option value="$PROJECT_DIR$/PSI/legal.txt" />
-        <option value="$PROJECT_DIR$/PSI/InformationViewController.m" />
         <option value="$PROJECT_DIR$/PSI/Graph.h" />
+        <option value="$PROJECT_DIR$/PSI/PSIData.h" />
+        <option value="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" />
+        <option value="$PROJECT_DIR$/PSI/InformationViewController.m" />
+        <option value="$PROJECT_DIR$/PSI/legal.txt" />
+        <option value="$PROJECT_DIR$/PSI/MainViewController.h" />
+        <option value="$PROJECT_DIR$/PSI/PSIData.m" />
         <option value="$PROJECT_DIR$/PSI/Graph.m" />
+        <option value="$PROJECT_DIR$/PSI/HistoryViewController.m" />
+        <option value="$PROJECT_DIR$/PSI/MainViewController.m" />
       </list>
     </option>
   </component>
@@ -283,7 +278,73 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Supporting Files" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bg_iphone.jpg" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.MergedIconsNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Supporting Files" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bg_blue.jpg" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.MergedIconsNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PSI" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DAPage" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -323,13 +384,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="35" width="1280" height="731" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32779455" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291536" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497979" sideWeight="0.6703297" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24140625" sideWeight="0.68429005" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24140625" sideWeight="0.68429005" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -405,27 +466,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/PSI/RegionViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/HistoryViewController.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="336" column="21" selection-start="12968" selection-end="12968" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSI/AppDelegate.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="23" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0">
@@ -439,20 +479,6 @@
           <folding>
             <element signature="e#1307#1330#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/PSIData.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="171" selection-end="244" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/MainViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="0" selection-start="7306" selection-end="7306" vertical-scroll-proportion="0.0">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -470,57 +496,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/Graph.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="20" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="50" selection-start="1601" selection-end="1601" vertical-scroll-proportion="-9.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/PSIData.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="2" selection-start="118" selection-end="118" vertical-scroll-proportion="-1.7045455">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PSI/legal.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="16" selection-start="3646" selection-end="3646" vertical-scroll-proportion="0.0">
+        <state line="1" column="17" selection-start="23" selection-end="23" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PSI/InformationViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="15" selection-start="1071" selection-end="1071" vertical-scroll-proportion="0.0">
+        <state line="24" column="32" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#136#173#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/PSIData.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="28" selection-start="5079" selection-end="5079" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSI/MainViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="261" selection-end="372" vertical-scroll-proportion="0.0">
+        <state line="29" column="53" selection-start="813" selection-end="813" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/HistoryViewController.m">
+    <entry file="file://$PROJECT_DIR$/PSI/PSIData.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="27" selection-start="4005" selection-end="4005" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#134#167#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/Graph.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
+        <state line="215" column="16" selection-start="5822" selection-end="5822" vertical-scroll-proportion="-15.384615">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PSI/Graph.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="76" selection-start="5975" selection-end="5975" vertical-scroll-proportion="0.37378642">
+        <state line="212" column="28" selection-start="6919" selection-end="6919" vertical-scroll-proportion="-5.923077">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/HistoryViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="171" column="32" selection-start="5433" selection-end="5433" vertical-scroll-proportion="-9.846154">
+          <folding>
+            <element signature="e#134#167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/MainViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="24" selection-start="716" selection-end="716" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#131#164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/bg_blue-568h.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/bg_iphone.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
   </component>

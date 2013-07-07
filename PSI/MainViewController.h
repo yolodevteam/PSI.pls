@@ -25,6 +25,10 @@
 @property (nonatomic, strong) IBOutlet UIView *pagesView;
 @property (nonatomic, strong) IBOutlet UIButton *refresh;
 @property (nonatomic, strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong) UIView* loadingView;
+@property (nonatomic, strong) UILabel* errorLabel;
+@property (nonatomic, strong) UIButton *errorRefresh;
+
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *act;
 @property (nonatomic, strong) UIViewController* transparentModalViewController;
 @property (nonatomic, strong) PSIData *data;

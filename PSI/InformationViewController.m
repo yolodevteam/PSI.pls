@@ -33,7 +33,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [_done addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
-    static NSString *sample_text = @"<font color='#ffffff'><font face='HelveticaNeue-CondensedBold' size=20>Credits</font><p>Thomas Hedderwick - App Development</p><p>Terence Tan - App/Backend development</p><p>Li Zhongfu - Backend development</p></font>"
+    static NSString *sample_text = @"<font color='#ffffff'><font face='HelveticaNeue-CondensedBold' size=20>Credits</font><p>Terence Tan - App development</p><p>Thomas Hedderwick - App Development</p><p>Li Zhongfu - Backend development</p><p>Colin Chan - Photography</p></font>"
             "<p face='HelveticaNeue-CondensedBold' size=18 color='#ccc'>Legal</p>";
 
     RTLabel *label = [[RTLabel alloc] initWithFrame:self.view.frame];
@@ -41,7 +41,6 @@
     [label setText:sample_text];
     NSString *pathToFile = [[NSBundle mainBundle] pathForResource:@"legal" ofType:@"txt"];
     NSString *theText = [NSString stringWithContentsOfFile:pathToFile encoding:NSUTF8StringEncoding error:nil];
-    NSLog(@"the text %@", theText);
     self.textView.text = theText;
     //_textView.text = @"Credits:\nNinjaLikesCheez: App development\nzhongfu: Backend development \nttwj: App and Backend development\n \nUsing data found at http://dawo.me/\n\nA YoloDev Team Production.\nImages (c) Colin Chan Photography 2013";
 }

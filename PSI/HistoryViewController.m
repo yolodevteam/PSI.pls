@@ -90,6 +90,7 @@ int show = 0;
         psi.titleLabel.textColor = [UIColor whiteColor];
         psi.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19];
         psi.layer.cornerRadius = 5;
+        psi.tag = [indexPath row];
         psi.titleLabel.textAlignment = UITextAlignmentCenter;
         psi.layer.shadowColor = [[UIColor blackColor] CGColor];
         psi.layer.shadowOffset = CGSizeMake(0.0, 0.0);
@@ -116,6 +117,7 @@ int show = 0;
     NSString* suffix;
     if (hour == 0) {
         suffix = @"am";
+        hour = 12;
     }
     else if (hour > 12) {
         hour = hour - 12;
@@ -139,13 +141,9 @@ int show = 0;
 - (void)buttonPressedAction:(id)sender
 {
     NSLog(@"pressed button");
-    if (show < 3) {
-        show++;
-    }
-    else {
-        show = 0;
-    }
-    [self.tableView reloadData];
+    NSIndexPath *index = [NSIndexPath indexPathForItem:[sender tag] inSection:0];
+    [self selectAtIndexPath:index];
+
 
 }
 
@@ -167,9 +165,14 @@ int show = 0;
     [self.tableView reloadData];
     int lastRowNumber = [self.tableView numberOfRowsInSection:0] - 1;
     NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
     _graph = [[Graph alloc] initWithData:data frame:CGRectMake(0, 0, 320, 312) controller:self];
     [self.graphScrollView addSubview:_graph];
+    self.graphScrollView.scrollEnabled = NO;
+    self.tableView.directionalLockEnabled = YES;
+    self.tableView.bounces = NO;
+    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    [self selectAtIndexPath:ip];
+
 }
 
 @end
