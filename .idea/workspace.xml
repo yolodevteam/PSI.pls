@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ecd43f09-7488-40c7-9872-64a9529339b3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI.xcodeproj/project.xcworkspace/xcuserdata/ttwj.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/PSI.xcodeproj/project.xcworkspace/xcuserdata/ttwj.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/MainViewController.m" afterPath="$PROJECT_DIR$/PSI/MainViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" afterPath="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PSI/HistoryViewController.m" afterPath="$PROJECT_DIR$/PSI/HistoryViewController.m" />
     </list>
     <ignored path="PSI.pls.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -14,7 +15,7 @@
     <file path="/DataViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372846690076" ignored="false" />
     <file path="/MainViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373213388166" ignored="false" />
     <file path="/DataViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372849422503" ignored="false" />
-    <file path="/DAPagesContainer.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373212986825" ignored="false" />
+    <file path="/DAPagesContainer.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373215924838" ignored="false" />
     <file path="/DAPageIndicatorView.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372858671330" ignored="false" />
     <file path="/RegionViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372900661143" ignored="false" />
     <file path="/RegionViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372926184974" ignored="false" />
@@ -23,7 +24,7 @@
     <file path="/AppDelegate.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372905964427" ignored="false" />
     <file path="/PullToRefreshViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372920871262" ignored="false" />
     <file path="/SpiralPullToRefresh.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1372917550877" ignored="false" />
-    <file path="/HistoryViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373214218641" ignored="false" />
+    <file path="/HistoryViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373216070931" ignored="false" />
     <file path="/InformationViewController.m" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373212036932" ignored="false" />
     <file path="/InformationViewController.h" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373203321738" ignored="false" />
     <file path="/legal.txt" changelist="ecd43f09-7488-40c7-9872-64a9529339b3" time="1373213174189" ignored="false" />
@@ -86,10 +87,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PSIData.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PSI/PSIData.h">
+      <file leaf-file-name="DAPagesContainer.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="2" selection-start="118" selection-end="118" vertical-scroll-proportion="-1.7045455">
+            <state line="405" column="29" selection-start="16681" selection-end="16690" vertical-scroll-proportion="-201.0">
               <folding />
             </state>
           </provider>
@@ -109,10 +110,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainViewController.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MainViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PSI/MainViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="4" selection-start="842" selection-end="842" vertical-scroll-proportion="0.22087379">
+            <state line="186" column="25" selection-start="6759" selection-end="6759" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#131#164#0" expanded="true" />
               </folding>
@@ -120,10 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HistoryViewController.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="HistoryViewController.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PSI/HistoryViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="32" selection-start="5433" selection-end="5433" vertical-scroll-proportion="-9.846154">
+            <state line="167" column="24" selection-start="5188" selection-end="5188" vertical-scroll-proportion="0.5284974">
               <folding>
                 <element signature="e#134#167#0" expanded="true" />
               </folding>
@@ -166,14 +167,14 @@
         <option value="$PROJECT_DIR$/PSI/InformationViewController.h" />
         <option value="$PROJECT_DIR$/PSI/Graph.h" />
         <option value="$PROJECT_DIR$/PSI/PSIData.h" />
-        <option value="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" />
         <option value="$PROJECT_DIR$/PSI/InformationViewController.m" />
         <option value="$PROJECT_DIR$/PSI/legal.txt" />
         <option value="$PROJECT_DIR$/PSI/MainViewController.h" />
         <option value="$PROJECT_DIR$/PSI/PSIData.m" />
         <option value="$PROJECT_DIR$/PSI/Graph.m" />
-        <option value="$PROJECT_DIR$/PSI/HistoryViewController.m" />
         <option value="$PROJECT_DIR$/PSI/MainViewController.m" />
+        <option value="$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m" />
+        <option value="$PROJECT_DIR$/PSI/HistoryViewController.m" />
       </list>
     </option>
   </component>
@@ -492,13 +493,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="50" selection-start="1601" selection-end="1601" vertical-scroll-proportion="-9.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSI/PSIData.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="2" selection-start="118" selection-end="118" vertical-scroll-proportion="-1.7045455">
@@ -543,15 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PSI/HistoryViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="32" selection-start="5433" selection-end="5433" vertical-scroll-proportion="-9.846154">
-          <folding>
-            <element signature="e#134#167#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PSI/bg_blue-568h.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -564,9 +549,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PSI/MainViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="4" selection-start="842" selection-end="842" vertical-scroll-proportion="0.22087379">
+        <state line="186" column="25" selection-start="6759" selection-end="6759" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#131#164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/DAPagesContainer/DAPagesContainer.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="405" column="29" selection-start="16681" selection-end="16690" vertical-scroll-proportion="-201.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PSI/HistoryViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="24" selection-start="5188" selection-end="5188" vertical-scroll-proportion="0.5284974">
+          <folding>
+            <element signature="e#134#167#0" expanded="true" />
           </folding>
         </state>
       </provider>

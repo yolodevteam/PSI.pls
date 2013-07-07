@@ -188,7 +188,7 @@
             }
             self.scrollView.contentSize = CGSizeMake(self.scrollWidth * self.viewControllers.count, self.scrollHeight);
             [self.scrollView setContentOffset:CGPointMake(selectedIndex * self.scrollWidth, 0.) animated:NO];
-            self.scrollView.userInteractionEnabled = YES;
+            self.scrollView.userInteractionEnabled = NO;
             self.shouldObserveContentOffset = YES;
         }];
     }

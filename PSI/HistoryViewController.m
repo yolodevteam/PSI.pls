@@ -165,6 +165,9 @@ int show = 0;
     [self.tableView reloadData];
     int lastRowNumber = [self.tableView numberOfRowsInSection:0] - 1;
     NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
+    if (_graph != nil) {
+        [_graph removeFromSuperview];
+    }
     _graph = [[Graph alloc] initWithData:data frame:CGRectMake(0, 0, 320, 312) controller:self];
     [self.graphScrollView addSubview:_graph];
     self.graphScrollView.scrollEnabled = NO;
