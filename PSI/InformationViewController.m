@@ -7,8 +7,7 @@
 //
 
 #import "InformationViewController.h"
-#import "UIImage+Tools.h"
-#import <QuartzCore/QuartzCore.h>
+#import "RTLabel.h"
 
 @interface InformationViewController ()
 
@@ -17,7 +16,7 @@
 @implementation InformationViewController
 
 @synthesize done = _done;
-@synthesize textView = _textView;
+//@synthesize textView = _textView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,13 +33,25 @@
     // Do any additional setup after loading the view from its nib.
     
     [_done addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
-    
-    _textView.text = @"Credits:\nNinjaLikesCheez: App development\nzhongfu: Backend development \nttwj: App and Backend development\n \nUsing data found at http://dawo.me/\n\nA YoloDev Team Production.\nImages (c) Colin Chan Photography 2013";
+    static NSString *sample_text = @"<font color='#ffffff'><font face='HelveticaNeue-CondensedBold' size=20>Credits</font><p>Thomas Hedderwick - App Development</p><p>Terence Tan - App/Backend development</p><p>Li Zhongfu - Backend development</p></font>"
+            "<p face='HelveticaNeue-CondensedBold' size=18 color='#ccc'>Legal</p>";
+
+    RTLabel *label = [[RTLabel alloc] initWithFrame:self.view.frame];
+    [self.labelView addSubview:label];
+    [label setText:sample_text];
+    NSString *pathToFile = [[NSBundle mainBundle] pathForResource:@"legal" ofType:@"txt"];
+    NSString *theText = [NSString stringWithContentsOfFile:pathToFile encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"the text %@", theText);
+    self.textView.text = theText;
+    //_textView.text = @"Credits:\nNinjaLikesCheez: App development\nzhongfu: Backend development \nttwj: App and Backend development\n \nUsing data found at http://dawo.me/\n\nA YoloDev Team Production.\nImages (c) Colin Chan Photography 2013";
 }
+
+
 
 - (void)dismissSelf
 {
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+    [self.delegate closeView];
 }
 
 - (void)didReceiveMemoryWarning

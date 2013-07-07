@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		367D50E86C7184DD5E055AF0 /* legal.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D55976E509860D9B6E945 /* legal.txt */; };
 		367D537817A76CA5DB7F371F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D50B62FBCC98D2D65904E /* HistoryViewController.m */; };
 		367D5574D9DA9F9C712E5BC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D53B3613F98669C82203B /* AppDelegate.m */; };
 		367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367D5550E17285DB8B1D2018 /* HistoryViewController.xib */; };
@@ -22,6 +23,8 @@
 		AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */; };
 		AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */; };
 		AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */; };
+		ADA8DC451789984700A73C77 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D52C1F13EF8D35735B5DD /* RTLabel.m */; };
+		ADA8DC47178998C200A73C77 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA8DC46178998C100A73C77 /* CoreText.framework */; };
 		ADD554A21784049800DA1391 /* PSIData.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD554A11784049800DA1391 /* PSIData.m */; };
 		ADD554A51784052900DA1391 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD554A41784052900DA1391 /* JSONKit.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc "; }; };
 		ADEB6143178430E800A2C67F /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6141178430E800A2C67F /* DataViewController.m */; };
@@ -48,10 +51,13 @@
 
 /* Begin PBXFileReference section */
 		367D50B62FBCC98D2D65904E /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		367D52C1F13EF8D35735B5DD /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		367D5302A0D9CF31E5AE4FA9 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		367D53B3613F98669C82203B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		367D5550E17285DB8B1D2018 /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		367D55976E509860D9B6E945 /* legal.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = legal.txt; sourceTree = "<group>"; };
 		367D581D53D42969863D01B7 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		367D59CD2AE151F9D9BFF49C /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		AD49097A1781C4640086E13B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AD49097B1781C4640086E13B /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		AD49097C1781C4640086E13B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -68,6 +74,7 @@
 		AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone@2x.jpg"; sourceTree = "<group>"; };
 		AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone-568h.jpg"; sourceTree = "<group>"; };
 		AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tools.m"; sourceTree = "<group>"; };
+		ADA8DC46178998C100A73C77 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		ADCB4225177B2E38007EF14A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		ADCB4227177B2E57007EF14A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		ADD554A01784049800DA1391 /* PSIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSIData.h; sourceTree = "<group>"; };
@@ -107,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA8DC47178998C200A73C77 /* CoreText.framework in Frameworks */,
 				E92E499C17760B23002E9C46 /* QuartzCore.framework in Frameworks */,
 				E90770D81775A4D200139FFC /* UIKit.framework in Frameworks */,
 				E90770DA1775A4D200139FFC /* Foundation.framework in Frameworks */,
@@ -148,6 +156,8 @@
 				ADEB614F178537E800A2C67F /* SpiralPullToRefresh.m */,
 				367D5302A0D9CF31E5AE4FA9 /* AppDelegate.h */,
 				367D53B3613F98669C82203B /* AppDelegate.m */,
+				367D52C1F13EF8D35735B5DD /* RTLabel.m */,
+				367D59CD2AE151F9D9BFF49C /* RTLabel.h */,
 			);
 			name = "External Libraries";
 			sourceTree = "<group>";
@@ -155,6 +165,7 @@
 		E90770CB1775A4D200139FFC = {
 			isa = PBXGroup;
 			children = (
+				ADA8DC46178998C100A73C77 /* CoreText.framework */,
 				E90770DD1775A4D200139FFC /* PSI */,
 				E90770D61775A4D200139FFC /* Frameworks */,
 				E90770D51775A4D200139FFC /* Products */,
@@ -228,6 +239,7 @@
 				E90770ED1775A4D200139FFC /* Default-568h@2x.png */,
 				E9614C2C1776F9F000FA08A2 /* UIButtonBarRefresh.png */,
 				E9614C2D1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png */,
+				367D55976E509860D9B6E945 /* legal.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -301,6 +313,7 @@
 				AD49097D1781C4640086E13B /* MainViewController.xib in Resources */,
 				ADEB614817844C5900A2C67F /* RegionViewController.xib in Resources */,
 				367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */,
+				367D50E86C7184DD5E055AF0 /* legal.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA8DC451789984700A73C77 /* RTLabel.m in Sources */,
 				E90770E41775A4D200139FFC /* main.m in Sources */,
 				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,
 				E92E499F17760BA2002E9C46 /* Graph.m in Sources */,

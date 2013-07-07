@@ -41,7 +41,7 @@
 
     int hour = [date intValue];
 
-    if (hour > 19 || hour < 7) {
+    if (hour > 18 || hour < 6) {
         // Set a night time background picture (this is only if we can't get webcam images before release)
         if (IS_4INCH_SCREEN) {
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:[[[UIImage imageNamed:@"bg_iphone-568h.jpg"] imageWithGaussianBlur] CGImage] scale:2.0 orientation:UIImageOrientationUp]];
@@ -140,17 +140,19 @@
     self.data.delegate = self;
     [self.data loadData];
 
-
 }
 
 - (void)showInfo
 {
-        InformationViewController *info = [[InformationViewController alloc] initWithNibName:@"InformationViewController" bundle:nil];
+    InformationViewController *info = [[InformationViewController alloc] initWithNibName:@"InformationViewController" bundle:nil];
     info.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    
-    [self presentModalViewController:info animated:YES];
+    info.delegate = self;
+    //[self presentModalViewController:info animated:YES ];
+    [self presentTransparentModalViewController:info animated:YES withAlpha:0.89];
 }
-
+- (void)closeView {
+    [self dismissTransparentModalViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -159,6 +161,25 @@
 }
 
 -(void)loadingCompleted:(PSIData *)data {
+    int lasthour = [self.data getLastHour];
+    NSString* suffix;
+    NSLog(@"last hour %d", lasthour);
+    if (lasthour > 12) {
+        suffix = @"pm";
+        lasthour = lasthour - 12;
+    }
+    else if (lasthour == 0) {
+        suffix = @"am";
+        lasthour = 12;
+    }
+    else if (lasthour == 12) {
+        suffix = @"pm";
+        //lasthour = 12;
+    }
+    
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ at %d%@", [self getSingaporeDate], lasthour, suffix];
+    
+
     NSLog(@"LOADING COMPLETED GUYS!!! %@", data);
     for (RegionViewController *region in self.pagesContainer.viewControllers) {
         NSLog(@"title %@", region.title);
@@ -182,4 +203,82 @@
 
     return time;
 }
+
+- (NSString *)getSingaporeDate
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    dateFormatter.dateFormat = @"EEE, dd MMM";
+
+    
+    NSTimeZone *sgt = [NSTimeZone timeZoneWithAbbreviation:@"SGT"];
+    [dateFormatter setTimeZone:sgt];
+    
+    NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+    
+    return time;
+}
+
+
+
+#pragma mark - Transparent Modal View
+-(void) presentTransparentModalViewController: (UIViewController *) aViewController
+                                     animated: (BOOL) isAnimated
+                                    withAlpha: (CGFloat) anAlpha{
+
+    self.transparentModalViewController = aViewController;
+    UIView *view = aViewController.view;
+
+    view.opaque = NO;
+    view.alpha = anAlpha;
+    [view.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        UIView *each = obj;
+        each.opaque = NO;
+        each.alpha = anAlpha;
+    }];
+
+    if (isAnimated) {
+        //Animated
+        CGRect mainrect = [[UIScreen mainScreen] bounds];
+
+        [self.view addSubview:view];
+        view.alpha = 0;
+        view.frame = mainrect;
+        [UIView animateWithDuration:0.3
+                animations:^{
+                    view.alpha = anAlpha;
+
+                } completion:^(BOOL finished) {
+            //nop
+        }];
+
+    } else{
+        view.frame = [[UIScreen mainScreen] bounds];
+        [self.view addSubview:view];
+    }
+
+
+
+
+
+
+}
+
+-(void) dismissTransparentModalViewControllerAnimated:(BOOL) animated{
+
+    if (animated) {
+        CGRect mainrect = [[UIScreen mainScreen] bounds];
+        //CGRect newRect = CGRectMake(0, mainrect.size.height, mainrect.size.width, mainrect.size.height);
+        [UIView animateWithDuration:0.8
+                animations:^{
+                    self.transparentModalViewController.view.alpha = 0;
+                } completion:^(BOOL finished) {
+            [self.transparentModalViewController.view removeFromSuperview];
+            self.transparentModalViewController = nil;
+        }];
+    }
+
+
+}
+
 @end

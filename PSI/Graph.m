@@ -25,6 +25,7 @@ CGFloat dash[] = {3,2};
 CGFloat dashNormal[1]={1};
 
 
+
 CGRect touchesAreas[kNumberOfBars];
 
 #warning be aware to get accurate data points all values in data[] need to be multiplied by 3 for scale
@@ -33,6 +34,14 @@ CGRect touchesAreas[kNumberOfBars];
 -(id)initWithData:(PSIData*) data frame:(CGRect) frame controller:(UIViewController*) controller {
     self = [super initWithFrame:frame];
     _data = data;
+    if (IS_4INCH_SCREEN) {
+        kGraphBottom = _kGraphBottom + 61;
+        kGraphHeight = _kGraphHeight + 88;
+    }
+    else {
+        kGraphBottom = _kGraphBottom;
+        kGraphHeight = _kGraphHeight;
+    }
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
         psiValues = [[NSMutableArray alloc] initWithCapacity:24];
@@ -46,6 +55,7 @@ CGRect touchesAreas[kNumberOfBars];
         }
 
     }
+
     return self;
 }
 
@@ -176,7 +186,8 @@ CGRect touchesAreas[kNumberOfBars];
     CGContextDrawPath(context, kCGPathFillStroke);
 
 
-
+    CGContextSetLineWidth(context, 0.6);
+    CGContextSetFillColorWithColor(context, [[UIColor colorWithWhite:1 alpha:0.75] CGColor]);
     CGContextMoveToPoint(context, 0, kGraphHeight);
     CGContextAddLineToPoint(context, 320, kGraphHeight);
     CGContextStrokePath(context);
