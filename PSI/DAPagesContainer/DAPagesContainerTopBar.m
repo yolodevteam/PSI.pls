@@ -24,6 +24,9 @@
 CGFloat const DAPagesContainerTopBarItemViewWidth = 100.;
 CGFloat const DAPagesContainerTopBarItemsOffset = 30.;
 
+
+
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -31,12 +34,14 @@ CGFloat const DAPagesContainerTopBarItemsOffset = 30.;
         self.scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
         self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         self.scrollView.showsHorizontalScrollIndicator = NO;
-        self.scrollView.userInteractionEnabled = NO;
+        //self.scrollView.userInteractionEnabled = NO;
         [self addSubview:self.scrollView];
+        self.scrollView.scrollEnabled = NO;
         self.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18];
     }
     return self;
 }
+
 
 #pragma mark - Public
 
@@ -100,6 +105,7 @@ CGFloat const DAPagesContainerTopBarItemsOffset = 30.;
 
 - (void)itemViewTapped:(UIButton *)sender
 {
+    NSLog(@"button tapped");
     [self.delegate itemAtIndex:[self.itemViews indexOfObject:sender] didSelectInPagesContainerTopBar:self];
 }
 

@@ -18,7 +18,7 @@
 @end
 
 
-@interface DAPagesContainerTopBar : UIView
+@interface DAPagesContainerTopBar : UIView<UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSArray *itemTitles;
 @property (strong, nonatomic) UIFont *font;

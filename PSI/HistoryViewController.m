@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "HistoryViewController.h"
 #import "Graph.h"
+#import "HistoryViewCell.h"
 
 @interface HistoryViewController ()
 
@@ -75,22 +76,20 @@ int show = 0;
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    static NSString *cellIdentifier = @"HistoryCell";
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    UIButton *psi;
+    HistoryViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell = [[HistoryViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18];
 
-
+        UIButton* psi;
         psi = [[UIButton alloc] initWithFrame:CGRectMake(190, 0, 128, 26)];
         psi.center = CGPointMake(250 ,cell.contentView.bounds.size.height/2);
         psi.titleLabel.textColor = [UIColor whiteColor];
         psi.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:19];
         psi.layer.cornerRadius = 5;
-        psi.tag = [indexPath row];
         psi.titleLabel.textAlignment = UITextAlignmentCenter;
         psi.layer.shadowColor = [[UIColor blackColor] CGColor];
         psi.layer.shadowOffset = CGSizeMake(0.0, 0.0);
@@ -98,9 +97,11 @@ int show = 0;
         psi.layer.shadowOpacity = 0.1;
         psi.layer.masksToBounds = NO;
 
-        [psi addTarget:self action:@selector(buttonPressedAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.psi = psi;
 
-        [cell addSubview:psi];
+        [cell.psi addTarget:self action:@selector(buttonPressedAction:) forControlEvents:UIControlEventTouchUpInside];
+
+        [cell addSubview:cell.psi];
     }
     switch (show) {
         case 0: {
@@ -108,9 +109,13 @@ int show = 0;
             break;
         }
     }
+
     int psi_t = [[[[self.data.sortedResults objectAtIndex:indexPath.row] objectForKey:@"psi"] objectForKey:@"3hr"] integerValue];
+    NSLog(@"index path %d, psi %d", indexPath.row, psi_t);
+    [cell.psi setTitle:[NSString stringWithFormat:@"%d", psi_t] forState:UIControlStateNormal];
     cell.textLabel.backgroundColor = [UIColor clearColor];
-    psi.backgroundColor = [self.data getColorFromPSI:psi_t withAlpha:0.75];
+    cell.psi.backgroundColor = [self.data getColorFromPSI:psi_t withAlpha:0.75];
+    cell.psi.tag = [indexPath row];
 
     NSArray* split = [[self.data.sortedKeys objectAtIndex:indexPath.row] componentsSeparatedByString:@":"];
     int hour = [split[2] integerValue];
@@ -129,11 +134,8 @@ int show = 0;
             suffix = @"pm";
         }
     }
-    [psi setTitle:[NSString stringWithFormat:@"%d", psi_t] forState:UIControlStateNormal];
+
     cell.textLabel.text = [NSString stringWithFormat:@"%d%@", hour, suffix];
-
-
-
     return cell;
 
 

@@ -161,6 +161,9 @@
         suffix = @"pm";
         //lasthour = 12;
     }
+    else {
+        suffix = @"am";
+    }
     
     self.timeLabel.text = [NSString stringWithFormat:@"%@ at %d%@", [self getSingaporeDate], lasthour, suffix];
     

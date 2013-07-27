@@ -134,8 +134,8 @@
         if (selectedIndex == _selectedIndex) {
             self.pageIndicatorView.center = CGPointMake([self.topBar centerForSelectedItemAtIndex:selectedIndex].x,
                                                         self.pageIndicatorView.center.y);
-            leftViewController.view.alpha = 1.0;
-            rightViewController.view.alpha = 1.0;
+            //leftViewController.view.alpha = 1.0;
+            //rightViewController.view.alpha = 1.0;
 
         }
 
@@ -156,29 +156,31 @@
         if (scrollingRight) {
             self.scrollView.contentOffset = CGPointZero;
             targetOffset = CGPointMake(self.scrollWidth, 0.);
-            [UIView animateWithDuration:0.5 animations:^{
+            /*[UIView animateWithDuration:0.5 animations:^{
                 leftViewController.view.alpha = 1.0;
                 rightViewController.view.alpha = 1.0;
-            }];
+            }];*/
         } else {
             self.scrollView.contentOffset = CGPointMake(self.scrollWidth, 0.);
             targetOffset = CGPointZero;
-            [UIView animateWithDuration:0.5 animations:^{
+            /*[UIView animateWithDuration:0.5 animations:^{
                 rightViewController.view.alpha = 1.0;
                 leftViewController.view.alpha = 1.0;
-            }];
+            }];*/
             
         }
         [self.scrollView setContentOffset:targetOffset animated:YES];
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+
+            leftViewController.view.alpha = 0;
+            rightViewController.view.alpha = 0;
+            
             self.pageIndicatorView.center = CGPointMake([self.topBar centerForSelectedItemAtIndex:selectedIndex].x,
                                                         self.pageIndicatorView.center.y);
             self.topBar.scrollView.contentOffset = [self.topBar contentOffsetForSelectedItemAtIndex:selectedIndex];
             [previosSelectdItem setTitleColor:[UIColor colorWithWhite:0.6 alpha:1.] forState:UIControlStateNormal];
             [nextSelectdItem setTitleColor:[UIColor colorWithWhite:1. alpha:1.] forState:UIControlStateNormal];
 
-            leftViewController.view.alpha = 1.0;
-            rightViewController.view.alpha = 1.0;
 
         } completion:^(BOOL finished) {
             for (NSUInteger i = 0; i < self.viewControllers.count; i++) {
@@ -188,8 +190,10 @@
             }
             self.scrollView.contentSize = CGSizeMake(self.scrollWidth * self.viewControllers.count, self.scrollHeight);
             [self.scrollView setContentOffset:CGPointMake(selectedIndex * self.scrollWidth, 0.) animated:NO];
-            self.scrollView.userInteractionEnabled = NO;
+            self.scrollView.userInteractionEnabled = YES;
             self.shouldObserveContentOffset = YES;
+            leftViewController.view.alpha = 1;
+            rightViewController.view.alpha = 1;
         }];
     }
     _selectedIndex = selectedIndex;
@@ -308,7 +312,7 @@
 
 - (void)itemAtIndex:(NSUInteger)index didSelectInPagesContainerTopBar:(DAPagesContainerTopBar *)bar
 {
-    //[self setSelectedIndex:index animated:YES];
+    [self setSelectedIndex:index animated:YES];
 }
 
 #pragma mark - UIScrollView delegate
@@ -371,8 +375,8 @@
                         (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
                         self.pageIndicatorView.center.y);
 
-                if (self.fadeIndex == targetIndex) {
-                    [UIView animateWithDuration:0.5 animations:^{
+               /* if (self.fadeIndex == targetIndex) {
+                   UIView animateWithDuration:0.5 animations:^{
                         leftView.view.alpha = 1.0;
                         rightView.view.alpha = 1.0;
                     }];
@@ -383,7 +387,7 @@
                         rightView.view.alpha = 1.0;
                     }];
 
-                }
+                }*/
 
 
             } else {
@@ -392,10 +396,10 @@
                 self.pageIndicatorView.center = CGPointMake(previousItemPageIndicatorX -
                         (nextItemPageIndicatorX - previousItemPageIndicatorX) * ratio,
                         self.pageIndicatorView.center.y);
-                [UIView animateWithDuration:0.5 animations:^{
+                /*[UIView animateWithDuration:0.5 animations:^{
                     leftView.view.alpha = 1.0;
                     rightView.view.alpha = 0.5;
-                }];
+                }];*/
 
 
 
@@ -403,7 +407,7 @@
             }
         }
     }
-    self.scrollView.userInteractionEnabled = NO;
+    //self.scrollView.userInteractionEnabled = NO;
 }
 #pragma mark - KVO
 

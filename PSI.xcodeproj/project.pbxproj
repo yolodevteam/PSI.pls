@@ -11,6 +11,7 @@
 		367D537817A76CA5DB7F371F /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D50B62FBCC98D2D65904E /* HistoryViewController.m */; };
 		367D5574D9DA9F9C712E5BC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D53B3613F98669C82203B /* AppDelegate.m */; };
 		367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367D5550E17285DB8B1D2018 /* HistoryViewController.xib */; };
+		367D57E423C6B0A613E6AFBC /* HistoryViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D5E017F6421968B076C42 /* HistoryViewCell.m */; };
 		AD49097D1781C4640086E13B /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD49097B1781C4640086E13B /* MainViewController.xib */; };
 		AD49097E1781C4640086E13B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49097C1781C4640086E13B /* MainViewController.m */; };
 		AD4909861781CC010086E13B /* DAPageIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4909811781CC010086E13B /* DAPageIndicatorView.m */; };
@@ -58,6 +59,8 @@
 		367D55976E509860D9B6E945 /* legal.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = legal.txt; sourceTree = "<group>"; };
 		367D581D53D42969863D01B7 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		367D59CD2AE151F9D9BFF49C /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
+		367D5E017F6421968B076C42 /* HistoryViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewCell.m; sourceTree = "<group>"; };
+		367D5E3A6247C864E656415F /* HistoryViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewCell.h; sourceTree = "<group>"; };
 		AD49097A1781C4640086E13B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AD49097B1781C4640086E13B /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		AD49097C1781C4640086E13B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 				367D50B62FBCC98D2D65904E /* HistoryViewController.m */,
 				367D581D53D42969863D01B7 /* HistoryViewController.h */,
 				367D5550E17285DB8B1D2018 /* HistoryViewController.xib */,
+				367D5E017F6421968B076C42 /* HistoryViewCell.m */,
+				367D5E3A6247C864E656415F /* HistoryViewCell.h */,
 			);
 			path = PSI;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				ADEB6150178537E800A2C67F /* SpiralPullToRefresh.m in Sources */,
 				367D537817A76CA5DB7F371F /* HistoryViewController.m in Sources */,
 				367D5574D9DA9F9C712E5BC2 /* AppDelegate.m in Sources */,
+				367D57E423C6B0A613E6AFBC /* HistoryViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
