@@ -1,4 +1,4 @@
-PSI
+PSI.pls
 =======
 
 Simple iOS app to show 3-hour PSI/PM2.5 readings
