@@ -27,8 +27,6 @@
 - (void)viewDidLoad
 {
     _pm25Value.adjustsFontSizeToFitWidth = YES;
-    _pm25Value.minimumFontSize = 15;
-
     [self addShadow:_psiValue];
     [self addShadow:_pm25Value];
 

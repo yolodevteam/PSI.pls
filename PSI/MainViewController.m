@@ -37,6 +37,8 @@
 {
     [super viewDidLoad];
     NSLog(@"hello swag");
+    
+    self.info.tintColor = [UIColor whiteColor];
 
     NSString *date = [self getSingaporeTimeWithMinutes:NO];
 
@@ -67,6 +69,9 @@
     self.pagesContainer.view.frame = self.pagesView.bounds;
     self.pagesContainer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.pagesView addSubview:self.pagesContainer.view];
+    self.edgesForExtendedLayout=UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars=NO;
+    self.automaticallyAdjustsScrollViewInsets=NO;
     [self.pagesContainer didMoveToParentViewController:self];
 
     HistoryViewController *historyController = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
@@ -98,7 +103,7 @@
     centralController.region = @"central";
 
 
-   // [historyController.tableView removeObserver:<#(NSObject *)observer#> forKeyPath:<#(NSString *)keyPath#> :self forKeyPath:@"contentOffset" options:0 context:nil];
+   // [historyController.tableView removeObserver:(NSObject *)observer forKeyPath:<#(NSString *)keyPath#> :self forKeyPath:@"contentOffset" options:0 context:nil];
 
     self.pagesContainer.viewControllers = @[historyController, threeHourController, northController, southController, eastController, westController, centralController];
     [self.pagesContainer setSelectedIndex:1 animated:NO];
@@ -315,6 +320,9 @@
     }];
 
 
+}
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 - (void)refreshData
 {

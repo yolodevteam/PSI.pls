@@ -16,6 +16,12 @@
 @property (nonatomic, strong) IBOutlet UILabel* pm25Value;
 @property (nonatomic, strong) IBOutlet UILabel* pm25Health;
 
+@property (nonatomic, strong) IBOutlet UILabel* pm25Label;
+@property (nonatomic, strong) IBOutlet UILabel* ozoneLabel;
+@property (nonatomic, strong) IBOutlet UILabel* no3Label;
+@property (nonatomic, strong) IBOutlet UILabel* pm10Label;
+@property (nonatomic, strong) IBOutlet UILabel* so2Label;
+
 @property (nonatomic, strong) NSString* region;
 @end
 

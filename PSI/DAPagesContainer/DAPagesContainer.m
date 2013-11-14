@@ -174,7 +174,7 @@
 
             leftViewController.view.alpha = 0;
             rightViewController.view.alpha = 0;
-            
+
             self.pageIndicatorView.center = CGPointMake([self.topBar centerForSelectedItemAtIndex:selectedIndex].x,
                                                         self.pageIndicatorView.center.y);
             self.topBar.scrollView.contentOffset = [self.topBar contentOffsetForSelectedItemAtIndex:selectedIndex];
