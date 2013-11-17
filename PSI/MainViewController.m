@@ -353,5 +353,6 @@ BOOL PollutantsLoaded = NO;
     _refresh.enabled = NO;
     [self showLoadingView];;
     [_data loadData];
+    [_pollutantData loadData];
 }
 @end

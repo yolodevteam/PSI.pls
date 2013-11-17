@@ -25,6 +25,11 @@
 		AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */; };
 		AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */; };
 		ADA3523C18388F3D000A4D15 /* PollutantData.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA3523B18388F3D000A4D15 /* PollutantData.m */; };
+		ADA3524B1838F911000A4D15 /* CO.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA352471838F911000A4D15 /* CO.html */; };
+		ADA3524C1838F911000A4D15 /* O3.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA352481838F911000A4D15 /* O3.html */; };
+		ADA3524D1838F911000A4D15 /* PM10.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA352491838F911000A4D15 /* PM10.html */; };
+		ADA3524E1838F911000A4D15 /* SO2.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA3524A1838F911000A4D15 /* SO2.html */; };
+		ADA352501839098C000A4D15 /* Info.css in Resources */ = {isa = PBXBuildFile; fileRef = ADA3524F1839098B000A4D15 /* Info.css */; };
 		ADA8DC451789984700A73C77 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D52C1F13EF8D35735B5DD /* RTLabel.m */; };
 		ADA8DC47178998C200A73C77 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA8DC46178998C100A73C77 /* CoreText.framework */; };
 		ADCAD99A1837304F006E57A5 /* HealthInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */; };
@@ -82,6 +87,11 @@
 		AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tools.m"; sourceTree = "<group>"; };
 		ADA3523A18388F3D000A4D15 /* PollutantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollutantData.h; sourceTree = "<group>"; };
 		ADA3523B18388F3D000A4D15 /* PollutantData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollutantData.m; sourceTree = "<group>"; };
+		ADA352471838F911000A4D15 /* CO.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CO.html; sourceTree = "<group>"; };
+		ADA352481838F911000A4D15 /* O3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = O3.html; sourceTree = "<group>"; };
+		ADA352491838F911000A4D15 /* PM10.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PM10.html; sourceTree = "<group>"; };
+		ADA3524A1838F911000A4D15 /* SO2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SO2.html; sourceTree = "<group>"; };
+		ADA3524F1839098B000A4D15 /* Info.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Info.css; sourceTree = "<group>"; };
 		ADA8DC46178998C100A73C77 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		ADCAD9971837304F006E57A5 /* HealthInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthInfoViewController.h; sourceTree = "<group>"; };
 		ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthInfoViewController.m; sourceTree = "<group>"; };
@@ -244,6 +254,11 @@
 				E90770E01775A4D200139FFC /* InfoPlist.strings */,
 				E90770E31775A4D200139FFC /* main.m */,
 				E90770E51775A4D200139FFC /* PSI-Prefix.pch */,
+				ADA352471838F911000A4D15 /* CO.html */,
+				ADA352481838F911000A4D15 /* O3.html */,
+				ADA352491838F911000A4D15 /* PM10.html */,
+				ADA3524A1838F911000A4D15 /* SO2.html */,
+				ADA3524F1839098B000A4D15 /* Info.css */,
 				ADCB4227177B2E57007EF14A /* Icon@2x.png */,
 				ADCB4225177B2E38007EF14A /* Icon.png */,
 				AD9DA18D1776E4BA005B2C62 /* bg_iphone.jpg */,
@@ -315,24 +330,29 @@
 			files = (
 				E90770E21775A4D200139FFC /* InfoPlist.strings in Resources */,
 				E90770EA1775A4D200139FFC /* Default.png in Resources */,
+				ADA3524C1838F911000A4D15 /* O3.html in Resources */,
 				ADCAD99B1837304F006E57A5 /* HealthInfoViewController.xib in Resources */,
 				E90770EC1775A4D200139FFC /* Default@2x.png in Resources */,
 				E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */,
 				E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */,
+				ADA3524D1838F911000A4D15 /* PM10.html in Resources */,
 				AD9DA1901776E4BA005B2C62 /* bg_iphone.jpg in Resources */,
 				AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */,
 				AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */,
 				E9614C2E1776F9F000FA08A2 /* UIButtonBarRefresh.png in Resources */,
 				E9614C2F1776F9F000FA08A2 /* UIButtonBarRefresh@2x.png in Resources */,
 				AD5FC20117785C9A0098B5AC /* bg_blue-568h.jpg in Resources */,
+				ADA3524B1838F911000A4D15 /* CO.html in Resources */,
 				AD5FC20217785C9A0098B5AC /* bg_blue.jpg in Resources */,
 				AD5FC20317785C9A0098B5AC /* bg_blue@2x.jpg in Resources */,
+				ADA352501839098C000A4D15 /* Info.css in Resources */,
 				E9F02F5E177C585D00F4B438 /* Icon.png in Resources */,
 				E9F02F5F177C585E00F4B438 /* Icon@2x.png in Resources */,
 				AD49097D1781C4640086E13B /* MainViewController.xib in Resources */,
 				ADEB614817844C5900A2C67F /* RegionViewController.xib in Resources */,
 				367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */,
 				367D50E86C7184DD5E055AF0 /* legal.txt in Resources */,
+				ADA3524E1838F911000A4D15 /* SO2.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -144,6 +144,7 @@ NSString* getHealthFromAQI(int AQI)
     return text;
 }
 
+
 int getAQIfromPM25(float PM25) {
     int AQILow, AQIHigh, AQI;
     float breakPointLow, breakPointHigh;

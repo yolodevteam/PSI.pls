@@ -12,6 +12,12 @@
 @interface HealthInfoViewController : UIViewController
 
 -(void)setURL: (NSString*) url;
--(void)seTTitle: (NSString*) title;
+-(void)setTitle: (NSString*) title;
+-(void) openHTML;
+
+@property (nonatomic, strong) IBOutlet UIWebView* webView;
+@property (nonatomic, strong) NSString* key;
+@property (nonatomic, strong) IBOutlet UINavigationBar* bar;
+
 
 @end

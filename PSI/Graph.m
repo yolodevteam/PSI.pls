@@ -46,6 +46,14 @@ CGRect touchesAreas[kNumberOfBars];
         [self setBackgroundColor:[UIColor clearColor]];
         psiValues = data.sortedResults;
     }
+    NSLog(@"sorted results bro, %@", data.sortedResults);
+    for (NSString* psi_s in data.sortedResults) {
+        if ([psi_s integerValue] > highest) {
+            highest = [psi_s floatValue];
+            
+        }
+    }
+    NSLog(@"highest %lf", highest);
     
     return self;
 }
@@ -96,7 +104,7 @@ CGRect touchesAreas[kNumberOfBars];
     NSLog(@"psi values %@", psiValues);
     for (int i = 0; i < kNumberOfBars; i++) {
         scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
-        
+        NSLog(@"da scaled %f", scaled);
         if (i == 0) {
             CGContextMoveToPoint(context, kOffsetX, kGraphHeight - (maxGraphHeight * scaled));
         } else {

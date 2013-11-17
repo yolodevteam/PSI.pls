@@ -14,12 +14,15 @@
 
 @interface RegionViewController : DataViewController {
     NSDictionary* regionDictionary;
+    NSString* key;
+    NSString* name;
 }
 
 @property (nonatomic, strong) IBOutlet UILabel* psiValue;
 @property (nonatomic, strong) IBOutlet UILabel* psiHealth;
 @property (nonatomic, strong) IBOutlet UILabel* pm25Value;
 @property (nonatomic, strong) IBOutlet UILabel* pm25Health;
+@property (nonatomic, strong) IBOutlet UILabel* unitLabel;
 
 @property (nonatomic, strong) IBOutlet UILabel* pm25Label;
 @property (nonatomic, strong) IBOutlet UILabel* ozoneLabel;

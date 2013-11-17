@@ -31,11 +31,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self openHTML];
     
 }
 -(IBAction) done:(id) sender {
     NSLog(@"save");
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+-(void) setTitle:(NSString *)title {
+    NSLog(@"title bro %@", title);
+    self.bar.topItem.title = title;
+}
+
+-(void) openHTML {
+    NSLog(@"self.key %@", self.key);
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:self.key ofType:@"html"];
+    NSLog(@"html file %@", htmlFile);
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    NSLog(@"html string %@", htmlString);
+    [self.webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+
 }
 
 - (void)didReceiveMemoryWarning
