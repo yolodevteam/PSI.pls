@@ -57,6 +57,13 @@ int show = 0;
         return;
     }
 }
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setBackgroundColor:[UIColor clearColor]];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self selectAtIndexPath:indexPath];
 }
@@ -109,12 +116,13 @@ int show = 0;
             break;
         }
     }
-
-    int psi_t = [[[[self.data.sortedResults objectAtIndex:indexPath.row] objectForKey:@"psi"] objectForKey:@"3hr"] integerValue];
+    
+    int psi_t = [[self.data.sortedResults objectAtIndex:indexPath.row] integerValue];
+    
     NSLog(@"index path %d, psi %d", indexPath.row, psi_t);
     [cell.psi setTitle:[NSString stringWithFormat:@"%d", psi_t] forState:UIControlStateNormal];
     cell.textLabel.backgroundColor = [UIColor clearColor];
-    cell.psi.backgroundColor = [self.data getColorFromPSI:psi_t withAlpha:0.75];
+    cell.psi.backgroundColor = getColorFromPSI(psi_t, 0.75);
     cell.psi.tag = [indexPath row];
 
     NSArray* split = [[self.data.sortedKeys objectAtIndex:indexPath.row] componentsSeparatedByString:@":"];
@@ -165,6 +173,8 @@ int show = 0;
     [super setData:data];
     NSLog(@"hello hello 12930-940849038403748374837##########");
     [self.tableView reloadData];
+    NSLog(@"helloooooo");
+    
     int lastRowNumber = [self.tableView numberOfRowsInSection:0] - 1;
     NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
     if (_graph != nil) {
@@ -175,7 +185,7 @@ int show = 0;
     self.graphScrollView.scrollEnabled = NO;
     self.tableView.directionalLockEnabled = YES;
     self.tableView.bounces = NO;
-    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    //[self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
     [self selectAtIndexPath:ip];
 
 }

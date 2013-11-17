@@ -24,10 +24,13 @@
 		AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */; };
 		AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */; };
 		AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */; };
+		ADA3523C18388F3D000A4D15 /* PollutantData.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA3523B18388F3D000A4D15 /* PollutantData.m */; };
 		ADA8DC451789984700A73C77 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D52C1F13EF8D35735B5DD /* RTLabel.m */; };
 		ADA8DC47178998C200A73C77 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA8DC46178998C100A73C77 /* CoreText.framework */; };
+		ADCAD99A1837304F006E57A5 /* HealthInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */; };
+		ADCAD99B1837304F006E57A5 /* HealthInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADCAD9991837304F006E57A5 /* HealthInfoViewController.xib */; };
 		ADD554A21784049800DA1391 /* PSIData.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD554A11784049800DA1391 /* PSIData.m */; };
-		ADD554A51784052900DA1391 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD554A41784052900DA1391 /* JSONKit.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc "; }; };
+		ADD554A51784052900DA1391 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD554A41784052900DA1391 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		ADEB6143178430E800A2C67F /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB6141178430E800A2C67F /* DataViewController.m */; };
 		ADEB614717844C5900A2C67F /* RegionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADEB614517844C5900A2C67F /* RegionViewController.m */; };
 		ADEB614817844C5900A2C67F /* RegionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADEB614617844C5900A2C67F /* RegionViewController.xib */; };
@@ -77,7 +80,12 @@
 		AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone@2x.jpg"; sourceTree = "<group>"; };
 		AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone-568h.jpg"; sourceTree = "<group>"; };
 		AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tools.m"; sourceTree = "<group>"; };
+		ADA3523A18388F3D000A4D15 /* PollutantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollutantData.h; sourceTree = "<group>"; };
+		ADA3523B18388F3D000A4D15 /* PollutantData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollutantData.m; sourceTree = "<group>"; };
 		ADA8DC46178998C100A73C77 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		ADCAD9971837304F006E57A5 /* HealthInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthInfoViewController.h; sourceTree = "<group>"; };
+		ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthInfoViewController.m; sourceTree = "<group>"; };
+		ADCAD9991837304F006E57A5 /* HealthInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HealthInfoViewController.xib; sourceTree = "<group>"; };
 		ADCB4225177B2E38007EF14A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		ADCB4227177B2E57007EF14A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		ADD554A01784049800DA1391 /* PSIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSIData.h; sourceTree = "<group>"; };
@@ -203,11 +211,16 @@
 				ADEB614417844C5900A2C67F /* RegionViewController.h */,
 				ADEB614517844C5900A2C67F /* RegionViewController.m */,
 				ADEB614617844C5900A2C67F /* RegionViewController.xib */,
+				ADCAD9971837304F006E57A5 /* HealthInfoViewController.h */,
+				ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */,
+				ADCAD9991837304F006E57A5 /* HealthInfoViewController.xib */,
 				AD49097A1781C4640086E13B /* MainViewController.h */,
 				AD49097B1781C4640086E13B /* MainViewController.xib */,
 				AD49097C1781C4640086E13B /* MainViewController.m */,
 				ADD554A01784049800DA1391 /* PSIData.h */,
 				ADD554A11784049800DA1391 /* PSIData.m */,
+				ADA3523A18388F3D000A4D15 /* PollutantData.h */,
+				ADA3523B18388F3D000A4D15 /* PollutantData.m */,
 				AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */,
 				E92E49961775F25F002E9C46 /* InformationViewController.h */,
 				E92E49971775F25F002E9C46 /* InformationViewController.m */,
@@ -302,6 +315,7 @@
 			files = (
 				E90770E21775A4D200139FFC /* InfoPlist.strings in Resources */,
 				E90770EA1775A4D200139FFC /* Default.png in Resources */,
+				ADCAD99B1837304F006E57A5 /* HealthInfoViewController.xib in Resources */,
 				E90770EC1775A4D200139FFC /* Default@2x.png in Resources */,
 				E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */,
 				E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */,
@@ -329,12 +343,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA3523C18388F3D000A4D15 /* PollutantData.m in Sources */,
 				ADA8DC451789984700A73C77 /* RTLabel.m in Sources */,
 				E90770E41775A4D200139FFC /* main.m in Sources */,
 				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,
 				E92E499F17760BA2002E9C46 /* Graph.m in Sources */,
 				AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */,
 				AD49097E1781C4640086E13B /* MainViewController.m in Sources */,
+				ADCAD99A1837304F006E57A5 /* HealthInfoViewController.m in Sources */,
 				AD4909861781CC010086E13B /* DAPageIndicatorView.m in Sources */,
 				AD4909871781CC010086E13B /* DAPagesContainer.m in Sources */,
 				AD4909881781CC010086E13B /* DAPagesContainerTopBar.m in Sources */,
@@ -429,10 +445,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSI/PSI-Prefix.pch";
 				INFOPLIST_FILE = "PSI/PSI-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F77857AC-AB57-4B3F-8C2E-997766F219FD";
+				PROVISIONING_PROFILE = "809ABFE4-19B4-4542-A661-CCFDE5AD4656";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "809ABFE4-19B4-4542-A661-CCFDE5AD4656";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -448,11 +464,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSI/PSI-Prefix.pch";
 				INFOPLIST_FILE = "PSI/PSI-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F77857AC-AB57-4B3F-8C2E-997766F219FD";
-				"PROVISIONING_PROFILE[sdk=*]" = "F77857AC-AB57-4B3F-8C2E-997766F219FD";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F77857AC-AB57-4B3F-8C2E-997766F219FD";
+				PROVISIONING_PROFILE = "809ABFE4-19B4-4542-A661-CCFDE5AD4656";
+				"PROVISIONING_PROFILE[sdk=*]" = "809ABFE4-19B4-4542-A661-CCFDE5AD4656";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "809ABFE4-19B4-4542-A661-CCFDE5AD4656";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -20,8 +20,11 @@
 
 @implementation MainViewController {
     InformationViewController *info;
+    
 }
 
+BOOL PSILoaded = NO;
+BOOL PollutantsLoaded = NO;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +40,8 @@
 {
     [super viewDidLoad];
     NSLog(@"hello swag");
+    
+    self.info.tintColor = [UIColor whiteColor];
 
     NSString *date = [self getSingaporeTimeWithMinutes:NO];
 
@@ -67,6 +72,9 @@
     self.pagesContainer.view.frame = self.pagesView.bounds;
     self.pagesContainer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.pagesView addSubview:self.pagesContainer.view];
+    self.edgesForExtendedLayout=UIRectEdgeNone;
+    self.extendedLayoutIncludesOpaqueBars=NO;
+    self.automaticallyAdjustsScrollViewInsets=NO;
     [self.pagesContainer didMoveToParentViewController:self];
 
     HistoryViewController *historyController = [[HistoryViewController alloc] initWithNibName:@"HistoryViewController" bundle:nil];
@@ -98,7 +106,7 @@
     centralController.region = @"central";
 
 
-   // [historyController.tableView removeObserver:<#(NSObject *)observer#> forKeyPath:<#(NSString *)keyPath#> :self forKeyPath:@"contentOffset" options:0 context:nil];
+   // [historyController.tableView removeObserver:(NSObject *)observer forKeyPath:<#(NSString *)keyPath#> :self forKeyPath:@"contentOffset" options:0 context:nil];
 
     self.pagesContainer.viewControllers = @[historyController, threeHourController, northController, southController, eastController, westController, centralController];
     [self.pagesContainer setSelectedIndex:1 animated:NO];
@@ -122,6 +130,10 @@
     self.data =  [[PSIData alloc] init];
     self.data.delegate = self;
     [self.data loadData];
+    
+    self.pollutantData = [[PollutantData alloc] init];
+    self.pollutantData.delegate = self;
+    [self.pollutantData loadData];
 
 }
 
@@ -145,7 +157,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)loadingPollutantsCompleted:(PollutantData *)data {
+    PollutantsLoaded = YES;
+    for (RegionViewController *region in self.pagesContainer.viewControllers) {
+        NSLog(@"title %@", region.title);
+        [region setPollutantData:data];
+        [region setMainView:self];
+    }
+    if (PSILoaded && PollutantsLoaded) {
+        [self removeLoadingView];
+        NSLog(@"########### loaded pollutants");
+    }
+}
+
 -(void)loadingCompleted:(PSIData *)data {
+    PSILoaded = YES;
     _refresh.enabled = YES;
     int lasthour = [self.data getLastHour];
     NSString* suffix;
@@ -171,8 +197,11 @@
     for (RegionViewController *region in self.pagesContainer.viewControllers) {
         NSLog(@"title %@", region.title);
         [region setData:data];
+        [region setMainView:self];
     }
-    [self removeLoadingView];
+    if (PSILoaded && PollutantsLoaded) {
+        [self removeLoadingView];
+    }
 }
 - (NSString *)getSingaporeTimeWithMinutes:(BOOL)minutes
 {
@@ -315,6 +344,9 @@
     }];
 
 
+}
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 - (void)refreshData
 {

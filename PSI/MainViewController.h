@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PSIData.h"
+#import "PollutantData.h"
 #import "DAPagesContainer.h"
 #import "InformationViewController.h"
 
@@ -17,7 +18,8 @@
 #define IS_4INCH_SCREEN (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568) < DBL_EPSILON)
 
 
-@interface MainViewController : UIViewController<PSIDataDelegate, InformationViewControllerDelegate>  {
+@interface MainViewController : UIViewController<PSIDataDelegate, InformationViewControllerDelegate, PollutantDataDelegate>  {
+    
 
 }
 
@@ -32,6 +34,7 @@
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *act;
 @property (nonatomic, strong) UIViewController* transparentModalViewController;
 @property (nonatomic, strong) PSIData *data;
+@property (nonatomic, strong) PollutantData *pollutantData;
 
 @property (strong, nonatomic) DAPagesContainer *pagesContainer;
 

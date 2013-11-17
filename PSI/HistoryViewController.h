@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "DataViewController.h"
+#import "MainViewController.h"
 
 @interface HistoryViewController : DataViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) IBOutlet UIScrollView* graphScrollView;
 @property(nonatomic, strong) IBOutlet UITableView* tableView;
+@property (nonatomic, strong) MainViewController* mainView;
 
 @end

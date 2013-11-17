@@ -19,11 +19,11 @@
 #define kOffsetY 10
 #define _kGraphBottom 177
 #define kGraphTop 0
-#define kBarTop 10  
+#define kBarTop 10
 #define kBarWidth 20
 #define kCircleRadius 4
 #define kTouchRadius 40
-#define kNumberOfBars 24 // one per hour
+#define kNumberOfBars 20 // one per hour
 #define kFontSize 15
 #define kFont "Helvetica Neue Light"
 #define kNumberOffset 3

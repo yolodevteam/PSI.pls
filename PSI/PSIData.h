@@ -16,7 +16,7 @@
 @end
 
 @interface PSIData : NSObject<NSURLConnectionDataDelegate> {
-
+    
 }
 
 @property (nonatomic, assign) id <PSIDataDelegate> delegate;
@@ -26,14 +26,16 @@
 @property (nonatomic, strong) NSArray* sortedKeys;
 
 -(void)loadData;
--(NSDictionary *) getLastHourData;
+-(NSString *) getLastHourData;
 -(int) getLastHour;
 
+
 //utils
--(UIColor*) getColorFromPSI:(int) PSI withAlpha:(float) alpha;
-- (NSString* )getHealthFromPSI:(int) PSI;
--(int)getAQIfromPM25: (float) PM25;
-- (UIColor*) getColorFromAQI: (int) AQI;
-- (NSString* )getHealthFromAQI:(int)AQI;
+UIColor* getColorFromPSI(int PSI, float alpha);
+NSInteger customSort(id num1, id num2, void *context);
+NSString* getHealthFromPSI(int PSI);
+NSString* getHealthFromAQI(int AQI);
+int getAQIfromPM25(float PM25);
+UIColor* getColorFromAQI(int AQI);
 
 @end

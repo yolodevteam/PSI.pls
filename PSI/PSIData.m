@@ -16,7 +16,7 @@
 @synthesize sortedResults = _sortedResults;
 
 -(void)loadData {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/all.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     (void)[[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
@@ -56,15 +56,18 @@ NSInteger customSort(id num1, id num2, void *context)
 {
     NSLog(@"Data recieved");
     _results = [_responseData objectFromJSONData];
+   
     for (NSString *key in _results) {
         NSLog(@"time %@", key);
     }
     _sortedKeys = [[_results allKeys] sortedArrayUsingFunction:customSort context:NULL];
+    //NSLog(@"sorted keys %@", _sortedKeys);
     _sortedResults = [_results objectsForKeys: _sortedKeys notFoundMarker: [NSNull null]];
+     NSLog(@"result: %@", _sortedResults);
     [self.delegate loadingCompleted:self];
     NSLog(@"swaggie 2345");
 }
--(NSDictionary *) getLastHourData {
+-(NSString*) getLastHourData {
     return [_sortedResults lastObject];
 }
 -(int) getLastHour {
@@ -73,7 +76,7 @@ NSInteger customSort(id num1, id num2, void *context)
     return [split[2] integerValue];
 }
 
--(UIColor*) getColorFromPSI:(int) PSI withAlpha:(float) alpha {
+UIColor* getColorFromPSI(int PSI, float alpha) {
     if (PSI < 51) {
         // 'Good'
         return [UIColor colorWithRed:0.153 green:0.682 blue:0.376 alpha:alpha];
@@ -90,13 +93,12 @@ NSInteger customSort(id num1, id num2, void *context)
     else if (PSI >= 300){
         return [UIColor colorWithRed:0.608 green:0.349 blue:0.714 alpha:alpha];
     }
-
+    
     return [UIColor clearColor];
-
+    
 }
 
-- (NSString* )getHealthFromPSI:(int) PSI
-{
+NSString* getHealthFromPSI(int PSI) {
     NSString* text;
     if (PSI < 51) {
         // 'Good'
@@ -113,11 +115,11 @@ NSInteger customSort(id num1, id num2, void *context)
     }
     else if (PSI >= 300){
         text = @"Hazardous";
-   }
+    }
     return text;
 }
 
-- (NSString* )getHealthFromAQI:(int)AQI
+NSString* getHealthFromAQI(int AQI)
 {
     NSString* text;
     if (AQI < 51) {
@@ -142,7 +144,7 @@ NSInteger customSort(id num1, id num2, void *context)
     return text;
 }
 
--(int)getAQIfromPM25: (float) PM25 {
+int getAQIfromPM25(float PM25) {
     int AQILow, AQIHigh, AQI;
     float breakPointLow, breakPointHigh;
     if (PM25 < 12.1) {
@@ -191,9 +193,9 @@ NSInteger customSort(id num1, id num2, void *context)
     //NSLog(@"AQI %d, %d %d, %f", AQI, AQILow, AQIHigh, PM25);
     return AQI;
 }
-- (UIColor*) getColorFromAQI: (int) AQI {
+UIColor* getColorFromAQI(int AQI){
     float alpha = 0.68;
-
+    
     if (AQI < 51) {
         //green
         //NSLog(@"green");

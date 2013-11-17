@@ -1,20 +1,18 @@
 //
-//  DataViewController.m
+//  HealthInfoViewController.m
 //  PSI
 //
-//  Created by Terence Tan on 3/7/13.
+//  Created by Terence Tan on 16/11/13.
 //  Copyright (c) 2013 ttwj. All rights reserved.
 //
 
-#import "DataViewController.h"
+#import "HealthInfoViewController.h"
 
-@interface DataViewController ()
+@interface HealthInfoViewController ()
 
 @end
 
-@implementation DataViewController {
-
-}
+@implementation HealthInfoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,10 +23,19 @@
     return self;
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+}
+-(IBAction) done:(id) sender {
+    NSLog(@"save");
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,16 +43,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(void)setData:(PSIData* )data {
-    _data = data;
-}
--(void)setPollutantData:(PollutantData *)data {
-    _pollutantData = data;
-}
--(PollutantData*) getPollutantData {
-    return _pollutantData;
-}
-
 
 @end
