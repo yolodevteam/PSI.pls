@@ -30,6 +30,8 @@
 		ADA3524D1838F911000A4D15 /* PM10.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA352491838F911000A4D15 /* PM10.html */; };
 		ADA3524E1838F911000A4D15 /* SO2.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA3524A1838F911000A4D15 /* SO2.html */; };
 		ADA352501839098C000A4D15 /* Info.css in Resources */ = {isa = PBXBuildFile; fileRef = ADA3524F1839098B000A4D15 /* Info.css */; };
+		ADA3525218391404000A4D15 /* PM2.5.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA3525118391404000A4D15 /* PM2.5.html */; };
+		ADA3525418391738000A4D15 /* NO2.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA3525318391738000A4D15 /* NO2.html */; };
 		ADA8DC451789984700A73C77 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D52C1F13EF8D35735B5DD /* RTLabel.m */; };
 		ADA8DC47178998C200A73C77 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA8DC46178998C100A73C77 /* CoreText.framework */; };
 		ADCAD99A1837304F006E57A5 /* HealthInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */; };
@@ -92,6 +94,8 @@
 		ADA352491838F911000A4D15 /* PM10.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PM10.html; sourceTree = "<group>"; };
 		ADA3524A1838F911000A4D15 /* SO2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SO2.html; sourceTree = "<group>"; };
 		ADA3524F1839098B000A4D15 /* Info.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Info.css; sourceTree = "<group>"; };
+		ADA3525118391404000A4D15 /* PM2.5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PM2.5.html; sourceTree = "<group>"; };
+		ADA3525318391738000A4D15 /* NO2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NO2.html; sourceTree = "<group>"; };
 		ADA8DC46178998C100A73C77 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		ADCAD9971837304F006E57A5 /* HealthInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthInfoViewController.h; sourceTree = "<group>"; };
 		ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthInfoViewController.m; sourceTree = "<group>"; };
@@ -256,8 +260,10 @@
 				E90770E51775A4D200139FFC /* PSI-Prefix.pch */,
 				ADA352471838F911000A4D15 /* CO.html */,
 				ADA352481838F911000A4D15 /* O3.html */,
+				ADA3525118391404000A4D15 /* PM2.5.html */,
 				ADA352491838F911000A4D15 /* PM10.html */,
 				ADA3524A1838F911000A4D15 /* SO2.html */,
+				ADA3525318391738000A4D15 /* NO2.html */,
 				ADA3524F1839098B000A4D15 /* Info.css */,
 				ADCB4227177B2E57007EF14A /* Icon@2x.png */,
 				ADCB4225177B2E38007EF14A /* Icon.png */,
@@ -335,7 +341,6 @@
 				E90770EC1775A4D200139FFC /* Default@2x.png in Resources */,
 				E90770EE1775A4D200139FFC /* Default-568h@2x.png in Resources */,
 				E92E499A1775F25F002E9C46 /* InformationViewController.xib in Resources */,
-				ADA3524D1838F911000A4D15 /* PM10.html in Resources */,
 				AD9DA1901776E4BA005B2C62 /* bg_iphone.jpg in Resources */,
 				AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */,
 				AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */,
@@ -351,6 +356,9 @@
 				AD49097D1781C4640086E13B /* MainViewController.xib in Resources */,
 				ADEB614817844C5900A2C67F /* RegionViewController.xib in Resources */,
 				367D57E2485BF105EF21238F /* HistoryViewController.xib in Resources */,
+				ADA3525218391404000A4D15 /* PM2.5.html in Resources */,
+				ADA3525418391738000A4D15 /* NO2.html in Resources */,
+				ADA3524D1838F911000A4D15 /* PM10.html in Resources */,
 				367D50E86C7184DD5E055AF0 /* legal.txt in Resources */,
 				ADA3524E1838F911000A4D15 /* SO2.html in Resources */,
 			);

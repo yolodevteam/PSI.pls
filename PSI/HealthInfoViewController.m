@@ -35,12 +35,12 @@
     
 }
 -(IBAction) done:(id) sender {
-    NSLog(@"save");
+    //NSLog(@"save");
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 -(void) setTitle:(NSString *)title {
-    NSLog(@"title bro %@", title);
+    //NSLog(@"title bro %@", title);
     self.bar.topItem.title = title;
 }
 
@@ -51,6 +51,7 @@
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
     NSLog(@"html string %@", htmlString);
     [self.webView loadHTMLString:htmlString baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+    
 
 }
 

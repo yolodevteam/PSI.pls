@@ -36,9 +36,9 @@
     NSLog(@"Data recieved");
     _results = [_responseData objectFromJSONData];
     //NSLog(@"result: %@", _results);
-    for (NSString *key in _results) {
+    /*for (NSString *key in _results) {
         NSLog(@"time %@", key);
-    }
+    }*/
     _sortedKeys = [[_results allKeys] sortedArrayUsingFunction:customSort context:NULL];
     //NSLog(@"sorted keys %@", _sortedKeys);
     _sortedResults = [_results objectsForKeys: _sortedKeys notFoundMarker: [NSNull null]];

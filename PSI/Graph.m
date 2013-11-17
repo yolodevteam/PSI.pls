@@ -101,10 +101,10 @@ CGRect touchesAreas[kNumberOfBars];
     
     
     float scaled;
-    NSLog(@"psi values %@", psiValues);
+    //NSLog(@"psi values %@", psiValues);
     for (int i = 0; i < kNumberOfBars; i++) {
         scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
-        NSLog(@"da scaled %f", scaled);
+        //NSLog(@"da scaled %f", scaled);
         if (i == 0) {
             CGContextMoveToPoint(context, kOffsetX, kGraphHeight - (maxGraphHeight * scaled));
         } else {

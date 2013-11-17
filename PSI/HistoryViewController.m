@@ -119,7 +119,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     int psi_t = [[self.data.sortedResults objectAtIndex:indexPath.row] integerValue];
     
-    NSLog(@"index path %d, psi %d", indexPath.row, psi_t);
+    //NSLog(@"index path %d, psi %d", indexPath.row, psi_t);
     [cell.psi setTitle:[NSString stringWithFormat:@"%d", psi_t] forState:UIControlStateNormal];
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.psi.backgroundColor = getColorFromPSI(psi_t, 0.75);

@@ -57,9 +57,9 @@ NSInteger customSort(id num1, id num2, void *context)
     NSLog(@"Data recieved");
     _results = [_responseData objectFromJSONData];
    
-    for (NSString *key in _results) {
+    /*for (NSString *key in _results) {
         NSLog(@"time %@", key);
-    }
+    }*/
     _sortedKeys = [[_results allKeys] sortedArrayUsingFunction:customSort context:NULL];
     //NSLog(@"sorted keys %@", _sortedKeys);
     _sortedResults = [_results objectsForKeys: _sortedKeys notFoundMarker: [NSNull null]];

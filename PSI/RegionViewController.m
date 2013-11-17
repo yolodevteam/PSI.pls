@@ -161,9 +161,9 @@ double pm10_t, pm10_l, pm25_t, pm25_l, no2_t, no2_l, o3_t, o3_l, so2_t, so2_l, c
                      } completion:^(BOOL finished) {
                      }];
    
-    NSLog(@"pollutant data array %@", [[self getPollutantData] getLastHourData]);
+    //NSLog(@"pollutant data array %@", [[self getPollutantData] getLastHourData]);
     NSDictionary* dict = [self getLastDictionary];
-    NSLog(@"swag swag swag %@", [dict objectForKey:key]);
+    //NSLog(@"swag swag swag %@", [dict objectForKey:key]);
     int AQI;
     if ([self.region isEqualToString:@"3hr"]) {
         _pm25Value.text = range;
@@ -195,10 +195,10 @@ double strip_brackets_double(NSString* string) {
     return [d doubleValue];
 }
 -(NSDictionary*)getLastDictionary {
-    NSLog(@"pollutant data array %@", [[self getPollutantData] getLastHourData]);
+   // NSLog(@"pollutant data array %@", [[self getPollutantData] getLastHourData]);
     for (NSDictionary* dict in [[self getPollutantData] getLastHourData]) {
         if ([[[dict objectForKey:@"Region"] lowercaseString] isEqualToString:self.region]) {
-            NSLog(@"dict %@", dict);
+            //NSLog(@"dict %@", dict);
             regionDictionary = dict;
             return dict;
         }
@@ -282,18 +282,18 @@ double strip_brackets_double(NSString* string) {
     self.psiHealth.backgroundColor = getColorFromPSI(pm10, 0.7);
     
     //compute average
-    NSLog(@"computing average");
+    //NSLog(@"computing average");
     for (NSArray* hour in data.sortedResults) {
         for (NSDictionary* dict in hour) {
             if ([[[dict objectForKey:@"Region"] lowercaseString] isEqualToString:self.region]) {
-                NSLog(@"AVERAGEEGGGGGGGGGG");
+                //NSLog(@"AVERAGEEGGGGGGGGGG");
                 pm10avg += strip_brackets_double([dict objectForKey:@"PM10"]);
                 pm25avg += strip_brackets_double([dict objectForKey:@"PM25"]);
                 no2avg += strip_brackets_double([dict objectForKey:@"NO2"]);
                 so2avg += strip_brackets_double([dict objectForKey:@"SO2"]);
                 coavg += strip_brackets_double([dict objectForKey:@"CO"]);
                 o3avg += strip_brackets_double([dict objectForKey:@"O3"]);
-                NSLog(@"pm10avg %f", pm10avg);
+                //NSLog(@"pm10avg %f", pm10avg);
             }
         }
     }

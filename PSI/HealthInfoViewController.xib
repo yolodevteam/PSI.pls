@@ -17,10 +17,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xN7-j1-wR8">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xN7-j1-wR8">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <textAttributes key="titleTextAttributes">
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </textAttributes>
@@ -35,7 +35,7 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <webView contentMode="scaleToFill" fixedFrame="YES" allowsInlineMediaPlayback="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00l-8P-NHM">
+                <webView autoresizesSubviews="NO" opaque="NO" contentMode="scaleAspectFit" allowsInlineMediaPlayback="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00l-8P-NHM">
                     <rect key="frame" x="0.0" y="44" width="320" height="524"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,6 +43,15 @@
                 </webView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="00l-8P-NHM" firstAttribute="leading" secondItem="xN7-j1-wR8" secondAttribute="leading" id="7pk-fs-MvB"/>
+                <constraint firstAttribute="bottom" secondItem="00l-8P-NHM" secondAttribute="bottom" id="9jV-QX-sGU"/>
+                <constraint firstItem="00l-8P-NHM" firstAttribute="trailing" secondItem="xN7-j1-wR8" secondAttribute="trailing" id="C3L-dp-hx7"/>
+                <constraint firstItem="00l-8P-NHM" firstAttribute="top" secondItem="xN7-j1-wR8" secondAttribute="bottom" id="DXA-00-KGm"/>
+                <constraint firstItem="xN7-j1-wR8" firstAttribute="top" secondItem="1" secondAttribute="top" id="ej8-NF-ARk"/>
+                <constraint firstAttribute="trailing" secondItem="xN7-j1-wR8" secondAttribute="trailing" id="xX2-cf-4Et"/>
+                <constraint firstItem="00l-8P-NHM" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="zep-bL-HoM"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
