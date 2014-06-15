@@ -26,9 +26,12 @@
 @property (nonatomic, strong) NSArray* sortedKeys;
 
 -(void)loadData;
--(NSString *) getLastHourData;
+-(NSDictionary*) getLastHourData;
 -(int) getLastHour;
-
+-(int)getPSIFromHour:(NSDictionary*) lastHour;
+-(int) getAQIfromPM25:(float) PM25;
+-(UIColor*) getColorFromAQI:(int) AQI;
+-(NSString*) getHealthFromAQI:(int) AQI;
 
 //utils
 UIColor* getColorFromPSI(int PSI, float alpha);

@@ -33,7 +33,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [_done addTarget:self action:@selector(dismissSelf) forControlEvents:UIControlEventTouchUpInside];
-    static NSString *sample_text = @"<font color='#ffffff'><font face='HelveticaNeue-CondensedBold' size=20>Credits</font><p>Terence Tan - App development</p><p>Thomas Hedderwick - App Development</p><p>Li Zhongfu - Backend development</p><p>Colin Chan - Photography</p></font>"
+    static NSString *sample_text = @"<font color='#ffffff'><font face='HelveticaNeue-CondensedBold' size=20>Credits</font><p>Terence Tan - App development</p><p>Li Zhongfu - Backend development</p><p>Colin Chan - Photography</p><p>Thomas Hedderwick - App Development</p></font>"
             "<p face='HelveticaNeue-CondensedBold' size=18 color='#ccc'>Legal</p>";
 
     RTLabel *label = [[RTLabel alloc] initWithFrame:self.view.frame];

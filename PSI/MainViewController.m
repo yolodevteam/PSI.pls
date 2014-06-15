@@ -35,10 +35,26 @@ BOOL PollutantsLoaded = NO;
     }
     return self;
 }
-
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    [_locationManager startUpdatingLocation];
+    [_locationManager stopUpdatingLocation];
+    CLLocation *location = [_locationManager location];
+    // Configure the new event with information from the location
+    
+    float longitude=location.coordinate.longitude;
+    float latitude=location.coordinate.latitude;
+    NSLog(@"latitude %f %f", latitude, longitude);
+    
     NSLog(@"hello swag");
     
     self.info.tintColor = [UIColor whiteColor];
@@ -82,28 +98,28 @@ BOOL PollutantsLoaded = NO;
 
     RegionViewController *threeHourController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
     threeHourController.title = @"3-Hour";
-    threeHourController.region = @"3hr";
+    threeHourController.region = @"3hr-PSI";
 
 
     RegionViewController *northController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
     northController.title = @"North";
-    northController.region = @"north";
+    northController.region = @"North";
 
     RegionViewController *southController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
     southController.title = @"South";
-    southController.region = @"south";
+    southController.region = @"South";
 
     RegionViewController *eastController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
     eastController.title = @"East";
-    eastController.region = @"east";
+    eastController.region = @"East";
 
     RegionViewController *westController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
     westController.title = @"West";
-    westController.region = @"west";
+    westController.region = @"West";
 
     RegionViewController *centralController = [[RegionViewController alloc] initWithNibName:@"RegionViewController" bundle:nil];
     centralController.title = @"Central";
-    centralController.region = @"central";
+    centralController.region = @"Central";
 
 
    // [historyController.tableView removeObserver:(NSObject *)observer forKeyPath:<#(NSString *)keyPath#> :self forKeyPath:@"contentOffset" options:0 context:nil];
@@ -131,9 +147,9 @@ BOOL PollutantsLoaded = NO;
     self.data.delegate = self;
     [self.data loadData];
     
-    self.pollutantData = [[PollutantData alloc] init];
+    /*self.pollutantData = [[PollutantData alloc] init];
     self.pollutantData.delegate = self;
-    [self.pollutantData loadData];
+    [self.pollutantData loadData];*/
 
 }
 
@@ -157,18 +173,18 @@ BOOL PollutantsLoaded = NO;
     // Dispose of any resources that can be recreated.
 }
 
--(void)loadingPollutantsCompleted:(PollutantData *)data {
+/*-(void)loadingPollutantsCompleted:(PollutantData *)data {
     PollutantsLoaded = YES;
     for (RegionViewController *region in self.pagesContainer.viewControllers) {
         NSLog(@"title %@", region.title);
-        [region setPollutantData:data];
+        //[region setPollutantData:data];
         [region setMainView:self];
     }
     if (PSILoaded && PollutantsLoaded) {
         [self removeLoadingView];
         NSLog(@"########### loaded pollutants");
     }
-}
+}*/
 
 -(void)loadingCompleted:(PSIData *)data {
     PSILoaded = YES;
@@ -199,9 +215,9 @@ BOOL PollutantsLoaded = NO;
         [region setData:data];
         [region setMainView:self];
     }
-    if (PSILoaded && PollutantsLoaded) {
-        [self removeLoadingView];
-    }
+    [self removeLoadingView];
+    
+    
 }
 - (NSString *)getSingaporeTimeWithMinutes:(BOOL)minutes
 {
@@ -353,6 +369,6 @@ BOOL PollutantsLoaded = NO;
     _refresh.enabled = NO;
     [self showLoadingView];;
     [_data loadData];
-    [_pollutantData loadData];
+    //[_pollutantData loadData];
 }
 @end

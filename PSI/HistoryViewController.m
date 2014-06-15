@@ -117,7 +117,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         }
     }
     
-    int psi_t = [[self.data.sortedResults objectAtIndex:indexPath.row] integerValue];
+    int psi_t = [self.data getPSIFromHour:[self.data.sortedResults objectAtIndex:indexPath.row]];
+
     
     //NSLog(@"index path %d, psi %d", indexPath.row, psi_t);
     [cell.psi setTitle:[NSString stringWithFormat:@"%d", psi_t] forState:UIControlStateNormal];

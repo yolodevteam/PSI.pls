@@ -24,7 +24,6 @@
 		AD9DA1911776E4BA005B2C62 /* bg_iphone@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */; };
 		AD9DA1921776E4BA005B2C62 /* bg_iphone-568h.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */; };
 		AD9DA1951776E610005B2C62 /* UIImage+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */; };
-		ADA3523C18388F3D000A4D15 /* PollutantData.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA3523B18388F3D000A4D15 /* PollutantData.m */; };
 		ADA3524B1838F911000A4D15 /* CO.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA352471838F911000A4D15 /* CO.html */; };
 		ADA3524C1838F911000A4D15 /* O3.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA352481838F911000A4D15 /* O3.html */; };
 		ADA3524D1838F911000A4D15 /* PM10.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA352491838F911000A4D15 /* PM10.html */; };
@@ -32,6 +31,7 @@
 		ADA352501839098C000A4D15 /* Info.css in Resources */ = {isa = PBXBuildFile; fileRef = ADA3524F1839098B000A4D15 /* Info.css */; };
 		ADA3525218391404000A4D15 /* PM2.5.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA3525118391404000A4D15 /* PM2.5.html */; };
 		ADA3525418391738000A4D15 /* NO2.html in Resources */ = {isa = PBXBuildFile; fileRef = ADA3525318391738000A4D15 /* NO2.html */; };
+		ADA352561839A03D000A4D15 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA352551839A03D000A4D15 /* CoreLocation.framework */; };
 		ADA8DC451789984700A73C77 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D52C1F13EF8D35735B5DD /* RTLabel.m */; };
 		ADA8DC47178998C200A73C77 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADA8DC46178998C100A73C77 /* CoreText.framework */; };
 		ADCAD99A1837304F006E57A5 /* HealthInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */; };
@@ -87,8 +87,6 @@
 		AD9DA18E1776E4BA005B2C62 /* bg_iphone@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone@2x.jpg"; sourceTree = "<group>"; };
 		AD9DA18F1776E4BA005B2C62 /* bg_iphone-568h.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg_iphone-568h.jpg"; sourceTree = "<group>"; };
 		AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Tools.m"; sourceTree = "<group>"; };
-		ADA3523A18388F3D000A4D15 /* PollutantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PollutantData.h; sourceTree = "<group>"; };
-		ADA3523B18388F3D000A4D15 /* PollutantData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PollutantData.m; sourceTree = "<group>"; };
 		ADA352471838F911000A4D15 /* CO.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CO.html; sourceTree = "<group>"; };
 		ADA352481838F911000A4D15 /* O3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = O3.html; sourceTree = "<group>"; };
 		ADA352491838F911000A4D15 /* PM10.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PM10.html; sourceTree = "<group>"; };
@@ -96,6 +94,7 @@
 		ADA3524F1839098B000A4D15 /* Info.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Info.css; sourceTree = "<group>"; };
 		ADA3525118391404000A4D15 /* PM2.5.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PM2.5.html; sourceTree = "<group>"; };
 		ADA3525318391738000A4D15 /* NO2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NO2.html; sourceTree = "<group>"; };
+		ADA352551839A03D000A4D15 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		ADA8DC46178998C100A73C77 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		ADCAD9971837304F006E57A5 /* HealthInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthInfoViewController.h; sourceTree = "<group>"; };
 		ADCAD9981837304F006E57A5 /* HealthInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthInfoViewController.m; sourceTree = "<group>"; };
@@ -139,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA352561839A03D000A4D15 /* CoreLocation.framework in Frameworks */,
 				ADA8DC47178998C200A73C77 /* CoreText.framework in Frameworks */,
 				E92E499C17760B23002E9C46 /* QuartzCore.framework in Frameworks */,
 				E90770D81775A4D200139FFC /* UIKit.framework in Frameworks */,
@@ -208,6 +208,7 @@
 		E90770D61775A4D200139FFC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADA352551839A03D000A4D15 /* CoreLocation.framework */,
 				E92E499B17760B23002E9C46 /* QuartzCore.framework */,
 				E90770D71775A4D200139FFC /* UIKit.framework */,
 				E90770D91775A4D200139FFC /* Foundation.framework */,
@@ -233,8 +234,6 @@
 				AD49097C1781C4640086E13B /* MainViewController.m */,
 				ADD554A01784049800DA1391 /* PSIData.h */,
 				ADD554A11784049800DA1391 /* PSIData.m */,
-				ADA3523A18388F3D000A4D15 /* PollutantData.h */,
-				ADA3523B18388F3D000A4D15 /* PollutantData.m */,
 				AD9DA1941776E60F005B2C62 /* UIImage+Tools.m */,
 				E92E49961775F25F002E9C46 /* InformationViewController.h */,
 				E92E49971775F25F002E9C46 /* InformationViewController.m */,
@@ -371,7 +370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADA3523C18388F3D000A4D15 /* PollutantData.m in Sources */,
 				ADA8DC451789984700A73C77 /* RTLabel.m in Sources */,
 				E90770E41775A4D200139FFC /* main.m in Sources */,
 				E92E49991775F25F002E9C46 /* InformationViewController.m in Sources */,

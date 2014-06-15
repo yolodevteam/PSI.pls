@@ -16,7 +16,7 @@
 @synthesize sortedResults = _sortedResults;
 
 -(void)loadData {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://dawo.me/psi/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://ttwj.tk/psi.json"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30];
     (void)[[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
@@ -42,7 +42,7 @@ NSInteger customSort(id num1, id num2, void *context)
     int one = ([one_split[0] integerValue] * 24) + ([one_split[1] integerValue] * 30) + [one_split[2] integerValue];
     NSArray* two_split = [num2 componentsSeparatedByString:@":"];
     int two = ([two_split[0] integerValue] * 24) + ([two_split[1] integerValue] * 30) + [two_split[2] integerValue];
-    //NSLog(@"two value %d", two);
+    NSLog(@"two value %d", two);
     if (one < two)
         return NSOrderedAscending;
     else if (one > two)
@@ -61,14 +61,23 @@ NSInteger customSort(id num1, id num2, void *context)
         NSLog(@"time %@", key);
     }*/
     _sortedKeys = [[_results allKeys] sortedArrayUsingFunction:customSort context:NULL];
-    //NSLog(@"sorted keys %@", _sortedKeys);
+    
+    NSLog(@"sorted keys %@", _sortedKeys);
     _sortedResults = [_results objectsForKeys: _sortedKeys notFoundMarker: [NSNull null]];
      NSLog(@"result: %@", _sortedResults);
     [self.delegate loadingCompleted:self];
     NSLog(@"swaggie 2345");
+    
+    
 }
--(NSString*) getLastHourData {
+-(NSDictionary*) getLastHourData {
     return [_sortedResults lastObject];
+}
+-(int)getPSIFromHour:(NSDictionary*) lastHour {
+    return [[lastHour objectForKey:@"3hr-PSI"] integerValue];
+}
+-(NSDictionary*)getRegionData:(NSString*) region {
+    return [[self getLastHourData] objectForKey:region];
 }
 -(int) getLastHour {
     id lastKey = [_sortedKeys lastObject];
@@ -119,7 +128,7 @@ NSString* getHealthFromPSI(int PSI) {
     return text;
 }
 
-NSString* getHealthFromAQI(int AQI)
+-(NSString*) getHealthFromAQI:(int) AQI
 {
     NSString* text;
     if (AQI < 51) {
@@ -145,7 +154,7 @@ NSString* getHealthFromAQI(int AQI)
 }
 
 
-int getAQIfromPM25(float PM25) {
+-(int) getAQIfromPM25:(float) PM25 {
     int AQILow, AQIHigh, AQI;
     float breakPointLow, breakPointHigh;
     if (PM25 < 12.1) {
@@ -194,7 +203,7 @@ int getAQIfromPM25(float PM25) {
     //NSLog(@"AQI %d, %d %d, %f", AQI, AQILow, AQIHigh, PM25);
     return AQI;
 }
-UIColor* getColorFromAQI(int AQI){
+-(UIColor*) getColorFromAQI:(int) AQI{
     float alpha = 0.68;
     
     if (AQI < 51) {

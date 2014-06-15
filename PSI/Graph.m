@@ -10,7 +10,7 @@
 //#import <Accelerate/Accelerate.h>
 
 @implementation Graph {
-    NSArray* psiValues;
+    NSMutableArray* psiValues;
     CGRect _rect;
     PSIData *_data;
     int newPointPos;
@@ -44,12 +44,18 @@ CGRect touchesAreas[kNumberOfBars];
     }
     if (self) {
         [self setBackgroundColor:[UIColor clearColor]];
-        psiValues = data.sortedResults;
+        psiValues = [[NSMutableArray alloc] init];
+        for (NSDictionary* hour in data.sortedResults) {
+            NSLog(@"hour %@", hour);
+            [psiValues addObject:[NSNumber numberWithInt:[data getPSIFromHour:hour]]];
+            NSLog(@"psi value graph %u", [data getPSIFromHour:hour]);
+        }
+        //psiValues = data.sortedResults
     }
     NSLog(@"sorted results bro, %@", data.sortedResults);
-    for (NSString* psi_s in data.sortedResults) {
-        if ([psi_s integerValue] > highest) {
-            highest = [psi_s floatValue];
+    for (NSDictionary* hour in data.sortedResults) {
+        if ([data getPSIFromHour:hour]> highest) {
+            highest = [data getPSIFromHour:hour];
             
         }
     }
@@ -101,7 +107,7 @@ CGRect touchesAreas[kNumberOfBars];
     
     
     float scaled;
-    //NSLog(@"psi values %@", psiValues);
+    NSLog(@"psi values %@", psiValues);
     for (int i = 0; i < kNumberOfBars; i++) {
         scaled = ([[psiValues objectAtIndex:i] floatValue]/highest) / 3;
         //NSLog(@"da scaled %f", scaled);

@@ -40,12 +40,12 @@
 -(void)setData:(PSIData* )data {
     _data = data;
 }
--(void)setPollutantData:(PollutantData *)data {
+/*-(void)setPollutantData:(PollutantData *)data {
     _pollutantData = data;
 }
 -(PollutantData*) getPollutantData {
     return _pollutantData;
-}
+}*/
 
 
 @end

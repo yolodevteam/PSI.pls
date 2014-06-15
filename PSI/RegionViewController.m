@@ -17,7 +17,6 @@
 
 @implementation RegionViewController
 
-@synthesize pollutantData;
 
 double pm10avg = 0.0, pm25avg = 0.0, no2avg = 0.0, o3avg = 0.0, so2avg = 0.0, coavg = 0.0;
 double pm10_t, pm10_l, pm25_t, pm25_l, no2_t, no2_l, o3_t, o3_l, so2_t, so2_l, co_t, co_l;
@@ -73,7 +72,7 @@ double pm10_t, pm10_l, pm25_t, pm25_l, no2_t, no2_l, o3_t, o3_l, so2_t, so2_l, c
     UITouch *touch = [touches anyObject];
     if (touch.view.tag != 0) {
         NSLog(@"touch tag: %ld", (long)touch.view.tag);
-        [self changeSubreading:touch.view.tag];
+        //[self changeSubreading:touch.view.tag];
     }
     
 }
@@ -86,7 +85,7 @@ double pm10_t, pm10_l, pm25_t, pm25_l, no2_t, no2_l, o3_t, o3_l, so2_t, so2_l, c
 
 
 
--(void)changeSubreading:(int) i {
+/*-(void)changeSubreading:(int) i {
 
    
     UILabel* label;
@@ -181,7 +180,7 @@ double pm10_t, pm10_l, pm25_t, pm25_l, no2_t, no2_l, o3_t, o3_l, so2_t, so2_l, c
                          _pm25Health.alpha = 1;
                      }];
     
-}
+}*/
 
 NSString* strip_brackets(NSString* string) {
     NSCharacterSet *remove = [NSCharacterSet characterSetWithCharactersInString:@"()"];
@@ -194,7 +193,7 @@ double strip_brackets_double(NSString* string) {
     NSString* d = strip_brackets(string);
     return [d doubleValue];
 }
--(NSDictionary*)getLastDictionary {
+/*-(NSDictionary*)getLastDictionary {
    // NSLog(@"pollutant data array %@", [[self getPollutantData] getLastHourData]);
     for (NSDictionary* dict in [[self getPollutantData] getLastHourData]) {
         if ([[[dict objectForKey:@"Region"] lowercaseString] isEqualToString:self.region]) {
@@ -204,9 +203,9 @@ double strip_brackets_double(NSString* string) {
         }
     }
     return NULL;
-}
+}*/
 
--(void) setPollutantData:(PollutantData *)data {
+/*-(void) setPollutantData:(PollutantData *)data {
     [super setPollutantData:data];
     if ([self.region isEqualToString:@"3hr"]) {
         for (NSArray* hour in data.sortedResults) {
@@ -339,31 +338,38 @@ double strip_brackets_double(NSString* string) {
     }
     
 
-}
+}*/
 
 -(void)setData:(PSIData *)data {
     [super setData:data];
-    int psiValue = [[data getLastHourData] integerValue];
+    int psiValue = [data getPSIFromHour:[data getLastHourData]];
     self.psiHealth.backgroundColor = getColorFromPSI(psiValue, 0.7);
     self.psiValue.text = [NSString stringWithFormat:@"%d", psiValue];
     self.psiHealth.text = getHealthFromPSI(psiValue);
     
     
-    //int pm25;
-    /*if ([_region isEqualToString:@"3hr"]) {
-        int pm25high = [[[[data getLastHourData] objectForKey:@"pm25"] objectForKey:@"max"] integerValue];
-        int pm25low = [[[[data getLastHourData] objectForKey:@"pm25"] objectForKey:@"min"] integerValue];
+    int pm25;
+    NSLog(@"DA REGION %@", _region);
+    if ([_region isEqualToString:@"3hr-PSI"]) {
+        /*int pm25high = [[[[data getLastHourData] objectForKey:@"PM25"] objectForKey:@"max"] integerValue];
+        int pm25low = [[[[data getLastHourData] objectForKey:@"PM25"] objectForKey:@"min"] integerValue];
         pm25 = ceil((pm25high + pm25low)/2);
-        self.pm25Value.text = [NSString stringWithFormat:@" %d - %d ", pm25low, pm25high];
+        self.pm25Value.text = [NSString stringWithFormat:@" %d - %d ", pm25low, pm25high];*/
 
     }
-    else {
-        pm25 = [[[[data getLastHourData] objectForKey:@"pm25"] objectForKey:_region] integerValue];
+    else if ([_region isEqualToString:@"History"]) {
+        
+    }
+     else {
+         NSLog(@"wow %@", [[data getLastHourData] objectForKey:_region]);
+        pm25 = [[[[data getLastHourData] objectForKey:_region] objectForKey:@"PM25"] integerValue];
         self.pm25Value.text = [NSString stringWithFormat:@"%d", pm25];
-    }*/
-    /*int AQI = [data getAQIfromPM25:pm25];
+         //self.psiValue.text = [[[data getLastHourData] objectForKey:_region] objectForKey:@"PM25"];
+         NSLog(@"wow swag wow");
+    }
+    int AQI = [data getAQIfromPM25:pm25];
     self.pm25Health.backgroundColor = [data getColorFromAQI:AQI];
-    self.pm25Health.text = [data getHealthFromAQI:AQI];*/
+    self.pm25Health.text = [data getHealthFromAQI:AQI];
 
 }
 
